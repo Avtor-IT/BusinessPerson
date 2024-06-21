@@ -1,0 +1,20 @@
+@import './reset';
+@import './variables/vars';
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+#root {
+    min-height: 100vh;
+}
+
+body,
+html {
+    background-color: #f9feff;
+}
