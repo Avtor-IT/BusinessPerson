@@ -3,6 +3,7 @@ export const AppRoutes = {
     SERVICES: 'services',
     APPEALS: 'appeals',
     TUTORIAL: 'tutorial',
+    LOGIN: 'login',
     NOT_FOUND: 'notFound',
 };
 
@@ -11,6 +12,7 @@ export const RoutePath = {
     [AppRoutes.SERVICES]: '/services',
     [AppRoutes.APPEALS]: '/appeals',
     [AppRoutes.TUTORIAL]: '/tutorial',
+    [AppRoutes.LOGIN]: '/login',
     [AppRoutes.NOT_FOUND]: '*',
 };
 
