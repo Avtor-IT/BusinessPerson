@@ -4,7 +4,7 @@ import { LogoLink } from 'widgets/LogoLink';
 import { Navigation } from 'widgets/Navigation';
 import { Header } from 'widgets/Header';
 import { Logo } from 'shared/ui/Logo';
-import AppRouter from '../providers/router/ui/AppRouter';
+import { Outlet } from 'react-router-dom';
 
 export const Layout = () => (
     <div
@@ -22,7 +22,7 @@ export const Layout = () => (
         </SideMenu>
         <div style={{ flex: 1 }}>
             <Header style={{ marginBottom: 62 }} />
-            <AppRouter />
+            <Outlet />
         </div>
     </div>
 );
