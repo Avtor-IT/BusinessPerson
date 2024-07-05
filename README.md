@@ -1,5 +1,5 @@
 ```md
-– header (<b>Кирилл</b>)
+– header (**Кирилл**)
 – nav (**Кирилл**)
 – MainPage
 	– MainInfo (**Настя**)
