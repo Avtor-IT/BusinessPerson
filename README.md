@@ -51,8 +51,68 @@
 	|	|		| - recommendationBox (link?)
 	|	|			| - title
 	|	|			| - description
-
-
+	| − servicesSection
+	|	| − sectionName
+	|		| − serviceRow                                    # Бухгалтерское обслуживание
+	|			| − serviceName
+	|			| − serviceContent             
+	|				| − card                                  # Текущие налоги
+	|					| − title
+	|					| − content
+	|						| − currentTaxesTable
+	|							| − tableHeader
+	|								| − headerCell
+	|									| − taxText
+	|								| − headerCell
+	|									| − sumText
+	|									| − sortButton
+	|										| − sortIcon
+	|								| − headerCell
+	|									| − dateText
+	|									| − sortButton
+	|										| − sortIcon
+	|							| − tableContent
+	|								| − tableRow
+	|									| − taxName
+	|									| − taxSum
+	|									| − taxDate
+	|				| − card                                  # Юридическое обслуживание
+	|					| − title
+	|					| − content
+	|						| − chartBox
+	|							| − chartLegend
+	|								| − chartLegendItem
+	|									| − color
+	|									| − name
+	|							| − chart
+	|								| − pieChart
+	|								| − chartSum
+	|		| − serviceRow                                    #  Юридическое обслуживание (промо)
+	|			| − serviceName
+	|			| − servicePromoContent
+	|				| − promoCard                       
+	|					| − title
+	|					| − content
+	|						| − tagList                      
+	|						| − tipBox
+	|							| − tipContent
+	|							| − closeButton
+	|								| − closeIcon
+	|					| − addService (link)
+	|						| − addIcon
+	|		| − serviceRow                                    #  Кадровое обслуживание (промо)
+	|			| − serviceName
+	|			| − servicePromoContent
+	|				| − promoCard                       
+	|					| − title
+	|					| − content
+	|						| − tagList                      
+	|						| − tipBox
+	|							| − tipContent
+	|							| − closeButton
+	|								| − closeIcon
+	|					| − addService (link)
+	|						| − addIcon
 
 
 
