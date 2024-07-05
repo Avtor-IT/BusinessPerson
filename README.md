@@ -2,61 +2,61 @@
 – header
 – nav
 - MainPage
-	| – MainInfo
-	|	| - info
-	|	|	| – MyCompany
-	|	|		| – title
-	|	|		| – More (link)
-	|	|		| – infoBox
-	|	|			| – name
-	|	|			| – nalogNumberBox
-	|	|				| – number
-	|	|				| – CopyButt
-	|	|			| – buttonSet
-	|	|				| – importButt(?)
-	|	|				| – exportButt
-	|	|	| – Accounts
-	|	|		| - title
-	|	|		| - paymentDateBox
-	|	|			| - text
-	|	|			| - PaymentDate
-	|	|		| - HistoryPaymentButt (link?)
-	|	|		| - toPayBox
-	|	|			| - text
-	|	|			| - PlusButt (link)
-	|	|	| – ManagerView
-	|	|		| - title
-	|	|		| - toWriteBox (link)
-	|	|			| - text
-	|	|			| - chatIcon
-	|	|		| - infoBox
-	|	|			| - aboutManagerBox
-	|	|				| - AvatarManager
-	|	|				| - InfoManager
-	|	|			| - phoneManagerBox
-	|	|				| - phoneManager
-	|	|				| - CopyButt
+	├── MainInfo
+	|	  - info
+	|	 	| – MyCompany
+	|	 		| – title
+	|	 		| – More (link)
+	|	 			| – infoBox
+	|	 			| – name
+	|	 			| – nalogNumberBox
+	|	 				| – number
+	|	 				| – CopyButt
+	|	 			| – buttonSet
+	|	 				| – importButt(?)
+	|	 				| – exportButt
+	|	 	| – Accounts
+	|	 		| - title
+	|	 		| - paymentDateBox
+	|	 			| - text
+	|	 			| - PaymentDate
+	|	 		| - HistoryPaymentButt (link?)
+	|	 		| - toPayBox
+	|	 			| - text
+	|	 			| - PlusButt (link)
+	|	 	| – ManagerView
+	|	 		| - title
+	|	 		| - toWriteBox (link)
+	|	 			| - text
+	|	 			| - chatIcon
+	|	 		| - infoBox
+	|	 			| - aboutManagerBox
+	|	 				| - AvatarManager
+	|	 				| - InfoManager
+	|	 			| - phoneManagerBox
+	|	 				| - phoneManager
+	|	 				| - CopyButt
    	|	| - docs&recomends
-	|	|	| - MyDocuments
-	|	|		| - title
-	|	|		| - description
-	|	|		| - deployBox (link)
-	|	|			| - text
-	|	|			| - arrowDownIcon
-	|	|		| - requiredDocuments					                 # предполагается, что СНИЛС, Устав, ОГРН и паспорт должны быть у всех
-	|	|			| - documentBox (link?)
-	|	|				| - title
-	|	|				| - CopyButt
-	|	|	| - MyRecommendations
-	|	|		| - recommendationBox (link?)
-	|	|			| - title
-	|	|			| - description
-	| − servicesSection
+	|	 	| - MyDocuments
+	|	 		| - title
+	|	 		| - description
+	|	 		| - deployBox (link)
+	|	 			| - text
+	|	 			| - arrowDownIcon
+	|	 		| - requiredDocuments					                 <!-- предполагается, что СНИЛС, Устав, ОГРН и паспорт должны быть у всех -->
+	|	 			| - documentBox (link?)
+	|	 				| - title
+	|	 				| - CopyButt
+	|	 	| - MyRecommendations
+	|	 		| - recommendationBox (link?)
+	|	 			| - title
+	|	 			| - description
+	├── servicesSection
 	|	| − sectionName
-	|		| − serviceRow                                                                   # Бухгалтерское обслуживание
+	|		| − serviceRow                                                                   <!-- Бухгалтерское обслуживание -->
 	|			| − serviceName
 	|			| − serviceContent             
-	|				| − card                                                         # Текущие налоги
+	|				| − card                                                         <!-- Текущие налоги -->
 	|					| − title
 	|					| − content
 	|						| − currentTaxesTable
@@ -76,7 +76,7 @@
 	|									| − taxName
 	|									| − taxSum
 	|									| − taxDate
-	|				| − card                                                         # Юридическое обслуживание
+	|				| − card                                                         <!-- Юридическое обслуживание -->
 	|					| − title
 	|					| − content
 	|						| − chartBox
@@ -87,7 +87,7 @@
 	|							| − chart
 	|								| − pieChart
 	|								| − chartSum
-	|		| − serviceRow                                                                   #  Юридическое обслуживание (промо)
+	|		| − serviceRow                                                                   <!--  Юридическое обслуживание (промо) -->
 	|			| − serviceName
 	|			| − servicePromoContent
 	|				| − promoCard                       
@@ -100,7 +100,7 @@
 	|								| − closeIcon
 	|					| − addService (link)
 	|						| − addIcon
-	|		| − serviceRow                                                                   #  Кадровое обслуживание (промо)
+	|		| − serviceRow                                                                   <!--  Кадровое обслуживание (промо) -->
 	|			| − serviceName
 	|			| − servicePromoContent
 	|				| − promoCard                       
@@ -113,26 +113,4 @@
 	|								| − closeIcon
 	|					| − addService (link)
 	|						| − addIcon
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```
