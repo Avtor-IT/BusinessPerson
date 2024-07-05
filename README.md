@@ -1,11 +1,11 @@
 ```md
-– header 
-– nav
+– header (Кирилл)
+– nav (Кирилл)
 – MainPage
-	– MainInfo
+	– MainInfo (Настя)
 		  | – info
-			| – card
-			 	| – MyCompany
+			| – card (на всей стр используется, Настя)
+			 	| – MyCompany 
 			 		| – title
 			 		| – More (link)
 			 			| – infoBox
@@ -64,7 +64,7 @@
 					 		| – recommendationBox (link?)
 					 			| – title
 					 			| – description
-	─ servicesSection
+	─ servicesSection (Кирилл)
 		| − sectionName
 			| − array
 				| − serviceRow                                                                   <!-- Купленные услуги (здесь для бухгалтерских услуг. В других мб по-другому) -->
