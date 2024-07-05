@@ -4,9 +4,9 @@
 – MainPage
 	– MainInfo (**Настя**)
 		  | – info											<!-- Верхняя часть карт -->
-			| – card (на всей стр используется, **Настя**)		<!-- Компания и счета -->
+			| – card (на всей стр используется, **Настя**)						<!-- Компания и счета -->
 				| – card									<!-- фиолетовая карта -->
-				 	| – MyCompany 							<!-- Моя компания -->
+				 	| – MyCompany 								<!-- Моя компания -->
 				 		| – title	
 				 		| – More (link)
 				 			| – infoBox
@@ -20,7 +20,7 @@
 									| – importIcon
 				 				| – ExportButt
 									| – exportIcon
-			 	| – Accounts								<!-- Счета -->
+			 	| – Accounts									<!-- Счета -->
 			 		| – title
 			 		| – paymentDateBox
 			 			| – text
@@ -30,7 +30,7 @@
 			 			| – text
 			 			| – PlusButt (link)
 							| – plusIcon
-		 	| – ManagerView									<!-- Мой менеджер -->
+		 	| – ManagerView										<!-- Мой менеджер -->
 				| – card
 			 		| – title
 			 		| – toWriteBox (link)
@@ -44,21 +44,21 @@
 			 				| – phoneManager
 			 				| – CopyButt
 								| – copyIcon
-		| – docs&recomends									<!-- Нижняя часть карт -->
-		 	| – MyDocuments									<!-- Мои документы -->
+		| – docs&recomends										<!-- Нижняя часть карт -->
+		 	| – MyDocuments										<!-- Мои документы -->
 				| – card
 			 		| – title
 			 		| – description
 			 		| – deployBox (link)
 			 			| – text
 			 			| – arrowDownIcon
-			 		| – requiredDocuments					 <!-- предполагается, что СНИЛС, Устав, ОГРН и паспорт должны быть у всех -->
+			 		| – requiredDocuments					 		<!-- предполагается, что СНИЛС, Устав, ОГРН и паспорт должны быть у всех -->
 						| – array
 			 				| – documentBox (link?)
 			 					| – title
 			 					| – CopyButt
 									| – copyIcon
-		 	| – Recommendations								<!-- Рекомендации -->
+		 	| – Recommendations									<!-- Рекомендации -->
 				| – card
 					| – array
 						| – card
@@ -68,10 +68,10 @@
 	─ servicesSection (**Кирилл**)
 		| − sectionName
 			| − array
-				| − serviceRow                               <!-- Купленные услуги (здесь для бухгалтерских услуг. В других мб по-другому) -->
+				| − serviceRow                               					<!-- Купленные услуги (здесь для бухгалтерских услуг. В других мб по-другому) -->
 					| − serviceName
 					| − serviceContent             
-						| − card                             <!-- Текущие налоги -->
+						| − card                             				<!-- Текущие налоги -->
 							| − title
 							| − content
 								| − currentTaxesTable
@@ -103,7 +103,7 @@
 										| − pieChart
 										| − chartSum
 			| − array
-				| − serviceRow                                 <!--  Предложение купить услугу -->
+				| − serviceRow                                 					<!--  Предложение купить услугу -->
 					| − serviceName
 					| − servicePromoContent
 						| − promoCard                       
