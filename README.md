@@ -43,7 +43,7 @@
 	|	|		| - deployBox (link)
 	|	|			| - text
 	|	|			| - arrowDownIcon
-	|	|		| - requiredDocuments					#предполагается, что СНИЛС, Устав, ОГРН и паспорт должны быть у всех
+	|	|		| - requiredDocuments					                 # предполагается, что СНИЛС, Устав, ОГРН и паспорт должны быть у всех
 	|	|			| - documentBox (link?)
 	|	|				| - title
 	|	|				| - CopyButt
@@ -53,10 +53,10 @@
 	|	|			| - description
 	| − servicesSection
 	|	| − sectionName
-	|		| − serviceRow                                    # Бухгалтерское обслуживание
+	|		| − serviceRow                                                                   # Бухгалтерское обслуживание
 	|			| − serviceName
 	|			| − serviceContent             
-	|				| − card                                  # Текущие налоги
+	|				| − card                                                         # Текущие налоги
 	|					| − title
 	|					| − content
 	|						| − currentTaxesTable
@@ -76,7 +76,7 @@
 	|									| − taxName
 	|									| − taxSum
 	|									| − taxDate
-	|				| − card                                  # Юридическое обслуживание
+	|				| − card                                                         # Юридическое обслуживание
 	|					| − title
 	|					| − content
 	|						| − chartBox
@@ -87,7 +87,7 @@
 	|							| − chart
 	|								| − pieChart
 	|								| − chartSum
-	|		| − serviceRow                                    #  Юридическое обслуживание (промо)
+	|		| − serviceRow                                                                   #  Юридическое обслуживание (промо)
 	|			| − serviceName
 	|			| − servicePromoContent
 	|				| − promoCard                       
@@ -100,7 +100,7 @@
 	|								| − closeIcon
 	|					| − addService (link)
 	|						| − addIcon
-	|		| − serviceRow                                    #  Кадровое обслуживание (промо)
+	|		| − serviceRow                                                                   #  Кадровое обслуживание (промо)
 	|			| − serviceName
 	|			| − servicePromoContent
 	|				| − promoCard                       
