@@ -1,15 +1,32 @@
 ```md
 – header (**Кирилл**)
+    | − ChatBot
+        | − searchIcon
+        | − Input
+    | − UserBlock
+        | − NotificationButton
+            | − NotificationIcon
+            | − Badge
+        | − userName
 – nav (**Кирилл**)
+    | − SideMenu
+        | − Logo
+            | − LogoIcon
+            | − companyTitle
+        | − Navigation
+            | − array
+                | − Link
+                    | − PageIcon
+                    | − pageTitle
 – MainPage
-	– MainInfo (**Настя**)
+	| – MainInfo (**Настя**)
 		  | – info											<!-- Верхняя часть карт -->
 			| – card (на всей стр используется, **Настя**)						<!-- Компания и счета -->
 				| – card									<!-- фиолетовая карта -->
 				 	| – MyCompany 								<!-- Моя компания -->
 				 		| – title	
 				 		| – More (link)
-				 			| – infoBox
+                        | – infoBox
 				 			| – name
 				 			| – nalogNumberBox
 				 				| – number
@@ -65,7 +82,7 @@
 					 		| – recommendationBox (link?)
 					 			| – title
 					 			| – description
-	─ servicesSection (**Кирилл**)
+	| ─ servicesSection (**Кирилл**)
 		| − sectionName
 			| − array
 				| − serviceRow                               					<!-- Купленные услуги (здесь для бухгалтерских услуг. В других мб по-другому) -->

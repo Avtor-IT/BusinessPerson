@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth } from 'entities/User';
 
-export const UserBlock = () => {
+export const ProfileBlock = () => {
     const { user } = useAuth();
     return (
         <div>
