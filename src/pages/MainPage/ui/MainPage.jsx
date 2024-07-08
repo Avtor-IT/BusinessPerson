@@ -1,7 +1,10 @@
 import React from 'react';
+import { MyCompanyAccounts } from "../../../widgets/MyCompanyAccounts/index";
 
 const MainPage = () => {
-    return <div>Main page</div>;
+    return (
+        <MyCompanyAccounts />
+    )
 };
 
 export default MainPage;

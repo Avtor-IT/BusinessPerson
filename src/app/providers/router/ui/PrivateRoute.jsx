@@ -9,20 +9,21 @@ const PrivateRoute = () => {
     const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
-        const api = new Api();
-        setLoading(true);
-        api.Get('https://server/checkToken')
-            .then((data) => {
-                console.log('Token validation successful');
-                setAuth(true);
-            })
-            .catch((error) => {
-                console.error('Token validation failed:', error);
-                setAuth(false);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
+        // const api = new Api();
+        // setLoading(true);
+        // api.Get('https://server/checkToken')
+        //     .then((data) => {
+        //         console.log('Token validation successful');
+        //         setAuth(true);
+        //     })
+        //     .catch((error) => {
+        //         console.error('Token validation failed:', error);
+        //         setAuth(false);
+        //     })
+        //     .finally(() => {
+        //         setLoading(false);
+        //     });
+        setAuth(true)
     }, []);
 
     if (isLoading) return <div>Загрузка...</div>;

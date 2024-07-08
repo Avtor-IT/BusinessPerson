@@ -5,10 +5,11 @@ import { Navigation } from 'widgets/Navigation';
 import { Header } from 'widgets/Header';
 import { Logo } from 'shared/ui/Logo';
 import { Outlet } from 'react-router-dom';
+import { Container } from '@mui/material';
 
 export const Layout = () => (
-    <div
-        className="container"
+    <Container
+        // className="container"
         style={{ display: 'flex', gap: 32, paddingTop: 34 }}
     >
         <SideMenu>
@@ -24,5 +25,5 @@ export const Layout = () => (
             <Header style={{ marginBottom: 62 }} />
             <Outlet />
         </div>
-    </div>
+    </Container>
 );
