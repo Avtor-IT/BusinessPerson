@@ -1,7 +1,7 @@
 import React from 'react';
 import {ChatBot} from 'features/ChatBot';
 import {Auth} from 'features/Auth';
-import {useAuth, UserBlock} from 'entities/User';
+import {ProfileBlock, useAuth} from 'entities/User';
 import cls from './Header.module.scss';
 
 export const Header = ({className, ...props}) => {
@@ -19,7 +19,7 @@ export const Header = ({className, ...props}) => {
                     </div>
                 </div>
                 <div style={{alignSelf: 'center'}}>
-                    {isAuth ? <UserBlock/> : <Auth/>}
+                    {isAuth ? <ProfileBlock/> : <Auth/>}
                 </div>
             </div>
         </header>
