@@ -1,12 +1,11 @@
 import React from 'react';
 import {SectionTitle} from "shared/ui/SectionTitle";
+import { MyCompanyAccounts } from "../../../widgets/MyCompanyAccounts/index";
 
 const MainPage = () => {
-    return <div>
-        <div>Main page</div>
-
-        <SectionTitle>Мои услуги</SectionTitle>
-    </div>;
+    return (
+        <MyCompanyAccounts />
+    )
 };
 
 export default MainPage;

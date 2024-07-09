@@ -1,0 +1,32 @@
+@import '../../../app/styles/variables/vars.scss';
+
+.myCompanyAccounts {
+    max-width: 948px;
+    padding: 0 !important;
+    display: flex;
+    justify-content: space-between;
+}
+
+.myCompany {
+    box-shadow: none;
+    background-color: var(--colorPurple);
+    color: var(--colorLight);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 545px;
+}
+
+.myCompany a {
+    color: var(--colorLight);
+}
+
+.myAccounts {
+    box-shadow: none;
+    color: var(--colorDark);
+    width: 403px;
+}
+
+.dateEnd {
+    text-align: end;
+}
