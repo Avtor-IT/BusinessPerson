@@ -1,4 +1,4 @@
-@import '../../../app/styles/variables/vars.scss';
+@import 'app/styles/variables/vars.scss';
 
 .myCompanyAccounts {
     max-width: 948px;
@@ -9,7 +9,7 @@
 
 .myCompany {
     box-shadow: none;
-    background-color: var(--color-purple);
+    background-color: var(--primary-light);
     color: var(--color-light);
     display: flex;
     justify-content: space-between;

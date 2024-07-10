@@ -10,7 +10,7 @@
         | − userName
 – nav (**Кирилл**)
     | − SideMenu
-        | − Logo
+        | − LogoIcon
             | − LogoIcon
             | − companyTitle
         | − Navigation
