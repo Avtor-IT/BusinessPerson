@@ -7,7 +7,12 @@
 textarea:focus,
 input:focus {
     outline: none;
+// firefox
+    &:focus-visible {
+        outline: 0;
+    }
 }
+
 
 a,
 a:link,

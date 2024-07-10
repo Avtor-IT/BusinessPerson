@@ -13,10 +13,8 @@ export const Header = ({className, ...props}) => {
             {...props}
         >
             <div className={`container ${cls.headerContainer}`}>
-                <div>
-                    <div style={{alignSelf: 'center'}}>
-                        <ChatBot style={{minWidth: 782}}/>
-                    </div>
+                <div style={{alignSelf: 'center', height: '100%'}}>
+                    <ChatBot/>
                 </div>
                 <div style={{alignSelf: 'center'}}>
                     {isAuth ? <ProfileBlock/> : <Auth/>}

@@ -1,10 +1,11 @@
 import React from 'react';
+import {Typography} from "@mui/material";
 
 const SectionTitle = ({children}) => {
     return (
-        <h3>
+        <Typography variant={'h3'}>
             {children}
-        </h3>
+        </Typography>
     );
 };
 

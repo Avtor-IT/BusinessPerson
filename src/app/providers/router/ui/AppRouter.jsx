@@ -16,7 +16,7 @@ const Aliases = {
     [AppRoutes.TUTORIAL]: <TutorialPage/>,
     [AppRoutes.NOT_FOUND]: <NotFoundPage/>,
     [AppRoutes.LOGIN]: <LoginPage/>,
-};
+    };
 
 const AppRouter = () => {
     return (

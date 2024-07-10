@@ -14,10 +14,11 @@
     "*": "./src/*"
   },
   "dependencies": {
-    "@babel/plugin-syntax-export-default-from": "^7.24.7",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@mui/base": "^5.0.0-beta.40",
     "@mui/material": "^5.15.21",
+    "@mui/system": "^5.16.0",
     "@reduxjs/toolkit": "^2.2.5",
     "axios": "^1.7.2",
     "react": "^18.2.0",

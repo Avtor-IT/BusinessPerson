@@ -1,11 +1,23 @@
-import React from 'react';
-import cls from './Input.module.scss';
+import React, {cloneElement} from 'react';
+import cls from './Input.module.scss'
 
-export const Input = (props) => {
+const Input = ({className, style, beforePlaceholder, afterPlaceholder, ...inputProps}) => {
+
+    const BeforeWithProps = beforePlaceholder && cloneElement(beforePlaceholder, {
+        className: cls.IconBefore
+    })
+    const AfterWithProps = afterPlaceholder && cloneElement(afterPlaceholder, {
+        className: cls.IconAfter
+    })
+
     return (
-        <input
-            {...props}
-            className={cls.Input}
-        />
+        <div className={`${cls.Input} ${className}`} style={style}>
+            {BeforeWithProps}
+            <input {...inputProps}/>
+            {AfterWithProps}
+        </div>
     );
 };
+
+
+export default Input;

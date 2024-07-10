@@ -18,6 +18,7 @@ module.exports = function buildLoaders(options) {
             loader: 'babel-loader',
             options: {
                 presets: ['@babel/preset-react'],
+                plugins: ["@babel/plugin-proposal-export-default-from"]
             },
         },
     };
