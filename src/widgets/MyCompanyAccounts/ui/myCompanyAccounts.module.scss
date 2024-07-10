@@ -9,8 +9,8 @@
 
 .myCompany {
     box-shadow: none;
-    background-color: var(--colorPurple);
-    color: var(--colorLight);
+    background-color: var(--color-purple);
+    color: var(--color-light);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,12 +18,12 @@
 }
 
 .myCompany a {
-    color: var(--colorLight);
+    color: var(--color-light);
 }
 
 .myAccounts {
     box-shadow: none;
-    color: var(--colorDark);
+    color: var(--color-dark);
     width: 403px;
 }
 

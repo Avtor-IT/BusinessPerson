@@ -3,7 +3,7 @@ import { Card } from 'shared/ui/Card';
 import cls from './myCompanyAccounts.module.scss';
 import { Box } from '@mui/material';
 
-export const MyCompanyAccounts = () => {
+export const MyCompanyAccounts = ({ className, children, ...props }) => {
     return (
         <Card className={`${cls.myCompanyAccounts}`}>
             <Card className={`${cls.myCompany}`}>
