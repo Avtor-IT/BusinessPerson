@@ -12,8 +12,9 @@
     background-color: var(--primary-light);
     color: var(--color-light);
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    gap: 55px;
     width: 545px;
 }
 
