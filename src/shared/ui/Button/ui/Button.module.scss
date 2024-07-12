@@ -3,13 +3,14 @@
     border-radius: 8px;
     padding: 10px 16px;
     border-color: transparent;
+    --bg: var(--primary);
 
     & svg {
         stroke: var(--color-dark);
     }
 
     &.contained {
-        background-color: var(--primary);
+        background-color: var(--bg);
         color: var(--color-light);
 
         & svg {
@@ -24,6 +25,9 @@
 
     &.outlined {
         background-color: transparent;
-        border: 1px solid var(--primary);
+        border: 1px solid var(--bg);
     }
+
 }
+
+

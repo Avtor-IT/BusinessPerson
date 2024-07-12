@@ -1,12 +1,12 @@
 import React from 'react';
-import {Input} from 'shared/ui/Input';
-import {SearchIcon} from "shared/assets/SearchIcon";
-import cls from './ChatBot.module.scss'
+import { SearchIcon } from 'shared/assets/SearchIcon';
+import { Input } from 'shared/ui/Input';
+import cls from './ChatBot.module.scss';
 
-export const ChatBot = ({...inputProps}) => {
+export const ChatBot = ({ ...inputProps }) => {
     return (
         <Input
-            beforePlaceholder={<SearchIcon/>}
+            beforePlaceholder={<SearchIcon />}
             className={cls.ChatBot}
             placeholder="Чат бот"
         />
