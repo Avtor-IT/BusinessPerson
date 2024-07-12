@@ -17,6 +17,9 @@ html {
     background-color: var(--bg-color);
 }
 
+.secondary {
+    --bg: var(--secondary)
+}
 
 .title {
     font-weight: 500;
