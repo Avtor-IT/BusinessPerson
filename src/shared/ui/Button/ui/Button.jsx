@@ -5,8 +5,7 @@ export const Button = ({ children, className, variant, ...otherProps }) => {
     return (
         <button
             className={`${cls.Button} ${variant ? cls[variant] : cls.contained} 
-            ${className || ''
-                }`}
+            ${className || ''}`}
             {...otherProps}
         >
             {children}

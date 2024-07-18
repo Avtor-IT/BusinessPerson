@@ -9,6 +9,7 @@ export const ChatBot = ({ ...inputProps }) => {
             beforePlaceholder={<SearchIcon />}
             className={cls.ChatBot}
             placeholder="Чат бот"
+            {...inputProps}
         />
     );
 };

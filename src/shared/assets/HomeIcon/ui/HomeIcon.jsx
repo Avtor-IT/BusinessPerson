@@ -7,7 +7,7 @@ const HomeIcon = ({ color, width, height, fill, ...otherProps }) => {
             height={height || '24'}
             viewBox={'0 0 24 24'}
             fill={fill || 'none'}
-            style={{ color: 'red' }}
+            style={{ color: color || 'red' }}
             {...otherProps}
         >
             <path
