@@ -18,16 +18,11 @@
     width: 545px;
 }
 
-.myCompany a {
-    color: var(--color-light);
-}
-
 .myAccounts {
     box-shadow: none;
     color: var(--color-dark);
     width: 403px;
-}
-
-.dateEnd {
-    text-align: end;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
