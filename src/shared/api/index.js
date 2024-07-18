@@ -5,7 +5,7 @@ class Api {
         return axios
             .get(url, {
                 headers: {
-                    token: sessionStorage.getItem('token'),
+                    Authorization: sessionStorage.getItem('token'),
                 },
             })
             .then((response) => {

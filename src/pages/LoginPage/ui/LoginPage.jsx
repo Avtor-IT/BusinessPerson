@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Api from 'shared/api';
 import cls from './LoginPage.module.scss';
 
 const LoginPage = () => {
@@ -12,20 +11,10 @@ const LoginPage = () => {
             setShowErrorMessage(true);
             return;
         }
-        const api = new Api();
-        const params = {
-            login: login,
-            password: password,
-        };
-
-        api.Post('https://server/login', params)
-            .then((data) => {
-                sessionStorage.setItem('token', data.token);
-                window.location.href = '/';
-            })
-            .catch((error) => {
-                console.error('Login failed:', error);
-            });
+        // const params = {
+        //     login: login,
+        //     password: password,
+        // };
     };
 
     return (
