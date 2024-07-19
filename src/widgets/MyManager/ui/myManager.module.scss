@@ -1,0 +1,47 @@
+@import '../../../app/styles/variables/vars.scss';
+
+
+.MyManager {
+    position: relative; 
+    width: 621px; 
+    padding-bottom: 32px; 
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.BlueEllipse {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.btnMessage {
+    display: flex;
+    gap: 8px;
+    align-items: center; 
+    z-index: 2;
+    color: var(--color-light);
+}
+
+.infoManager {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.avatarFIO {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.phoneManager {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    z-index: 2;
+    color: var(--color-light);
+}

@@ -1,7 +1,7 @@
 import React from 'react';
-import {createTheme, ThemeProvider as MaterialTheme} from '@mui/material';
+import { createTheme, ThemeProvider as MaterialTheme } from '@mui/material';
 
-export const ThemeProvider = ({children}) => {
+export const ThemeProvider = ({ children }) => {
     const theme = createTheme({
         breakpoints: {
             values: {
@@ -12,13 +12,14 @@ export const ThemeProvider = ({children}) => {
                 xl: 1920,
             },
         },
+        typography: {
+            fontFamily: 'Rubik, sans-serif',
+            h5: {
+                fontSize: 24,
+                fontWeight: 500,
+            },
+        },
     });
 
-    return (
-        <MaterialTheme
-            theme={theme}
-        >
-            {children}
-        </MaterialTheme>
-    );
+    return <MaterialTheme theme={theme}>{children}</MaterialTheme>;
 };

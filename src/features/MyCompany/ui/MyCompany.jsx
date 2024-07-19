@@ -1,13 +1,12 @@
-import React from "react";
-import ExportBtn from "features/ExportBtn/ui/ExportBtn";
-import ImportBtn from "features/ImportBtn/ui/ImportBtn";
-import ArrowIcon from "shared/assets/ArrowIcon/ui/ArrowIcon";
-import CopyIcon from "shared/assets/CopyIcon/ui/CopyIcon";
-import { Button } from "shared/ui/Button";
-import { Box } from "@mui/material";
+import React from 'react';
+import ExportBtn from 'features/ExportBtn/ui/ExportBtn';
+import ImportBtn from 'features/ImportBtn/ui/ImportBtn';
+import ArrowIcon from 'shared/assets/ArrowIcon/ui/ArrowIcon';
+import CopyIcon from 'shared/assets/CopyIcon/ui/CopyIcon';
+import { Button } from 'shared/ui/Button';
+import { Box, Typography } from '@mui/material';
 
 export const MyCompany = () => {
-
     return (
         <>
             <Box
@@ -16,7 +15,8 @@ export const MyCompany = () => {
                 width={'100%'}
             >
                 <Box className={'title'}> Моя компания </Box>
-                <Button variant={'unStyled'}
+                <Button
+                    variant={'unStyled'}
                     style={{
                         fontSize: '20px',
                         display: 'flex',
@@ -25,7 +25,7 @@ export const MyCompany = () => {
                     }}
                 >
                     Подробнее
-                    <ArrowIcon direction="right" />
+                    <ArrowIcon variant="right" />
                 </Button>
             </Box>
             <Box
@@ -33,7 +33,7 @@ export const MyCompany = () => {
                 flexDirection={'column'}
                 gap={'16px'}
             >
-                <Box className="subtitle">ООО "Компания"</Box>
+                <Box className="subtitle">ООО «Компания»</Box>
                 <Box
                     display={'flex'}
                     justifyContent={'space-between'}
@@ -44,8 +44,15 @@ export const MyCompany = () => {
                         gap={'8px'}
                         alignItems={'center'}
                     >
-                        ИНН: 1234567890
-                        <Button variant={'unStyled'}>
+                        <Typography
+                            style={{ fontSize: '20px', fontWeight: '300' }}
+                        >
+                            ИНН: 1234567890
+                        </Typography>
+                        <Button
+                            variant={'unStyled'}
+                            style={{ width: '24px', height: '24px' }}
+                        >
                             <CopyIcon style={{ cursor: 'pointer' }} />
                         </Button>
                     </Box>
@@ -60,5 +67,5 @@ export const MyCompany = () => {
                 </Box>
             </Box>
         </>
-    )
-}
+    );
+};
