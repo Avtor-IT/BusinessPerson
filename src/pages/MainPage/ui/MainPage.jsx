@@ -1,9 +1,17 @@
 import React from 'react';
-import {MyCompanyAccounts} from "../../../widgets/MyCompanyAccounts/index";
+import { MyCompanyAccounts } from "../../../widgets/MyCompanyAccounts/index";
+import { MyManager } from 'widgets/MyManager';
+import { Box } from '@mui/material';
 
 const MainPage = () => {
     return (
-        <MyCompanyAccounts/>
+        <Box
+            display={'flex'}
+            gap={'16px'}
+        >
+            <MyCompanyAccounts />
+            <MyManager />
+        </Box>
     )
 };
 

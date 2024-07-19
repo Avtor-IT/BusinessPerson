@@ -1,7 +1,8 @@
 import React from "react";
 import { Button } from "shared/ui/Button";
-import { Box } from "@mui/material";
-import AddSquareIcon from "shared/assets/AddSquare/ui/AddSquareIcon";
+import { Box, Typography } from "@mui/material";
+import AddSquareBtn from "features/AddSquareBtn/ui/AddSquareBtn";
+import { height, width } from "@mui/system";
 
 export const MyAccounts = () => {
 
@@ -13,15 +14,16 @@ export const MyAccounts = () => {
                     justifyContent={'space-between'}
                     alignItems={'center'}
                 >
-                    <Box className={'title'}> Счета </Box>
-                    <Box>Дата следующего платежа</Box>
+                    <Typography variant="h5"> Счета </Typography>
+                    <Typography style={{ fontSize: '16px', fontWeight: '300' }}>Дата следующего платежа</Typography>
                 </Box>
-                <Box
+                <Typography
                     textAlign={'end'}
                     fontWeight={'400'}
+                    fontSize={'16px'}
                 >
                     20.12.2024
-                </Box>
+                </Typography>
             </Box>
             <Box
                 display={'flex'}
@@ -29,16 +31,18 @@ export const MyAccounts = () => {
                 alignItems={'center'}
                 fontSize={'22px'}
             >
-                <Button variant={'unStyled'}>История</Button>
+                <Button variant={'unStyled'} style={{ fontSize: '20px', fontWeight: '300' }}>История</Button>
                 <Button variant={'unStyled'}
                     style={{
                         display: 'flex',
                         gap: '8px',
                         alignItems: 'center',
+                        fontSize: '20px',
+                        fontWeight: '300'
                     }}
                 >
                     Оплатить
-                    <AddSquareIcon />
+                    <AddSquareBtn style={{ width: '24px', height: '24px' }} />
                 </Button>
             </Box>
         </>
