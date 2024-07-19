@@ -10,7 +10,7 @@ const AvatarManager = () => {
         <Box>
             <Avatar
                 alt="Тестовый аватар"
-                src="../ui/temporaryAvatar.jpg"
+                // src="../ui/temporaryAvatar.jpg"
                 sx={{ width: 82, height: 82 }}
             />
         </Box>

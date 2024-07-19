@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { HomeIcon } from 'shared/assets/HomeIcon';
 import { LetterIcon } from 'shared/assets/LetterIcon';
@@ -14,6 +14,7 @@ import cls from './Navigation.module.scss';
 export const Navigation = () => {
     // const page = useSelector((state) => state.page.page);
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const menu = {
@@ -56,6 +57,7 @@ export const Navigation = () => {
                         }
                         onClick={() => {
                             dispatch(pageActions.setPage({ link: el.link }));
+                            navigate(el.link);
                         }}
                         style={{ width: '100%', textAlign: 'left' }}
                     >
