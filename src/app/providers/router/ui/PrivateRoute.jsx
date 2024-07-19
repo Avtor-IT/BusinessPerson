@@ -1,32 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { Layout } from 'app/layout/Layout';
+import { useCheckStatus } from 'entities/User';
 
 const PrivateRoute = () => {
     const [auth, setAuth] = useState(null);
 
-    const [isLoading, setLoading] = useState(false);
+    const statusQuery = useCheckStatus();
 
     useEffect(() => {
-        // const api = new Api();
-        // setLoading(true);
-        // api.Get(`${baseUrl}`)
-        //     .then((data) => {
-        //         console.log('Token validation successful');
-        //         setAuth(true);
-        //     })
-        //     .catch((error) => {
-        //         console.error('Token validation failed:', error);
-        //         setAuth(false);
-        //     })
-        //     .finally(() => {
-        //         setLoading(false);
-        //     });
-        setLoading(false);
-        setAuth(true);
-    }, []);
+        if (statusQuery.data) {
+            if (statusQuery.data.is_authenticated) {
+                setAuth(true);
+                return;
+            }
+            setAuth(false);
+        }
+        if (statusQuery.error) {
+            setAuth(false);
+        }
+    }, [statusQuery]);
 
-    if (isLoading) return <div>Загрузка...</div>;
+    if (statusQuery.isLoading) return <div>Загрузка...</div>;
 
     if (auth === null) {
         return null;

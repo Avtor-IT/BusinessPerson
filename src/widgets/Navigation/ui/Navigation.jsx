@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { HomeIcon } from 'shared/assets/HomeIcon';
@@ -12,7 +12,7 @@ import { Button } from 'shared/ui/Button';
 import cls from './Navigation.module.scss';
 
 export const Navigation = () => {
-    const page = useSelector((state) => state.page.page);
+    // const page = useSelector((state) => state.page.page);
 
     const dispatch = useDispatch();
 
@@ -49,7 +49,11 @@ export const Navigation = () => {
                     to={el.link}
                 >
                     <Button
-                        variant={page.link === el.link ? 'contained' : 'text'}
+                        variant={
+                            window.location.pathname === el.link
+                                ? 'contained'
+                                : 'text'
+                        }
                         onClick={() => {
                             dispatch(pageActions.setPage({ link: el.link }));
                         }}

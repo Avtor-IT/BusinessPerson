@@ -1,11 +1,10 @@
 import React from 'react';
-import { useAuth } from 'entities/User';
+import { useCurrentUserQuery } from 'entities/User';
 
 export const ProfileBlock = () => {
-    const { user } = useAuth();
-    return (
-        <div>
-            {user?.name} {user?.last_name}
-        </div>
-    );
+    const userQuery = useCurrentUserQuery();
+
+    if (userQuery.isLoading) return <div>Загрузка пользователя...</div>;
+
+    return <div>{userQuery.data.username}</div>;
 };
