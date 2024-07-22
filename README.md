@@ -26,16 +26,16 @@
 				 	| – MyCompany 								<!-- Моя компания -->
 				 		| – title	
 				 		| – More (link)
-                        | – infoBox
-				 			| – name
-				 			| – nalogNumberBox
-				 				| – number
-				 				| – CopyButt
+			                        | – infoBox
+							| – name
+							| – nalogNumberBox
+								| – number
+								| – CopyButt
 									| – copyIcon
-				 			| – buttonSet
-				 				| – ImportButt(?)
+							| – buttonSet
+								| – ImportButt(?)
 									| – importIcon
-				 				| – ExportButt
+								| – ExportButt
 									| – exportIcon
 			 	| – Accounts									<!-- Счета -->
 			 		| – title
