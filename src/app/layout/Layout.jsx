@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { SideMenu } from 'widgets/SideMenu';
 import { LogoLink } from 'widgets/LogoLink';
 import { Navigation } from 'widgets/Navigation';
@@ -31,7 +31,9 @@ export const Layout = () => (
         </SideMenu>
         <Box flex={1}>
             <Header style={{ marginBottom: 62 }} />
-            <Outlet />
+            <Suspense fallback={<div>Загрузка</div>}>
+                <Outlet />
+            </Suspense>
         </Box>
     </Container>
 );

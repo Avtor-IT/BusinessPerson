@@ -5,6 +5,7 @@
         border-radius: 8px;
         background: linear-gradient(var(--bg-color), var(--bg-color) 0) padding-box,
         linear-gradient(to right bottom, var(--primary), var(--secondary-light)) border-box;
+        font-weight: 200;
 
         &::placeholder {
             background-color: transparent;

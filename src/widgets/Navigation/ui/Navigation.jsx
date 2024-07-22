@@ -59,7 +59,11 @@ export const Navigation = () => {
                             dispatch(pageActions.setPage({ link: el.link }));
                             navigate(el.link);
                         }}
-                        style={{ width: '100%', textAlign: 'left' }}
+                        className={`${cls.NavigationItem} ${
+                            window.location.pathname !== el.link
+                                ? cls.isNotSelected
+                                : ''
+                        }`}
                     >
                         <Box
                             display="flex"

@@ -3,4 +3,23 @@
     flex-direction: column;
     gap: 16px;
     align-items: stretch;
+
+    & .NavigationItem {
+        width: 100%;
+        text-align: center;
+        position: relative;
+
+        &.isNotSelected:hover::before {
+            display: block;
+            content: '';
+            position: absolute;
+            background-color: var(--primary);
+            height: 100%;
+            width: 4px;
+            border-radius: 8px;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
 }
