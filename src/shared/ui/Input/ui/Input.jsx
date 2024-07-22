@@ -8,7 +8,6 @@ const Input = ({
     afterPlaceholder,
     ...inputProps
 }) => {
-    const a = 10;
     const BeforeWithProps =
         beforePlaceholder &&
         cloneElement(beforePlaceholder, {
