@@ -10,8 +10,8 @@ export const login = async (params) => {
             params
         );
         if (response && response.access) {
-            sessionStorage.setItem('access', 'Bearer ' + response.access);
-            sessionStorage.setItem('refresh', 'Bearer ' + response.refresh);
+            sessionStorage.setItem('access', response.access);
+            sessionStorage.setItem('refresh', response.refresh);
             // window.location.href = '/';
             return response.access;
         }

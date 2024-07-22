@@ -5,11 +5,13 @@ import cls from './ChatBot.module.scss';
 
 export const ChatBot = ({ ...inputProps }) => {
     return (
-        <Input
-            beforePlaceholder={<SearchIcon />}
-            className={cls.ChatBot}
-            placeholder="Чат бот"
-            {...inputProps}
-        />
+        <>
+            <Input
+                beforePlaceholder={<SearchIcon />}
+                className={cls.ChatBot}
+                placeholder="Чат бот"
+                {...inputProps}
+            />
+        </>
     );
 };
