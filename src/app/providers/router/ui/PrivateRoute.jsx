@@ -19,6 +19,7 @@ const PrivateRoute = () => {
         if (statusQuery.error) {
             setAuth(false);
         }
+        // setAuth(true);
     }, [statusQuery]);
 
     if (statusQuery.isLoading) return <div>Загрузка...</div>;

@@ -1,0 +1,42 @@
+@import '../../../app/styles/variables/vars.scss';
+
+.MyDocuments {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    width: 626px;
+    color: var(--color-light);
+}
+
+.btnAddMyDocument {
+    display: flex; 
+    gap: 8px;
+    align-items: center; 
+    font-size: 16px; 
+    font-weight: 300;
+    color: var(--color-dark);
+}
+
+.btnExpand {
+    display: flex; 
+    gap: 16px; 
+    align-items: center;
+    font-size: 16px; 
+    font-weight: 300; 
+    margin-top: 150px;
+}
+
+.arrayMyDocumnets {
+    position: absolute;
+    width: 395px;
+    height: 291px;
+    bottom: -38px;
+    right: 8px;
+    z-index: 2;
+    color: var(--color-dark);
+    font-size: 20px;
+    font-weight: 300;
+}
+
+

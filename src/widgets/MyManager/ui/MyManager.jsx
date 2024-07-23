@@ -14,7 +14,7 @@ export const MyManager = ({ className, ...props }) => {
             className={`${cls.MyManager} ${className}`}
             {...props}
         >
-            <BlueEllipse className={`${cls.BlueEllipse}`} />
+            <BlueEllipse top={-197} right={-102} />
             <Box
                 display={'flex'}
                 justifyContent={'space-between'}

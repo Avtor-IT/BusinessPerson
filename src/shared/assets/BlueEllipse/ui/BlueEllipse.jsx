@@ -1,21 +1,17 @@
+import { Box } from '@mui/material';
 import React from 'react';
+import cls from './BlueEllipse.module.scss';
 
-const BlueEllipse = ({ width, height, fill, ...otherProps }) => {
+const BlueEllipse = ({ width, height, top, right, left, bottom, ...otherProps }) => {
     return (
-        <svg
-            width={width || '348'}
-            height={height || '202.5'}
-            fill={fill || 'none'}
+        <Box
+            width={width || '445px'}
+            height={height || '445px'}
+            className={`${cls.BlueEllipse || ''}`}
+            style={{ top: top, right: right, left: left, bottom: bottom }}
             {...otherProps}
         >
-            <ellipse
-                cx="236.5"
-                cy="2"
-                rx="236.5"
-                ry="237"
-                fill="#514996"
-            />
-        </svg>
+        </Box >
     );
 };
 
