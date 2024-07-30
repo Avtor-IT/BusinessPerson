@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from 'shared/ui/Button';
 import { Box, Typography } from '@mui/material';
+import { Button } from 'shared/ui/Button';
 import AddSquareBtn from 'features/AddSquareBtn/ui/AddSquareBtn';
 
 export const MyAccounts = () => {
@@ -12,16 +12,10 @@ export const MyAccounts = () => {
                     justifyContent={'space-between'}
                     alignItems={'center'}
                 >
-                    <Typography variant="h5"> Счета </Typography>
-                    <Typography style={{ fontSize: '16px', fontWeight: '300' }}>
-                        Дата следующего платежа
-                    </Typography>
+                    <Typography variant="M24"> Счета </Typography>
+                    <Typography variant="L16"> Дата следующего платежа </Typography>
                 </Box>
-                <Typography
-                    textAlign={'end'}
-                    fontWeight={'400'}
-                    fontSize={'16px'}
-                >
+                <Typography variant="R16" style={{ display: 'flex', justifyContent: 'end' }} >
                     20.12.2024
                 </Typography>
             </Box>
@@ -31,11 +25,8 @@ export const MyAccounts = () => {
                 alignItems={'center'}
                 fontSize={'22px'}
             >
-                <Button
-                    variant={'unStyled'}
-                    style={{ fontSize: '20px', fontWeight: '300' }}
-                >
-                    История
+                <Button variant={'unStyled'}>
+                    <Typography variant="L20">История</Typography>
                 </Button>
                 <Button
                     variant={'unStyled'}
@@ -43,11 +34,9 @@ export const MyAccounts = () => {
                         display: 'flex',
                         gap: '8px',
                         alignItems: 'center',
-                        fontSize: '20px',
-                        fontWeight: '300',
                     }}
                 >
-                    Оплатить
+                    <Typography variant="L20">Оплатить</Typography>
                     <AddSquareBtn style={{ width: '24px', height: '24px' }} />
                 </Button>
             </Box>

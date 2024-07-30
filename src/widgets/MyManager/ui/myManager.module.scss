@@ -3,10 +3,10 @@
 
 .MyManager {
     position: relative; 
-    width: 621px; 
     padding-bottom: 32px; 
     overflow: hidden;
     display: flex;
+    gap: 23px;
     flex-direction: column;
     justify-content: space-between;
 }

@@ -1,10 +1,8 @@
 @import 'app/styles/variables/vars.scss';
 
 .myCompanyAccounts {
-    max-width: 948px;
     padding: 0 !important;
     display: flex;
-    justify-content: space-between;
 }
 
 .myCompany {
@@ -15,14 +13,15 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 55px;
-    width: 545px;
+    width: 539px;
 }
 
 .myAccounts {
     box-shadow: none;
     color: var(--color-dark);
-    width: 403px;
+    width: 410px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 32px 24px 16px 32px;
 }

@@ -1,13 +1,12 @@
-import { Box, Typography } from '@mui/material';
-import AddSquareBtn from 'features/AddSquareBtn';
 import React from 'react';
-import BlueEllipse from 'shared/assets/BlueEllipse/ui/BlueEllipse';
+import { Box, Typography } from '@mui/material';
 import { Button } from 'shared/ui/Button';
 import { Card } from 'shared/ui/Card';
-import cls from './MyDocuments.module.scss';
+import BlueEllipse from 'shared/assets/BlueEllipse/ui/BlueEllipse';
+import AddSquareBtn from 'features/AddSquareBtn';
 import ArrowIcon from 'shared/assets/ArrowIcon/ui/ArrowIcon';
 import CopyIcon from 'shared/assets/CopyIcon/ui/CopyIcon';
-import { display } from '@mui/system';
+import cls from './MyDocuments.module.scss';
 
 export const MyDocuments = ({ ...props }) => {
     const testArrayDocuments = [
@@ -31,14 +30,14 @@ export const MyDocuments = ({ ...props }) => {
                 justifyContent={'space-between'}
                 zIndex={'2'}
             >
-                <Typography variant='h5'>
+                <Typography variant='M24'>
                     Мои документы
                 </Typography>
                 <Button
                     variant={'unStyled'}
                     className={`${cls.btnAddMyDocument}`}
                 >
-                    Добавить
+                    <Typography variant='L16'>Добавить</Typography>
                     <AddSquareBtn
                         style={{ width: '24px', height: '24px' }}
                     />
@@ -48,16 +47,14 @@ export const MyDocuments = ({ ...props }) => {
                 marginTop={'32px'}
                 zIndex={'2'}
             >
-                <Typography
-                    style={{ fontSize: '20px', fontWeight: '400' }}
-                >
+                <Typography variant='R20'>
                     Все необходимые документы <br /> всегда под рукой
                 </Typography>
                 <Button
                     variant={'unStyled'}
                     className={`${cls.btnExpand}`}
                 >
-                    Развернуть
+                    <Typography variant='L16'>Развернуть</Typography>
                     <ArrowIcon variant="down" />
                 </Button>
             </Box>
@@ -77,7 +74,7 @@ export const MyDocuments = ({ ...props }) => {
                                 justifyContent: 'space-between',
                             }}
                         >
-                            {document}
+                            <Typography variant='L20'>{document}</Typography>
                             <CopyIcon stroke="#3D3F4C" />
                         </Card>
                     ))

@@ -1,0 +1,13 @@
+@import 'app/styles/variables/vars.scss';
+
+.btnExtend {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btnCopy {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
