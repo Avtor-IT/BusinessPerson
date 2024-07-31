@@ -26,7 +26,7 @@ export const Card = ({
         >
             {serviceTitle ? (
                 <Typography
-                    variant='M24'
+                    variant="M24"
                     sx={{ mb: '24px' }}
                 >
                     {serviceTitle}
