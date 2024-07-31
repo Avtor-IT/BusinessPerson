@@ -13,9 +13,15 @@ export const MyAccounts = () => {
                     alignItems={'center'}
                 >
                     <Typography variant="M24"> Счета </Typography>
-                    <Typography variant="L16"> Дата следующего платежа </Typography>
+                    <Typography variant="L16">
+                        {' '}
+                        Дата следующего платежа{' '}
+                    </Typography>
                 </Box>
-                <Typography variant="R16" style={{ display: 'flex', justifyContent: 'end' }} >
+                <Typography
+                    variant="R16"
+                    style={{ display: 'flex', justifyContent: 'end' }}
+                >
                     20.12.2024
                 </Typography>
             </Box>

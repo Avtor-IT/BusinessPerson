@@ -12,25 +12,39 @@ const MainPage = () => {
             flexDirection={'column'}
             gap={'16px'}
         >
-            <Grid container
+            <Grid
+                container
                 columns={5}
                 spacing={'19px'}
             >
-                <Grid item xs={3}>
+                <Grid
+                    item
+                    xs={3}
+                >
                     <MyCompanyAccounts />
                 </Grid>
-                <Grid item xs={2}>
+                <Grid
+                    item
+                    xs={2}
+                >
                     <MyManager />
                 </Grid>
             </Grid>
-            <Grid container
+            <Grid
+                container
                 columns={5}
                 spacing={2}
             >
-                <Grid item xs={2}>
+                <Grid
+                    item
+                    xs={2}
+                >
                     <MyDocuments />
                 </Grid>
-                <Grid item xs={3}>
+                <Grid
+                    item
+                    xs={3}
+                >
                     <MyRecomends />
                 </Grid>
             </Grid>

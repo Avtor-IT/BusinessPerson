@@ -6,6 +6,7 @@ const Input = ({
     style,
     beforePlaceholder,
     afterPlaceholder,
+    inputStyle,
     ...inputProps
 }) => {
     const BeforeWithProps =
@@ -25,7 +26,10 @@ const Input = ({
             style={style}
         >
             {BeforeWithProps}
-            <input {...inputProps} />
+            <input
+                style={inputStyle}
+                {...inputProps}
+            />
             {AfterWithProps}
         </div>
     );

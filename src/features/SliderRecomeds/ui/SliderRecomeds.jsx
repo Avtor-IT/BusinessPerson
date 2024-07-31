@@ -6,8 +6,7 @@ import cls from './sliderRecomends.module.scss';
 import { Card } from 'shared/ui/Card';
 import './sliderRecomends.scss';
 
-export const SliderRecomends = ({ ...props }) => {
-
+export const SliderRecomends = () => {
     const testArrayRecomends = getArrayRecomends();
 
     const settings = {
@@ -33,4 +32,3 @@ export const SliderRecomends = ({ ...props }) => {
         </Box>
     );
 };
-

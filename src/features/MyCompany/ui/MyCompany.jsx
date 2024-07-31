@@ -14,12 +14,12 @@ export const MyCompany = () => {
                 display={'flex'}
                 justifyContent={'space-between'}
             >
-                <Typography variant='M24'> Моя компания </Typography>
+                <Typography variant="M24"> Моя компания </Typography>
                 <Button
                     variant={'unStyled'}
                     className={`${cls.btnExtend}`}
                 >
-                    <Typography variant='L20'>Подробнее</Typography>
+                    <Typography variant="L20">Подробнее</Typography>
                     <ArrowIcon variant="right" />
                 </Button>
             </Box>
@@ -28,16 +28,17 @@ export const MyCompany = () => {
                 flexDirection={'column'}
                 gap={'16px'}
             >
-                <Typography variant='R20'>ООО «Компания»</Typography>
+                <Typography variant="R20">ООО «Компания»</Typography>
                 <Box
                     display={'flex'}
                     justifyContent={'space-between'}
                     alignItems={'center'}
                 >
-                    <CopyBtn icon='end' className={`${cls.btnCopy}`}>
-                        <Typography variant='L20'>
-                            ИНН: 1234567890
-                        </Typography>
+                    <CopyBtn
+                        icon="end"
+                        className={`${cls.btnCopy}`}
+                    >
+                        <Typography variant="L20">ИНН: 1234567890</Typography>
                     </CopyBtn>
                     <Box
                         display={'flex'}

@@ -1,1 +1,1 @@
-import CopyBtn from './ui/CopyBtn';
+export { default } from './ui/CopyBtn';

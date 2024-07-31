@@ -53,7 +53,25 @@ export const ThemeProvider = ({ children }) => {
             L16: {
                 fontSize: 16,
                 fontWeight: 300,
-            }
+            },
+        },
+        components: {
+            MuiTypography: {
+                defaultProps: {
+                    variantMapping: {
+                        M40: 'h2',
+                        M24: 'h5',
+                        M20: 'span',
+                        R48: 'span',
+                        R20: 'span',
+                        R16: 'span',
+                        R12: 'span',
+                        L24: 'span',
+                        L20: 'span',
+                        L16: 'span',
+                    },
+                },
+            },
         },
     });
 

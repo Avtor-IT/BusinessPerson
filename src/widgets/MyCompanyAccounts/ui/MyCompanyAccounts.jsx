@@ -4,7 +4,7 @@ import { MyCompany } from 'features/MyCompany/ui/MyCompany';
 import { MyAccounts } from 'features/MyAccounts/ui/MyAccounts';
 import cls from './myCompanyAccounts.module.scss';
 
-export const MyCompanyAccounts = ({ className, children, ...props }) => {
+export const MyCompanyAccounts = () => {
     return (
         <Card className={`${cls.myCompanyAccounts}`}>
             <Card className={`${cls.myCompany}`}>

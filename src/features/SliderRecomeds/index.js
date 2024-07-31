@@ -1,1 +1,1 @@
-export {SliderRecomends} from './ui/SliderRecomeds';
+export { SliderRecomends } from './ui/SliderRecomeds';

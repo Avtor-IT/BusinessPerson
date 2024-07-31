@@ -14,7 +14,10 @@ export const MyManager = ({ ...props }) => {
             className={`${cls.MyManager}`}
             {...props}
         >
-            <BlueEllipse top={-197} right={-102} />
+            <BlueEllipse
+                top={-197}
+                right={-102}
+            />
             <Box
                 display={'flex'}
                 justifyContent={'space-between'}
@@ -31,7 +34,10 @@ export const MyManager = ({ ...props }) => {
             <Box className={`${cls.infoManager}`}>
                 <Box className={`${cls.avatarFIO}`}>
                     <AvatarManager />
-                    <Typography variant='R20' style={{ lineHeight: '1.3' }}>
+                    <Typography
+                        variant="R20"
+                        style={{ lineHeight: '1.3' }}
+                    >
                         Менеджерова
                         <br />
                         Менедж
@@ -40,9 +46,7 @@ export const MyManager = ({ ...props }) => {
                     </Typography>
                 </Box>
                 <Box className={`${cls.phoneManager}`}>
-                    <Typography variant='L24'>
-                        +7 (999) 999 99-99
-                    </Typography>
+                    <Typography variant="L24">+7 (999) 999 99-99</Typography>
                     <Button variant={'unStyled'}>
                         <CopyIcon />
                     </Button>

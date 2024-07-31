@@ -17,6 +17,10 @@ html {
     background-color: var(--bg-color);
 }
 
+hr {
+    border: .5px solid var(--grey)
+}
+
 .secondary {
     --bg: var(--secondary)
 }

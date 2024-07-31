@@ -1,1 +1,1 @@
-export {getArrayRecomends} from './api/getArrayRecomends';
+export { getArrayRecomends } from './api/getArrayRecomends';

@@ -3,9 +3,9 @@ import React from 'react';
 const CopyIcon = ({ width, height, stroke, fill, ...otherProps }) => {
     return (
         <svg
-            width={width || "24"}
-            height={height || "24"}
-            fill={fill || "none"}
+            width={width || '24'}
+            height={height || '24'}
+            fill={fill || 'none'}
             {...otherProps}
         >
             <path
