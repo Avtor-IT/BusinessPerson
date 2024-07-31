@@ -4,7 +4,7 @@ import { getArrayRecomends } from 'entities/ArrayRecomends';
 import { Box, Typography } from '@mui/material';
 import cls from './sliderRecomends.module.scss';
 import { Card } from 'shared/ui/Card';
-import { height } from '@mui/system';
+import './sliderRecomends.scss';
 
 export const SliderRecomends = ({ ...props }) => {
 
@@ -14,16 +14,15 @@ export const SliderRecomends = ({ ...props }) => {
         dots: false,
         accessibility: false,
         arrows: false,
-        // infinite: true,
-        // speed: 500,
         slidesToShow: 3,
-        slidesToScroll: 3,
-        dir: 'rtl',
+        slidesToScroll: 1,
+        focusOnSelect: true,
+        infinite: false,
     };
 
     return (
         <Box className={`${cls.sliderRecomends}`}>
-            <Slider {...settings} style={{ width: '923px', height: '257px', display: 'flex' }}>
+            <Slider {...settings} style={{ width: '923px' }}>
                 {testArrayRecomends.map((item, index) => (
                     <Card className={cls.recomendItem} key={index}>
                         <Typography variant='M20'>{item.title}</Typography>
