@@ -18,6 +18,10 @@ export const ThemeProvider = ({ children }) => {
                 fontSize: 24,
                 fontWeight: 500,
             },
+            h3: {
+                fontSize: 40,
+                fontWeight: 500,
+            },
         },
     });
 

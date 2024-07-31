@@ -1,0 +1,16 @@
+.BadgeContainer {
+    display: inline-block;
+    position: relative;
+
+    & .Badge {
+        display: inline-block;
+        content: "";
+        background-color: var(--badge-color);
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+    }
+}

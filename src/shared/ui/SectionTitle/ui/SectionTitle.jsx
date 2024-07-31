@@ -1,9 +1,12 @@
 import React from 'react';
-import {Typography} from "@mui/material";
+import { Typography } from '@mui/material';
 
-const SectionTitle = ({children}) => {
+const SectionTitle = ({ children }) => {
     return (
-        <Typography variant={'h3'}>
+        <Typography
+            variant={'h3'}
+            sx={{ mb: '54px' }}
+        >
             {children}
         </Typography>
     );

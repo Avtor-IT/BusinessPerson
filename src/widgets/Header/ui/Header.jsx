@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChatBot } from 'features/ChatBot';
-import { ProfileBlock } from 'entities/User';
+import ProfileBlock from 'widgets/ProfileBlock';
 import cls from './Header.module.scss';
 
 export const Header = ({ className, ...props }) => {
