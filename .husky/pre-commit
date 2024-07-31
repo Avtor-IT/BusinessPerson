@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
+. "${0%/*}/h"
 
 yarn dlx lint-staged

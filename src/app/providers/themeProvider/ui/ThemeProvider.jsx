@@ -55,6 +55,24 @@ export const ThemeProvider = ({ children }) => {
                 fontWeight: 300,
             },
         },
+        components: {
+            MuiTypography: {
+                defaultProps: {
+                    variantMapping: {
+                        M40: 'h2',
+                        M24: 'h5',
+                        M20: 'span',
+                        R48: 'span',
+                        R20: 'span',
+                        R16: 'span',
+                        R12: 'span',
+                        L24: 'span',
+                        L20: 'span',
+                        L16: 'span',
+                    },
+                },
+            },
+        },
     });
 
     return <MaterialTheme theme={theme}>{children}</MaterialTheme>;
