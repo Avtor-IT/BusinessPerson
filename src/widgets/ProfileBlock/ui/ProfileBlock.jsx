@@ -14,6 +14,7 @@ const ProfileBlock = () => {
         sessionStorage.removeItem('refresh');
 
         navigate('/login');
+        console.log('aa');
     };
 
     if (userQuery.isLoading) return <div>Загрузка пользователя...</div>;
