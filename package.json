@@ -8,7 +8,7 @@
     "build": "webpack --mode production",
     "start": "webpack serve --hot --mode development",
     "lint": "eslint .",
-    "prepare": "husky"
+    "postinstall": "husky"
   },
   "author": "",
   "license": "ISC",
