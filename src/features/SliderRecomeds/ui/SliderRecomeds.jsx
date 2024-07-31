@@ -8,6 +8,7 @@ import './sliderRecomends.scss';
 
 export const SliderRecomends = () => {
     const testArrayRecomends = getArrayRecomends();
+    const hjd = 'hjd';
 
     const settings = {
         dots: false,
