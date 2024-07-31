@@ -1,6 +1,6 @@
 import React from 'react';
 import cls from './Card.module.scss';
-import { Typography} from '@mui/material';
+import { Typography } from '@mui/material';
 
 export const Card = ({
     children,

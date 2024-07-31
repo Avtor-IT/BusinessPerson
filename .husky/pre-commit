@@ -1,7 +1,7 @@
+. .husky/common.sh
+
 #!/usr/bin/env sh
 . "${0%/*}/h"
-
-. .husky/common.sh
 
 yarn run lint
 
