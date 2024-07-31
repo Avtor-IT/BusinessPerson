@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 . "${0%/*}/h"
 
-yarn run lint-staged
+yarn dlx lint-staged
 
 exit 1
