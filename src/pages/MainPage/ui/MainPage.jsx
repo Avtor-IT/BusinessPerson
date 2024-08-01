@@ -4,6 +4,8 @@ import { MyCompanyAccounts } from 'widgets/MyCompanyAccounts';
 import { MyManager } from 'widgets/MyManager';
 import { MyDocuments } from 'widgets/MyDocuments';
 import { MyRecomends } from 'widgets/MyRecomends';
+import { MyCompany } from 'widgets/MyCompany';
+import { MyAccounts } from 'widgets/MyAccounts';
 
 const MainPage = () => {
     return (
@@ -21,7 +23,10 @@ const MainPage = () => {
                     item
                     xs={3}
                 >
-                    <MyCompanyAccounts />
+                    <MyCompanyAccounts
+                        LeftComponent={MyCompany}
+                        RightComponent={MyAccounts}
+                    />
                 </Grid>
                 <Grid
                     item

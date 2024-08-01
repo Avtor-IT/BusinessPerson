@@ -43,8 +43,8 @@ export const MyCompany = () => {
                         gap={'16px'}
                         alignItems={'center'}
                     >
-                        <ExportBtn style={{ width: '24px', height: '24px' }} />
-                        <ImportBtn style={{ width: '24px', height: '24px' }} />
+                        <ExportBtn />
+                        <ImportBtn />
                     </Box>
                 </Box>
             </Box>

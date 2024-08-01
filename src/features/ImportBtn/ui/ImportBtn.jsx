@@ -6,7 +6,8 @@ const ImportBtn = ({ ...otherProps }) => {
     return (
         <Button
             {...otherProps}
-            variant='unStyled'
+            style={{ width: '24px', height: '24px' }}
+            variant="unStyled"
         >
             <ImportIcon />
         </Button>

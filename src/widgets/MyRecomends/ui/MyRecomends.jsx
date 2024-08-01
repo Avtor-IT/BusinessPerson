@@ -14,7 +14,7 @@ export const MyRecomends = ({ ...props }) => {
         accessibility: false,
         arrows: false,
         slidesToShow: 3,
-        slidesToScroll: 1,
+        slidesToScroll: 2,
         focusOnSelect: true,
         infinite: false,
     };

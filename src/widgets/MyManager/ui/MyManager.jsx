@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import { Box, Typography } from '@mui/material';
 import { Card } from 'shared/ui/Card';
-import AvatarManager from 'features/AvatarManager';
+import AvatarManager from 'shared/ui/AvatarManager';
 import BlueEllipse from 'shared/assets/BlueEllipse/ui/BlueEllipse';
 import MessageIcon from 'shared/assets/MessageIcon/ui/MessageIcon';
 import CopyBtn from 'features/CopyBtn';
