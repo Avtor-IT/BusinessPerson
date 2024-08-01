@@ -2,9 +2,23 @@
     padding: 32px 0 15px 24px;
     overflow: hidden;
     height: 100%;
-    background: linear-gradient(
-        90deg,
-        rgba(164, 50, 112, 1) 0%,
-        rgba(81, 73, 150, 1) 100%
-    );
+    background: 
+    linear-gradient(#F9FEFF 0 0) padding-box,
+    linear-gradient(to right, #514996, #A43270) border-box;
+    border: 2px solid transparent;
+}
+
+.recomendItem {
+    border-radius: 32px;
+    padding: 16px;
+    display: flex !important;
+    flex-direction: column;
+    gap: 16px;
+    width: 288px;
+    height: 247px;
+    margin-top: 15px;
+    background: 
+    linear-gradient(#F9FEFF 0 0) padding-box,
+    linear-gradient(to right, #514996, #A43270) border-box;
+    border: 2px solid transparent;
 }
