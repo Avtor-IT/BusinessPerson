@@ -1,11 +1,12 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { Button } from 'shared/ui/Button';
 import ExportBtn from 'features/ExportBtn/ui/ExportBtn';
 import ImportBtn from 'features/ImportBtn/ui/ImportBtn';
 import ArrowIcon from 'shared/assets/ArrowIcon/ui/ArrowIcon';
 import CopyBtn from 'features/CopyBtn/ui/CopyBtn';
 import cls from './myCompany.module.scss';
+import { Link } from 'react-router-dom';
+import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 
 export const MyCompany = () => {
     return (
@@ -15,13 +16,13 @@ export const MyCompany = () => {
                 justifyContent={'space-between'}
             >
                 <Typography variant="M24"> Моя компания </Typography>
-                <Button
-                    variant={'unStyled'}
+                <Link
+                    to={RoutePath[AppRoutes.MAIN]}
                     className={`${cls.btnExtend}`}
                 >
                     <Typography variant="L20">Подробнее</Typography>
                     <ArrowIcon variant="right" />
-                </Button>
+                </Link>
             </Box>
             <Box
                 display={'flex'}
@@ -34,10 +35,7 @@ export const MyCompany = () => {
                     justifyContent={'space-between'}
                     alignItems={'center'}
                 >
-                    <CopyBtn
-                        icon="end"
-                        className={`${cls.btnCopy}`}
-                    >
+                    <CopyBtn className={`${cls.btnCopy}`}>
                         <Typography variant="L20">ИНН: 1234567890</Typography>
                     </CopyBtn>
                     <Box

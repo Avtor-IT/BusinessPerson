@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import { Box, Typography } from '@mui/material';
-import { Button } from 'shared/ui/Button';
 import AddSquareBtn from 'features/AddSquareBtn/ui/AddSquareBtn';
 
 export const MyAccounts = () => {
@@ -31,11 +32,10 @@ export const MyAccounts = () => {
                 alignItems={'center'}
                 fontSize={'22px'}
             >
-                <Button variant={'unStyled'}>
+                <Link to={RoutePath[AppRoutes.MAIN]}>
                     <Typography variant="L20">История</Typography>
-                </Button>
-                <Button
-                    variant={'unStyled'}
+                </Link>
+                <AddSquareBtn
                     style={{
                         display: 'flex',
                         gap: '8px',
@@ -43,8 +43,7 @@ export const MyAccounts = () => {
                     }}
                 >
                     <Typography variant="L20">Оплатить</Typography>
-                    <AddSquareBtn style={{ width: '24px', height: '24px' }} />
-                </Button>
+                </AddSquareBtn>
             </Box>
         </>
     );

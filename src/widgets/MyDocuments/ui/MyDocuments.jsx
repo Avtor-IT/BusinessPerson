@@ -1,12 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import { Box, Typography } from '@mui/material';
-import { Button } from 'shared/ui/Button';
 import { Card } from 'shared/ui/Card';
 import BlueEllipse from 'shared/assets/BlueEllipse/ui/BlueEllipse';
-import AddSquareBtn from 'features/AddSquareBtn';
 import ArrowIcon from 'shared/assets/ArrowIcon/ui/ArrowIcon';
-import CopyIcon from 'shared/assets/CopyIcon/ui/CopyIcon';
+import AddSquareBtn from 'features/AddSquareBtn';
+import CopyBtn from 'features/CopyBtn';
 import cls from './MyDocuments.module.scss';
+// import AddSquareIcon from 'shared/assets/AddSquareIcon'; для возможного линка
 
 export const MyDocuments = ({ ...props }) => {
     const testArrayDocuments = ['СНИЛС', 'Устав', 'ОГРН', 'Паспорт'];
@@ -28,13 +30,19 @@ export const MyDocuments = ({ ...props }) => {
                 zIndex={'2'}
             >
                 <Typography variant="M24">Мои документы</Typography>
-                <Button
-                    variant={'unStyled'}
+                <AddSquareBtn className={`${cls.btnAddMyDocument}`}>
+                    <Typography variant="L16">Добавить</Typography>
+                </AddSquareBtn>
+
+                {/* или */}
+
+                {/* <Link
+                    to={RoutePath[AppRoutes.MAIN]}
                     className={`${cls.btnAddMyDocument}`}
                 >
                     <Typography variant="L16">Добавить</Typography>
-                    <AddSquareBtn style={{ width: '24px', height: '24px' }} />
-                </Button>
+                    <AddSquareIcon />
+                </Link> */}
             </Box>
             <Box
                 marginTop={'32px'}
@@ -43,13 +51,13 @@ export const MyDocuments = ({ ...props }) => {
                 <Typography variant="R20">
                     Все необходимые документы <br /> всегда под рукой
                 </Typography>
-                <Button
-                    variant={'unStyled'}
+                <Link
+                    to={RoutePath[AppRoutes.MAIN]}
                     className={`${cls.btnExpand}`}
                 >
                     <Typography variant="L16">Развернуть</Typography>
                     <ArrowIcon variant="down" />
-                </Button>
+                </Link>
             </Box>
             <Box className={`${cls.arrayMyDocumnets}`}>
                 {testArrayDocuments.map((document, index) => (
@@ -67,7 +75,10 @@ export const MyDocuments = ({ ...props }) => {
                         }}
                     >
                         <Typography variant="L20">{document}</Typography>
-                        <CopyIcon stroke="#3D3F4C" />
+                        <CopyBtn
+                            stroke="#3D3F4C"
+                            style={{ height: 'fit-content' }}
+                        />
                     </Card>
                 ))}
             </Box>
