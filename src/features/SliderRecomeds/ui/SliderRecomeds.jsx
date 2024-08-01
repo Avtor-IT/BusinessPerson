@@ -10,7 +10,6 @@ export const SliderRecomends = () => {
 
     const [activeStep, setActiveStep] = React.useState(0);
     const test = 'test';
-    const test = 'test';
 
     const handleStepChange = (step) => {
         setActiveStep(step);
