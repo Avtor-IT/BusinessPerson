@@ -1,19 +1,12 @@
 @import '../../../app/styles/variables/vars.scss';
 
-.sliderRecomends > .react-swipeable-view-container {
-    display: flex;
-    gap: 4px;
-}
-
-.react-swipeable-view-container div {
-    width: 288px;
-}
-
 .recomendItem {
     border-radius: 32px;
-    width: 288px;
     padding: 16px;
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     gap: 16px;
+    width: 288px;
+    height: 247px;
+    margin-top: 15px;
 }

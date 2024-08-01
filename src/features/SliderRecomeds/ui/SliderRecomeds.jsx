@@ -1,42 +1,42 @@
 import React from 'react';
+import Slider from 'react-slick';
 import { getArrayRecomends } from 'entities/ArrayRecomends';
 import { Box, Typography } from '@mui/material';
 import cls from './sliderRecomends.module.scss';
 import { Card } from 'shared/ui/Card';
-import SwipeableViews from 'react-swipeable-views';
+import './sliderRecomends.scss';
 
 export const SliderRecomends = () => {
     const testArrayRecomends = getArrayRecomends();
 
-    const [activeStep, setActiveStep] = React.useState(0);
-
-    const handleStepChange = (step) => {
-        setActiveStep(step);
+    const settings = {
+        dots: false,
+        accessibility: false,
+        arrows: false,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        focusOnSelect: true,
+        infinite: false,
     };
+
     return (
-        <Box>
-            <SwipeableViews
-                index={activeStep}
-                onChangeIndex={handleStepChange}
-                enableMouseEvents
-                slideCount={3}
-                style={{ overflowX: 'visible' }}
-                className={`${cls.sliderRecomends}`}
+        <Box className={`${cls.sliderRecomends}`}>
+            <Slider
+                {...settings}
+                style={{ width: '923px' }}
             >
-                {testArrayRecomends.map((item, index) =>
-                    Math.abs(activeStep - index) <= 2 ? (
-                        <Card
-                            className={cls.recomendItem}
-                            key={index}
-                        >
-                            <Typography variant="M20">{item.title}</Typography>
-                            <Typography variant="R16">
-                                {item.description}
-                            </Typography>
-                        </Card>
-                    ) : null
-                )}
-            </SwipeableViews>
+                {testArrayRecomends.map((item, index) => (
+                    <Card
+                        className={cls.recomendItem}
+                        key={index}
+                    >
+                        <Typography variant="M20">{item.title}</Typography>
+                        <Typography variant="R16">
+                            {item.description}
+                        </Typography>
+                    </Card>
+                ))}
+            </Slider>
         </Box>
     );
 };
