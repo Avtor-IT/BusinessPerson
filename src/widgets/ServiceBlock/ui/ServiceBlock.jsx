@@ -9,6 +9,7 @@ const ServiceBlock = ({ serviceTitle, children }) => {
 			columns={6}
 			className={cls.ServiceBlock}
 			columnSpacing={{ xs: '16px' }}
+			marginBottom={'32px'}
 		>
 			<Grid
 				item

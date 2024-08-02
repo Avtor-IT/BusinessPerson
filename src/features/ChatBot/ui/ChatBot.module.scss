@@ -4,12 +4,12 @@
         border: 2px solid transparent;
         border-radius: 8px;
         background: linear-gradient(var(--bg-color), var(--bg-color) 0) padding-box,
-        linear-gradient(to right bottom, var(--primary), var(--secondary-light)) border-box;
+        linear-gradient(to right bottom, var(--primary), var(--secondary)) border-box;
         font-weight: 200;
 
         &::placeholder {
             background-color: transparent;
-            background-image: linear-gradient(to right, var(--primary), var(--secondary-light) 10%);
+            background-image: linear-gradient(to right, var(--primary), var(--secondary) 10%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
