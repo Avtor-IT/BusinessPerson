@@ -4,31 +4,35 @@ import { Button } from 'shared/ui/Button';
 import { useNavigate } from 'react-router-dom';
 import { NotificationButton } from 'entities/Notifications';
 import { Box } from '@mui/material';
+import { useQueryClient } from '@tanstack/react-query';
 
 const ProfileBlock = () => {
-    const userQuery = useCurrentUserQuery();
-    const navigate = useNavigate();
+	const userQuery = useCurrentUserQuery();
+	const navigate = useNavigate();
 
-    const logout = () => {
-        sessionStorage.removeItem('access');
-        sessionStorage.removeItem('refresh');
+	const queryClient = useQueryClient();
 
-        navigate('/login');
-    };
+	const logout = () => {
+		queryClient.invalidateQueries({ queryKey: ['status'] });
+		sessionStorage.removeItem('access');
+		sessionStorage.removeItem('refresh');
 
-    if (userQuery.isLoading) return <div>Загрузка пользователя...</div>;
+		navigate('/login');
+	};
 
-    return (
-        <Box
-            display="flex"
-            alignItems="center"
-            gap="16px"
-        >
-            <NotificationButton />
-            {userQuery.data.username}
-            <Button onClick={logout}>Выйти</Button>
-        </Box>
-    );
+	if (userQuery.isLoading) return <div>Загрузка пользователя...</div>;
+
+	return (
+		<Box
+			display="flex"
+			alignItems="center"
+			gap="16px"
+		>
+			<NotificationButton />
+			{userQuery.data.username}
+			<Button onClick={logout}>Выйти</Button>
+		</Box>
+	);
 };
 
 export default ProfileBlock;
