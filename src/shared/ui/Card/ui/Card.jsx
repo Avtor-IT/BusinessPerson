@@ -3,38 +3,38 @@ import cls from './Card.module.scss';
 import { Typography } from '@mui/material';
 
 export const Card = ({
-    children,
-    className,
-    variant,
-    serviceColor,
-    serviceTitle,
-    style,
-    ...props
+	children,
+	className,
+	variant,
+	serviceColor,
+	serviceTitle,
+	style,
+	...props
 }) => {
-    const colorStyle = {
-        '--service-color': serviceColor || 'var(--additional-blue)',
-    };
-    const resultStyles = Object.assign({}, style, colorStyle);
+	const colorStyle = {
+		'--service-color': serviceColor || 'var(--additional-blue)',
+	};
+	const resultStyles = Object.assign({}, style, colorStyle);
 
-    return (
-        <div
-            className={`${cls.Card} ${variant ? cls[variant] : ''} ${
-                className || ''
-            }`}
-            style={resultStyles}
-            {...props}
-        >
-            {serviceTitle ? (
-                <Typography
-                    variant="M24"
-                    sx={{ mb: '24px' }}
-                >
-                    {serviceTitle}
-                </Typography>
-            ) : (
-                ''
-            )}
-            {children}
-        </div>
-    );
+	return (
+		<div
+			className={`${cls.Card} ${variant ? cls[variant] : ''} ${
+				className || ''
+			}`}
+			style={resultStyles}
+			{...props}
+		>
+			{serviceTitle ? (
+				<Typography
+					variant="M24"
+					sx={{ mb: '24px' }}
+				>
+					{serviceTitle}
+				</Typography>
+			) : (
+				''
+			)}
+			{children}
+		</div>
+	);
 };

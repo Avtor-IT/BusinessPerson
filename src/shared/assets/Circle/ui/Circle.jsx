@@ -24,7 +24,9 @@ const Circle = ({
 				left: left,
 				bottom: bottom,
 				backgroundColor: bg,
-				transition: transition ? 'all .3s ease' : null,
+				transition: transition
+					? 'all .6s var(--quick-animation)' // НУЖНАЯ АНИМАЦИЯ!!!!!!!! вручную подбирал блин
+					: null,
 			}}
 			{...otherProps}
 		></Box>

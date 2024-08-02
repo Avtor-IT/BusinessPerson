@@ -15,9 +15,10 @@ export const MyRecomends = ({ ...props }) => {
 		accessibility: false,
 		arrows: false,
 		slidesToShow: 3,
-		slidesToScroll: 2,
+		slidesToScroll: 1,
 		focusOnSelect: true,
 		infinite: false,
+		variableWidth: true,
 	};
 
 	const [hovered, setHovered] = React.useState(false); // для анимации при наведении
@@ -38,10 +39,13 @@ export const MyRecomends = ({ ...props }) => {
 				transition={true}
 			/>
 			<Typography variant="M24">Рекомендации</Typography>
-			<Box className={`${cls.sliderRecomends}`}>
+			<Box
+				className={`${cls.sliderRecomends} slider-container`}
+				width="923px"
+			>
 				<Slider
 					{...settings}
-					style={{ width: '923px' }}
+					// style={{ width: '923px' }}
 				>
 					{testArrayRecomends.map((item, index) => (
 						<Card
