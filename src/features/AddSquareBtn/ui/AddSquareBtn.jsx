@@ -1,14 +1,19 @@
 import React from 'react';
 import AddSquareIcon from 'shared/assets/AddSquareIcon/ui/AddSquareIcon';
-import { Box } from '@mui/material';
+import { Button } from 'shared/ui/Button';
 
-const AddSquareBtn = ({ ...otherProps }) => {
-    /* Тут был Button, но компонент и так в кнопке, исправил на бокс */
-    return (
-        <Box {...otherProps}>
-            <AddSquareIcon />
-        </Box>
-    );
+const AddSquareBtn = ({ className, children, icon = 'end', ...otherProps }) => {
+	return (
+		<Button
+			className={className}
+			variant="unStyled"
+			{...otherProps}
+		>
+			{icon === 'end' ? children : null}
+			<AddSquareIcon />
+			{icon === 'start' ? children : null}
+		</Button>
+	);
 };
 
 export default AddSquareBtn;

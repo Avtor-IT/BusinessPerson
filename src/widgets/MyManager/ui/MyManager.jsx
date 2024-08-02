@@ -1,57 +1,60 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import { Box, Typography } from '@mui/material';
-import { Button } from 'shared/ui/Button';
 import { Card } from 'shared/ui/Card';
-import AvatarManager from 'features/AvatarManager';
-import BlueEllipse from 'shared/assets/BlueEllipse/ui/BlueEllipse';
+import Circle from 'shared/assets/Circle/ui/Circle';
+import AvatarManager from 'shared/ui/AvatarManager';
 import MessageIcon from 'shared/assets/MessageIcon/ui/MessageIcon';
-import CopyIcon from 'shared/assets/CopyIcon/ui/CopyIcon';
+import CopyBtn from 'features/CopyBtn';
 import cls from './MyManager.module.scss';
 
 export const MyManager = ({ ...props }) => {
-    return (
-        <Card
-            className={`${cls.MyManager}`}
-            {...props}
-        >
-            <BlueEllipse
-                top={-197}
-                right={-102}
-            />
-            <Box
-                display={'flex'}
-                justifyContent={'space-between'}
-            >
-                <Typography variant="M24">Мой менеджер</Typography>
-                <Button
-                    variant={'unStyled'}
-                    className={`${cls.btnMessage}`}
-                >
-                    <Typography variant="L16"> Написать </Typography>
-                    <MessageIcon />
-                </Button>
-            </Box>
-            <Box className={`${cls.infoManager}`}>
-                <Box className={`${cls.avatarFIO}`}>
-                    <AvatarManager />
-                    <Typography
-                        variant="R20"
-                        style={{ lineHeight: '1.3' }}
-                    >
-                        Менеджерова
-                        <br />
-                        Менедж
-                        <br />
-                        Менеджеровна
-                    </Typography>
-                </Box>
-                <Box className={`${cls.phoneManager}`}>
-                    <Typography variant="L24">+7 (999) 999 99-99</Typography>
-                    <Button variant={'unStyled'}>
-                        <CopyIcon />
-                    </Button>
-                </Box>
-            </Box>
-        </Card>
-    );
+	const [hovered, setHovered] = React.useState(false); // для анимации при наведении
+
+	return (
+		<Card
+			className={`${cls.MyManager}`}
+			onMouseOver={() => setHovered(true)}
+			onMouseOut={() => setHovered(false)}
+			{...props}
+		>
+			<Circle
+				top={-197}
+				right={hovered ? -74 : -102}
+				transition={true}
+			/>
+			<Box
+				display={'flex'}
+				justifyContent={'space-between'}
+			>
+				<Typography variant="M24">Мой менеджер</Typography>
+				<Link
+					to={RoutePath[AppRoutes.MAIN]}
+					className={`${cls.btnMessage}`}
+				>
+					<Typography variant="L16"> Написать </Typography>
+					<MessageIcon />
+				</Link>
+			</Box>
+			<Box className={`${cls.infoManager}`}>
+				<Box className={`${cls.avatarFIO}`}>
+					<AvatarManager />
+					<Typography
+						variant="R20"
+						style={{ lineHeight: '1.3' }}
+					>
+						Менеджерова
+						<br />
+						Менедж
+						<br />
+						Менеджеровна
+					</Typography>
+				</Box>
+				<CopyBtn className={`${cls.phoneManager}`}>
+					<Typography variant="L24">+7 (999) 999 99-99</Typography>
+				</CopyBtn>
+			</Box>
+		</Card>
+	);
 };

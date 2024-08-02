@@ -6,15 +6,15 @@ import React from 'react';
 // Возможно этот файл не нужен
 
 const AvatarManager = () => {
-    return (
-        <Box>
-            <Avatar
-                alt="Тестовый аватар"
-                // src="../ui/temporaryAvatar.jpg"
-                sx={{ width: 82, height: 82 }}
-            />
-        </Box>
-    );
+	return (
+		<Box>
+			<Avatar
+				alt="Тестовый аватар"
+				// src="../ui/temporaryAvatar.jpg"
+				sx={{ width: 82, height: 82 }}
+			/>
+		</Box>
+	);
 };
 
 export default AvatarManager;

@@ -1,1 +1,0 @@
-import { MyCompany } from "./ui/MyCompany";
