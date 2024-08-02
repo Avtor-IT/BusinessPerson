@@ -3,21 +3,26 @@ import { Link } from 'react-router-dom';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import { Box, Typography } from '@mui/material';
 import { Card } from 'shared/ui/Card';
+import Circle from 'shared/assets/Circle/ui/Circle';
 import AvatarManager from 'shared/ui/AvatarManager';
-import BlueEllipse from 'shared/assets/BlueEllipse/ui/BlueEllipse';
 import MessageIcon from 'shared/assets/MessageIcon/ui/MessageIcon';
 import CopyBtn from 'features/CopyBtn';
 import cls from './MyManager.module.scss';
 
 export const MyManager = ({ ...props }) => {
+    const [hovered, setHovered] = React.useState(false); // для анимации при наведении
+
     return (
         <Card
             className={`${cls.MyManager}`}
+            onMouseOver={() => setHovered(true)}
+            onMouseOut={() => setHovered(false)}
             {...props}
         >
-            <BlueEllipse
+            <Circle
                 top={-197}
-                right={-102}
+                right={hovered ? -74 : -102}
+                transition={true}
             />
             <Box
                 display={'flex'}

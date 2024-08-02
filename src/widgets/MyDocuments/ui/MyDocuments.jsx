@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import { Box, Typography } from '@mui/material';
 import { Card } from 'shared/ui/Card';
-import BlueEllipse from 'shared/assets/BlueEllipse/ui/BlueEllipse';
+import Circle from 'shared/assets/Circle/ui/Circle';
 import ArrowIcon from 'shared/assets/ArrowIcon/ui/ArrowIcon';
 import AddSquareBtn from 'features/AddSquareBtn';
 import CopyBtn from 'features/CopyBtn';
@@ -13,16 +13,21 @@ import cls from './MyDocuments.module.scss';
 export const MyDocuments = ({ ...props }) => {
     const testArrayDocuments = ['СНИЛС', 'Устав', 'ОГРН', 'Паспорт'];
 
+    const [hovered, setHovered] = React.useState(false); // для анимации при наведении
+
     return (
         <Card
-            {...props}
             className={`${cls.MyDocuments}`}
+            onMouseOver={() => setHovered(true)}
+            onMouseOut={() => setHovered(false)}
+            {...props}
         >
-            <BlueEllipse
+            <Circle
                 width={678}
                 height={678}
                 bottom={-197}
-                right={293}
+                right={hovered ? 260 : 293}
+                transition={true}
             />
             <Box
                 display={'flex'}

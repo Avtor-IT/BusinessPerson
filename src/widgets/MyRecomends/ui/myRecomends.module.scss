@@ -1,11 +1,17 @@
 .MyRecomends {
     padding: 32px 0 15px 24px;
     overflow: hidden;
+    position: relative;
     height: 100%;
     background: 
     linear-gradient(#F9FEFF 0 0) padding-box,
     linear-gradient(to right, #514996, #A43270) border-box;
     border: 2px solid transparent;
+}
+
+.sliderRecomends {
+    position: relative;
+    z-index: 2;
 }
 
 .recomendItem {
@@ -21,4 +27,5 @@
     linear-gradient(#F9FEFF 0 0) padding-box,
     linear-gradient(to right, #514996, #A43270) border-box;
     border: 2px solid transparent;
+    cursor: pointer;
 }
