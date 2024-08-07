@@ -1,26 +1,32 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { getArrayRecomends } from 'entities/ArrayRecomends';
 import { Card } from 'shared/ui/Card';
+import { useRecomendsQuery } from 'entities/Recomends/model/hooks';
 import Circle from 'shared/assets/Circle';
 import Slider from 'react-slick';
+import CheckCircleBtn from 'features/CheckCircleBtn';
 import cls from './MyRecomends.module.scss';
 import './myRecomends.scss';
+import ArrowIcon from 'shared/assets/ArrowIcon/ui/ArrowIcon';
 
 export const MyRecomends = ({ ...props }) => {
-	const testArrayRecomends = getArrayRecomends();
-
 	const settings = {
 		dots: false,
 		accessibility: false,
-		arrows: false,
 		slidesToShow: 3,
 		slidesToScroll: 2,
 		focusOnSelect: true,
 		infinite: false,
+		navButtonsAlwaysVisible: true,
 	};
 
 	const [hovered, setHovered] = React.useState(false); // для анимации при наведении
+
+	const { isLoading, error, data } = useRecomendsQuery();
+
+	if (isLoading) return 'Loading...';
+
+	if (error) return 'Error';
 
 	return (
 		<Card
@@ -32,23 +38,52 @@ export const MyRecomends = ({ ...props }) => {
 			<Circle
 				width={522}
 				height={522}
-				right={hovered ? -146 : -222}
-				bottom={hovered ? -141 : -216}
-				bg={'#A43270'}
-				transition={true}
+				right={hovered ? -113 : -185}
+				bottom={hovered ? -145 : -159}
+				variant={'purple'}
 			/>
 			<Typography variant="M24">Рекомендации</Typography>
 			<Box className={`${cls.sliderRecomends}`}>
 				<Slider
 					{...settings}
 					style={{ width: '923px' }}
+					prevArrow={
+						<ArrowIcon
+							variant={'left'}
+							width={32}
+							height={32}
+							strokeWidth={2}
+						/>
+					}
+					nextArrow={
+						<ArrowIcon
+							variant={'right'}
+							width={32}
+							height={32}
+							strokeWidth={2}
+						/>
+					}
 				>
-					{testArrayRecomends.map((item, index) => (
+					{data.map((item, index) => (
 						<Card
 							className={cls.recomendItem}
 							key={index}
 						>
-							<Typography variant="M20">{item.title}</Typography>
+							<Box
+								style={{
+									display: 'flex',
+									alignItems: 'baseline',
+									justifyContent: 'space-between',
+								}}
+							>
+								<Typography
+									variant="M20"
+									width={'219px'}
+								>
+									{item.title}
+								</Typography>
+								<CheckCircleBtn />
+							</Box>
 							<Typography variant="R16">
 								{item.description}
 							</Typography>

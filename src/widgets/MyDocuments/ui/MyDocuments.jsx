@@ -8,12 +8,17 @@ import ArrowIcon from 'shared/assets/ArrowIcon/ui/ArrowIcon';
 import AddSquareBtn from 'features/AddSquareBtn';
 import CopyBtn from 'features/CopyBtn';
 import cls from './MyDocuments.module.scss';
+import { useDocumentsQuery } from 'entities/Documents/model/hooks';
 // import AddSquareIcon from 'shared/assets/AddSquareIcon'; для возможного линка
 
 export const MyDocuments = ({ ...props }) => {
-	const testArrayDocuments = ['СНИЛС', 'Устав', 'ОГРН', 'Паспорт'];
-
 	const [hovered, setHovered] = React.useState(false); // для анимации при наведении
+
+	const { isLoading, error, data } = useDocumentsQuery();
+
+	if (isLoading) return 'Loading...';
+
+	if (error) return 'Error';
 
 	return (
 		<Card
@@ -27,7 +32,6 @@ export const MyDocuments = ({ ...props }) => {
 				height={678}
 				bottom={-197}
 				right={hovered ? 260 : 293}
-				transition={true}
 			/>
 			<Box
 				display={'flex'}
@@ -65,7 +69,7 @@ export const MyDocuments = ({ ...props }) => {
 				</Link>
 			</Box>
 			<Box className={`${cls.arrayMyDocumnets}`}>
-				{testArrayDocuments.map((document, index) => (
+				{data.map((document, index) => (
 					<Card
 						key={index}
 						style={{

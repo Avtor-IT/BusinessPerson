@@ -1,1 +1,1 @@
-import ArrowIcon from "./ui/ArrowIcon";
+export { default } from './ui/ArrowIcon';

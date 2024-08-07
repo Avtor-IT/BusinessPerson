@@ -20,9 +20,10 @@ export const MyManager = ({ ...props }) => {
 			{...props}
 		>
 			<Circle
+				width={474}
+				height={474}
 				top={-197}
-				right={hovered ? -74 : -102}
-				transition={true}
+				right={hovered ? -98 : -148}
 			/>
 			<Box
 				display={'flex'}
@@ -51,7 +52,10 @@ export const MyManager = ({ ...props }) => {
 						Менеджеровна
 					</Typography>
 				</Box>
-				<CopyBtn className={`${cls.phoneManager}`}>
+				<CopyBtn
+					className={`${cls.phoneManager}`}
+					textToCopy="+7 (999) 999 99-99"
+				>
 					<Typography variant="L24">+7 (999) 999 99-99</Typography>
 				</CopyBtn>
 			</Box>
