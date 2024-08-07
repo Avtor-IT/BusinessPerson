@@ -14,9 +14,10 @@ export const MyRecomends = ({ ...props }) => {
 		dots: false,
 		accessibility: false,
 		slidesToShow: 3,
-		slidesToScroll: 2,
+		slidesToScroll: 1,
 		focusOnSelect: true,
 		infinite: false,
+		variableWidth: true,
 		navButtonsAlwaysVisible: true,
 	};
 
@@ -43,7 +44,10 @@ export const MyRecomends = ({ ...props }) => {
 				variant={'purple'}
 			/>
 			<Typography variant="M24">Рекомендации</Typography>
-			<Box className={`${cls.sliderRecomends}`}>
+			<Box
+				className={`${cls.sliderRecomends} slider-container`}
+				width="923px"
+			>
 				<Slider
 					{...settings}
 					style={{ width: '923px' }}

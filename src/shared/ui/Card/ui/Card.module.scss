@@ -9,6 +9,8 @@
 
 
     &.ServiceCard {
+        min-height: 100%;
+
         &::before {
             position: absolute;
             display: block;
