@@ -3,21 +3,26 @@ import React from 'react';
 import cls from './circle.module.scss';
 
 const Circle = ({
-	width,
-	height,
 	top,
 	right,
 	left,
 	bottom,
-	bg = '#514996',
-	transition = true,
+	bg,
+	width,
+	height,
+	transition,
+	variant = 'blue',
 	...otherProps
 }) => {
+	const classNames = [
+		cls.Circle,
+		variant === 'blue' ? cls.blue : cls.purple,
+	].join(' ');
 	return (
 		<Box
 			width={width || '445px'}
 			height={height || '445px'}
-			className={`${cls.Circle || ''}`}
+			className={`${cls.Circle || ''} ${classNames}`}
 			style={{
 				top: top,
 				right: right,

@@ -35,7 +35,10 @@ export const MyCompany = () => {
 					justifyContent={'space-between'}
 					alignItems={'center'}
 				>
-					<CopyBtn className={`${cls.btnCopy}`}>
+					<CopyBtn
+						className={`${cls.btnCopy}`}
+						textToCopy="1234567890"
+					>
 						<Typography variant="L20">ИНН: 1234567890</Typography>
 					</CopyBtn>
 					<Box

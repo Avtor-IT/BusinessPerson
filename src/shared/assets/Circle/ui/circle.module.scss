@@ -2,4 +2,13 @@
     position: absolute;
     z-index: 1;
     border-radius: 100%;
+    transition: all .3s ease;
+}
+
+.purple {
+    background-color: var(--primary);
+}
+
+.blue {
+    background-color: var(--secondary);
 }

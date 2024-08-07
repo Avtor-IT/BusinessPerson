@@ -3,10 +3,6 @@
     overflow: hidden;
     position: relative;
     height: 100%;
-    background: 
-    linear-gradient(#F9FEFF 0 0) padding-box,
-    linear-gradient(to right, #514996, #A43270) border-box;
-    border: 2px solid transparent;
 }
 
 .sliderRecomends {
@@ -23,9 +19,10 @@
     width: 288px;
     height: 247px;
     margin-top: 15px;
-    background: 
-    linear-gradient(#F9FEFF 0 0) padding-box,
-    linear-gradient(to right, #514996, #A43270) border-box;
-    border: 2px solid transparent;
-    cursor: pointer;
 }
+
+// для непрочитанных карточек
+// border: 2px solid #A43270;
+
+// для прочитанных
+// color: #7B7F9F;

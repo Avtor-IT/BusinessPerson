@@ -8,3 +8,24 @@
     margin-inline: -4px;
     overflow: visible;
 }
+
+.slick-prev, .slick-next {
+    width: 32px;
+    height: 32px;
+}
+
+.slick-prev {
+    left: auto;
+    right: 60px;
+    top: -30px;
+}
+
+.slick-next {
+    right: 0;
+    top: -30px;
+}
+
+.slick-prev:before, .slick-next:before {
+    font-size: 32px;
+    opacity: 1 !important;
+}
