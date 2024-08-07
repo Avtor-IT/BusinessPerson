@@ -12,7 +12,7 @@ export const Card = ({
 	...props
 }) => {
 	const colorStyle = {
-		'--service-color': serviceColor || 'var(--additional-blue)',
+		'--service-color': serviceColor || 'var(--secondary)',
 	};
 	const resultStyles = Object.assign({}, style, colorStyle);
 

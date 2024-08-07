@@ -8,19 +8,21 @@ const ServiceBlock = ({ serviceTitle, children }) => {
 			container
 			columns={6}
 			className={cls.ServiceBlock}
-			columnSpacing={{ xs: '16px' }}
+			spacing={{ xs: '16px' }}
 			marginBottom={'32px'}
 		>
 			<Grid
 				item
-				xs={1}
+				xs={6}
+				xl={1}
 				className={cls.ServiceTitle}
 			>
 				<Typography variant="M24">{serviceTitle}</Typography>
 			</Grid>
 			<Grid
 				item
-				xs={5}
+				xs={6}
+				xl={5}
 				className={cls.serviceContent}
 			>
 				{children}

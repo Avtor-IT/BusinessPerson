@@ -4,6 +4,7 @@
                     var(--bg-additional-color),
                     var(--secondary) 110%
     );
+    position: relative;
 
     & .Tag {
         cursor: pointer;
@@ -25,5 +26,12 @@
         padding: 30px 16px;
         color: var(--color-light-secondary);
         max-width: 350px;
+    }
+
+    & .PromoIcon {
+        position: absolute;
+        //right: 350px;
+        //top: -15px;
+        opacity: .5;
     }
 }

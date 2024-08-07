@@ -3,6 +3,17 @@
 
 * {
     box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+        background: transparent;
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(182, 215, 222, .5);
+        border-radius: 8px;
+    }
+
 }
 
 #root {
@@ -15,6 +26,17 @@ html {
     font-weight: 300;
     color: var(--color-dark);
     background-color: var(--bg-color);
+
+    &::-webkit-scrollbar {
+        background: transparent;
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(182, 215, 222);
+        border-radius: 8px;
+    }
+
 }
 
 hr {

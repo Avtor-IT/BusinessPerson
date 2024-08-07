@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { getArrayRecomends } from 'entities/ArrayRecomends';
+import { getArrayRecomends } from 'shared/json';
 import { Card } from 'shared/ui/Card';
 import Circle from 'shared/assets/Circle';
 import Slider from 'react-slick';

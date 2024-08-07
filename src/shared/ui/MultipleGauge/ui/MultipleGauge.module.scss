@@ -1,0 +1,18 @@
+.MultipleGauge {
+    position: relative;
+    margin: -10px -40px !important;
+
+    & .GaugeItem {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    & .ValueText {
+        color: var(--color-dark);
+        position: absolute;
+        top: 91px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

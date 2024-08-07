@@ -1,0 +1,27 @@
+.TaxNameItem {
+    &::before {
+        display: block;
+        content: '';
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background-color: var(--tax-color);
+        margin-right: 8px;
+    }
+
+}
+
+.payment {
+    position: relative;
+
+    &::after {
+        transition: all .6s var(--quick-animation);
+        position: absolute;
+        right: -73px;
+        content: '';
+        background: var(--bg-additional-color);
+        width: var(--circle-size);
+        height: var(--circle-size);
+        border-radius: 50%;
+    }
+}

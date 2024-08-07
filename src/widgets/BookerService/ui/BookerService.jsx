@@ -7,17 +7,19 @@ const BookerService = () => {
 		<Grid
 			container
 			columns={5}
-			columnSpacing={{ xl: '16px' }}
+			spacing={{ xs: '16px' }}
 		>
 			<Grid
 				item
-				xs={3}
+				xs={5}
+				xl={3}
 			>
 				<TaxesTable />
 			</Grid>
 			<Grid
 				item
-				xs={2}
+				xs={5}
+				xl={2}
 			>
 				<TaxesInfographics />
 			</Grid>

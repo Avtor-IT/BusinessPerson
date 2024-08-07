@@ -5,7 +5,7 @@ import { Box, Typography } from '@mui/material';
 import { Card } from 'shared/ui/Card';
 import Circle from 'shared/assets/Circle/ui/Circle';
 import ArrowIcon from 'shared/assets/ArrowIcon/ui/ArrowIcon';
-import AddSquareBtn from 'features/AddSquareBtn';
+import IconButton from 'shared/ui/Button';
 import CopyBtn from 'features/CopyBtn';
 import cls from './MyDocuments.module.scss';
 // import AddSquareIcon from 'shared/assets/AddSquareIcon'; для возможного линка
@@ -35,19 +35,19 @@ export const MyDocuments = ({ ...props }) => {
 				zIndex={'2'}
 			>
 				<Typography variant="M24">Мои документы</Typography>
-				<AddSquareBtn className={`${cls.btnAddMyDocument}`}>
+				<IconButton className={`${cls.btnAddMyDocument}`}>
 					<Typography variant="L16">Добавить</Typography>
-				</AddSquareBtn>
+				</IconButton>
 
 				{/* или */}
 
 				{/* <Link
-                    to={RoutePath[AppRoutes.MAIN]}
-                    className={`${cls.btnAddMyDocument}`}
-                >
-                    <Typography variant="L16">Добавить</Typography>
-                    <AddSquareIcon />
-                </Link> */}
+                 to={RoutePath[AppRoutes.MAIN]}
+                 className={`${cls.btnAddMyDocument}`}
+                 >
+                 <Typography variant="L16">Добавить</Typography>
+                 <AddSquareIcon />
+                 </Link> */}
 			</Box>
 			<Box
 				marginTop={'32px'}

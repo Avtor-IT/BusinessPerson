@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import { Box, Typography } from '@mui/material';
-import AddSquareBtn from 'features/AddSquareBtn/ui/AddSquareBtn';
+import IconButton from 'shared/ui/Button/ui/IconButton';
 
 export const MyAccounts = () => {
 	return (
@@ -35,7 +35,7 @@ export const MyAccounts = () => {
 				<Link to={RoutePath[AppRoutes.MAIN]}>
 					<Typography variant="L20">История</Typography>
 				</Link>
-				<AddSquareBtn
+				<IconButton
 					style={{
 						display: 'flex',
 						gap: '8px',
@@ -43,7 +43,7 @@ export const MyAccounts = () => {
 					}}
 				>
 					<Typography variant="L20">Оплатить</Typography>
-				</AddSquareBtn>
+				</IconButton>
 			</Box>
 		</>
 	);
