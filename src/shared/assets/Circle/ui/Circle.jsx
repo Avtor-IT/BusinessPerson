@@ -22,7 +22,7 @@ const Circle = ({
 		<Box
 			width={width || '445px'}
 			height={height || '445px'}
-			className={`${(cls.Circle && { classNames }) || ''}`}
+			className={`${cls.Circle || ''} ${classNames}`}
 			style={{
 				top: top,
 				right: right,
