@@ -2,7 +2,7 @@ import React from 'react';
 import SearchIcon from 'shared/assets/SearchIcon';
 import { Input } from 'shared/ui/Input';
 import cls from './ChatBot.module.scss';
-import useWidth from 'shared/model';
+import { useWidth } from 'shared/model';
 
 export const ChatBot = ({ ...inputProps }) => {
 	const size = useWidth();

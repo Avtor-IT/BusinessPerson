@@ -89,7 +89,7 @@ const TaxesTable = () => {
 					</Grid>
 				</Grid>
 
-				<Stack className={cls.TableScrollableBody}>
+				<Stack className={`${cls.TableScrollableBody} scrollable`}>
 					<Box>
 						{taxesList.map((tax, i) => (
 							<React.Fragment key={tax.name}>

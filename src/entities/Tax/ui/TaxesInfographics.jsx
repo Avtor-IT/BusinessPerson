@@ -34,12 +34,14 @@ const TaxesInfographics = () => {
 				<Stack
 					direction="row"
 					justifyContent="space-between"
-					spacing="8px"
+					spacing="16px"
 				>
 					<Stack
+						className="scrollable"
 						spacing="16px"
 						maxHeight="160px"
 						overflow="auto"
+						flexGrow={1}
 						pr="8px"
 					>
 						{taxes

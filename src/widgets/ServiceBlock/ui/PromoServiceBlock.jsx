@@ -1,23 +1,24 @@
 import React, { cloneElement, useState } from 'react';
 import { Card } from 'shared/ui/Card';
 import { Grid, Typography } from '@mui/material';
-import { Stack, useMediaQuery } from '@mui/system';
+import { Stack } from '@mui/system';
 import cls from './PromoServiceBlock.module.scss';
 import AddSquareIcon from 'shared/assets/AddSquareIcon';
 import { Button } from 'shared/ui/Button';
+import { useMaxWidth } from 'shared/model';
 
 const PromoServiceBlock = ({ title, tagList, icon }) => {
 	const [pickedTag, pickTag] = useState(0);
-	const matches = useMediaQuery((theme) => theme.breakpoints.up('xl'));
+	const { xl, lg, md } = useMaxWidth();
 
 	const iconWithClassName =
 		icon &&
 		cloneElement(icon, {
 			className: cls.PromoIcon,
 			style: {
-				top: matches ? '-15px' : 0,
-				right: matches ? '350px' : '200px',
-				height: matches ? undefined : '100%',
+				top: xl ? '-15px' : 0,
+				right: xl ? '350px' : '200px',
+				height: xl ? undefined : '100%',
 			},
 		});
 
@@ -34,7 +35,7 @@ const PromoServiceBlock = ({ title, tagList, icon }) => {
 			>
 				<Grid
 					item
-					xs={6}
+					lg={6}
 				>
 					<Stack
 						justifyContent="space-between"
@@ -59,7 +60,9 @@ const PromoServiceBlock = ({ title, tagList, icon }) => {
 									className={`${cls.Tag} ${
 										i === pickedTag ? cls.pickedTag : ''
 									}`}
-									sx={{ width: matches ? 'auto' : '100%' }}
+									sx={{
+										width: xl ? 'auto' : '100%',
+									}}
 									onClick={() => pickTag(i)}
 								>
 									{tag.name}
@@ -70,27 +73,29 @@ const PromoServiceBlock = ({ title, tagList, icon }) => {
 				</Grid>
 				<Grid
 					item
-					xs={6}
+					lg={6}
+					md={12}
 				>
 					<Stack
-						direction={matches ? 'row' : 'column'}
+						direction={xl || !lg ? 'row' : 'column'}
 						spacing="13px"
-						alignItems="end"
+						alignItems={lg ? 'end' : 'center'}
 						justifyContent="space-between"
 						minHeight="100%"
 					>
 						<Typography
 							variant="R16"
 							className={cls.Tip}
+							width={md && !lg ? '350px' : 'auto'}
 						>
 							{tagList[pickedTag].description}
 						</Typography>
 						<Button
 							variant="unStyled"
 							style={{
-								width: '257px',
-								marginBlock: matches ? 'auto' : undefined,
-								marginTop: matches ? undefined : 'auto',
+								width: md && !lg ? '150px' : '257px',
+								marginBlock: xl ? 'auto' : undefined,
+								marginTop: xl ? undefined : 'auto',
 							}}
 							onMouseEnter={() => {
 								setHover(true);
@@ -103,7 +108,7 @@ const PromoServiceBlock = ({ title, tagList, icon }) => {
 							}}
 							onMouseUp={() => {
 								setActive(false);
-								setHover(false);
+								// setHover(false);
 							}}
 							onTouchEnd={() => {
 								setActive(false);

@@ -1,6 +1,6 @@
 .slick-slide {
     margin-inline: 4px;
-    width: 288px !important;
+    //width: 288px !important;
     height: auto;
 }
 
@@ -17,15 +17,18 @@
 .slick-prev {
     left: auto;
     right: 60px;
-    top: -30px;
+    //top: -30px;
+    top: -20px;
 }
 
 .slick-next {
     right: 0;
-    top: -30px;
+    //top: -30px;
+    top: -20px;
 }
 
 .slick-prev:before, .slick-next:before {
+    display: none;
     font-size: 32px;
     opacity: 1 !important;
 }

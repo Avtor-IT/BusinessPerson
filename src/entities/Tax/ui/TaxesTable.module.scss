@@ -22,7 +22,8 @@
         }
 
         &::-webkit-scrollbar-thumb {
-            background: rgba(182, 215, 222, 0.5);
+            //background: rgba(182, 215, 222, 0.5);
+            background: rgba(var(--scollbar-color), 0.5);
         }
 
         & .TableRow {

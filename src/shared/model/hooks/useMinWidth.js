@@ -6,16 +6,17 @@ import { useMediaQuery, useTheme } from '@mui/system';
  * breakpoints. See https://legacy.reactjs.org/docs/hooks-rules.html#only-call-hooks-at-the-top-level
  */
 
-function useWidth() {
+const useMinWidth = () => {
 	const theme = useTheme();
-	const keys = [...theme.breakpoints.keys].reverse();
+	const keys = [...theme.breakpoints.keys];
+	const breakpointsMap = new Map();
 
-	return (
-		keys.reduce((output, key) => {
-			const matches = useMediaQuery(theme.breakpoints.up(key));
-			return !output && matches ? key : output;
-		}, null) || 'xs'
-	);
-}
+	keys.forEach((key) => {
+		const matches = useMediaQuery(theme.breakpoints.down(key));
+		breakpointsMap.set(key, matches);
+	});
 
-export default useWidth;
+	return Object.fromEntries(breakpointsMap);
+};
+
+export default useMinWidth;

@@ -4,16 +4,40 @@
 * {
     box-sizing: border-box;
 
+
     &::-webkit-scrollbar {
         background: transparent;
         width: 4px;
     }
 
     &::-webkit-scrollbar-thumb {
-        background: rgba(182, 215, 222, .5);
+        background: rgb(var(--scollbar-color));
         border-radius: 8px;
     }
+}
 
+/* For Mozilla Browser */
+@-moz-document url-prefix() {
+    * {
+        scrollbar-color: rgb(var(--scollbar-color)) transparent;
+        scrollbar-width: thin;
+    }
+    .scrollable {
+        scrollbar-color: rgb(var(--scollbar-color), .5) rgb(var(--scollbar-color), .1);
+        scrollbar-width: thin;
+    }
+}
+
+/* For iOS devices */
+@supports (-webkit-touch-callout: none) {
+    * {
+        scrollbar-color: rgb(var(--scollbar-color)) transparent;
+        scrollbar-width: thin;
+    }
+    .scrollable {
+        scrollbar-color: rgb(var(--scollbar-color), .5) rgb(var(--scollbar-color), .1);
+        scrollbar-width: thin;
+    }
 }
 
 #root {
@@ -33,7 +57,7 @@ html {
     }
 
     &::-webkit-scrollbar-thumb {
-        background: rgba(182, 215, 222);
+        background: rgb(var(--scollbar-color));
         border-radius: 8px;
     }
 

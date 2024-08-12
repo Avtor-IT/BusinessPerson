@@ -1,27 +1,25 @@
 import React from 'react';
-import { Box, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { MyCompanyAccounts } from 'widgets/MyCompanyAccounts';
 import { MyManager } from 'widgets/MyManager';
 import { MyDocuments } from 'widgets/MyDocuments';
 import { MyRecomends } from 'widgets/MyRecomends';
 import { MyCompany } from 'widgets/MyCompany';
 import { MyAccounts } from 'widgets/MyAccounts';
+import ServiceSection from 'widgets/ServiceBlock';
 
 const MainPage = () => {
 	return (
-		<Box
-			display={'flex'}
-			flexDirection={'column'}
-			gap={'16px'}
-		>
+		<>
 			<Grid
 				container
 				columns={5}
-				spacing={'19px'}
+				columnSpacing={'19px'}
+				rowSpacing={'16px'}
 			>
 				<Grid
 					item
-					xs={3}
+					xl={3}
 				>
 					<MyCompanyAccounts
 						LeftComponent={MyCompany}
@@ -30,30 +28,29 @@ const MainPage = () => {
 				</Grid>
 				<Grid
 					item
-					xs={2}
+					xl={2}
+					xs={5}
 				>
 					<MyManager />
 				</Grid>
-			</Grid>
-			<Grid
-				container
-				columns={5}
-				spacing={2}
-			>
+
 				<Grid
 					item
-					xs={2}
+					xl={2}
+					xs={5}
 				>
 					<MyDocuments />
 				</Grid>
 				<Grid
 					item
-					xs={3}
+					xl={3}
+					xs={5}
 				>
 					<MyRecomends />
 				</Grid>
 			</Grid>
-		</Box>
+			<ServiceSection mt="72px" />
+		</>
 	);
 };
 

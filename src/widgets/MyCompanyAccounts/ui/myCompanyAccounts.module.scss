@@ -13,13 +13,13 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 55px;
-    width: 539px;
+    //width: 539px; // Адаптив ломает, надо придумать как по другому сделать
 }
 
 .myAccounts {
     box-shadow: none;
     color: var(--color-dark);
-    width: 410px;
+    //width: 410px; // Адаптив ломает, надо придумать как по другому сделать
     display: flex;
     flex-direction: column;
     justify-content: space-between;
