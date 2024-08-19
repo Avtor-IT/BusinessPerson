@@ -34,7 +34,7 @@ export const Layout = () => (
 			</SideMenu>
 			<Box flexGrow={1}>
 				<Header style={{ marginBottom: 62 }} />
-				<Suspense fallback={<div>Загрузка</div>}>
+				<Suspense fallback={<div>loading</div>}>
 					<Outlet />
 				</Suspense>
 			</Box>

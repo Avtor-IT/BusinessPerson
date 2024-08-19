@@ -32,7 +32,7 @@ const PrivateRoute = () => {
 		queryClient.invalidateQueries({ queryKey: ['status'] });
 	}, [location.pathname]);
 
-	if (statusQuery.isLoading) return <div>Загрузка...</div>;
+	if (statusQuery.isPending) return <div>Загрузка...</div>;
 
 	if (auth === null) {
 		return null;

@@ -2,19 +2,19 @@ import axios from 'axios';
 import { apiEndpoints, baseUrl } from 'shared/model';
 
 class Api {
-	Get = async (url) => {
+	Get = async (url, params) => {
 		await this.GetAccessToken();
 		return axios
 			.get(url, {
 				headers: {
 					Authorization: 'Bearer ' + sessionStorage.getItem('access'),
 				},
+				params,
 			})
 			.then((response) => {
 				if (response.status === 403) {
 					sessionStorage.removeItem('access');
 					sessionStorage.removeItem('refresh');
-					// window.location.href = '/login';
 				} else {
 					return Promise.resolve(response.data);
 				}
@@ -23,7 +23,7 @@ class Api {
 				console.error('Error:', error);
 				sessionStorage.removeItem('access');
 				sessionStorage.removeItem('refresh');
-				// window.location.href = '/login';
+				return Promise.reject(error);
 			});
 	};
 
@@ -39,7 +39,6 @@ class Api {
 				if (response.status === 403) {
 					sessionStorage.removeItem('access');
 					sessionStorage.removeItem('refresh');
-					// window.location.href = '/login';
 				} else {
 					return Promise.resolve(response.data);
 				}
@@ -48,7 +47,6 @@ class Api {
 				console.error('Error:', error);
 				sessionStorage.removeItem('access');
 				sessionStorage.removeItem('refresh');
-				// window.location.href = '/login';
 				return Promise.reject(error);
 			});
 	};
