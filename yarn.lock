@@ -6521,6 +6521,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"js-md5@npm:^0.8.3":
+  version: 0.8.3
+  resolution: "js-md5@npm:0.8.3"
+  checksum: 10c0/f7e41e95f8e5eb5eeb43085bec3832ae3dfe0020c42fcca5a4efe571213391a9e9594db31bd34624b7280af4f1f12c751b6a50074a15346ecf40a0d54115d77f
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -9639,6 +9646,7 @@ __metadata:
     globals: "npm:^15.8.0"
     html-webpack-plugin: "npm:^5.5.0"
     husky: "npm:^9.1.0"
+    js-md5: "npm:^0.8.3"
     lint-staged: "npm:^15.2.7"
     mini-css-extract-plugin: "npm:^2.8.0"
     postcss: "npm:^8.4.41"
