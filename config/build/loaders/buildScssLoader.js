@@ -25,7 +25,7 @@ module.exports = function buildScssLoader(isDev) {
 							[
 								'autoprefixer',
 								{
-									browsers: [
+									overrideBrowserslist: [
 										'ie >= 8',
 										'not dead',
 										'iOS >= 9',

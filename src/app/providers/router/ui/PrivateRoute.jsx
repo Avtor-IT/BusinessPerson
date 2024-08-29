@@ -1,31 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Layout } from 'app/layout/Layout';
 import { useCheckStatus } from 'entities/User';
 import { useQueryClient } from '@tanstack/react-query';
 
-const PrivateRoute = () => {
+const PrivateRoute = ({ children }) => {
 	const [auth, setAuth] = useState(null);
 	const queryClient = useQueryClient();
 	const location = useLocation();
+	const navigate = useNavigate();
 
 	const statusQuery = useCheckStatus();
 
 	useEffect(() => {
 		if (statusQuery.data) {
-			if (
+			const isAuthenticated =
 				statusQuery.data.is_authenticated &&
-				sessionStorage.getItem('access')
-			) {
-				setAuth(true);
-				return;
+				sessionStorage.getItem('access');
+			setAuth(isAuthenticated);
+			if (!isAuthenticated) {
+				navigate('/login', { replace: true });
 			}
-			setAuth(false);
 		}
 		if (statusQuery.error) {
 			setAuth(false);
+			navigate('/login', { replace: true });
 		}
-		// setAuth(true);
 	}, [statusQuery]);
 
 	useEffect(() => {
@@ -39,7 +39,7 @@ const PrivateRoute = () => {
 	}
 
 	return auth ? (
-		<Layout />
+		{ children } && <Layout />
 	) : (
 		<Navigate
 			to="/login"

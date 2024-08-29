@@ -13,11 +13,11 @@ const ProfileBlock = () => {
 	const queryClient = useQueryClient();
 
 	const logout = () => {
-		queryClient.invalidateQueries({ queryKey: ['status'] });
+		queryClient.clear();
 		sessionStorage.removeItem('access');
 		sessionStorage.removeItem('refresh');
 
-		navigate('/login');
+		navigate('/login', { replace: true });
 	};
 
 	if (userQuery.isLoading) return <div>Загрузка пользователя...</div>;
