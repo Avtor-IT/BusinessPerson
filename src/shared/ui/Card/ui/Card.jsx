@@ -1,6 +1,7 @@
 import React from 'react';
 import cls from './Card.module.scss';
 import { Typography } from '@mui/material';
+import { Box } from '@mui/system';
 
 export const Card = ({
 	children,
@@ -17,7 +18,7 @@ export const Card = ({
 	const resultStyles = Object.assign({}, style, colorStyle);
 
 	return (
-		<div
+		<Box
 			className={`${cls.Card} ${variant ? cls[variant] : ''} ${
 				className || ''
 			}`}
@@ -35,6 +36,6 @@ export const Card = ({
 				''
 			)}
 			{children}
-		</div>
+		</Box>
 	);
 };

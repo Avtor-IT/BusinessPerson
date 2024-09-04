@@ -7,6 +7,6 @@ export const checkStatus = async () => {
 	try {
 		return await api.Get(`${baseUrl}${apiEndpoints.STATUS}`);
 	} catch (e) {
-		throw Error(e);
+		throw Error('Не удалось проверить статус пользователя');
 	}
 };

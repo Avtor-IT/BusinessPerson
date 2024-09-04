@@ -3,6 +3,6 @@ export const getArrayMyDocuments = async () => {
 	try {
 		return testArrayDocuments;
 	} catch (e) {
-		throw Error(e);
+		throw Error('Ошибка получения документов');
 	}
 };

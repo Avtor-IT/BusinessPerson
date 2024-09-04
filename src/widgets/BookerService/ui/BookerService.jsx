@@ -11,17 +11,15 @@ const BookerService = () => {
 		>
 			<Grid
 				item
-				xs={5}
-				xl={3}
-			>
-				<TaxesTable />
-			</Grid>
-			<Grid
-				item
-				xs={5}
 				xl={2}
 			>
 				<TaxesInfographics />
+			</Grid>
+			<Grid
+				item
+				xl={2}
+			>
+				<TaxesTable />
 			</Grid>
 		</Grid>
 	);

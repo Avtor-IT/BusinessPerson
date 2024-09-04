@@ -7,6 +7,6 @@ export const getCurrentUser = async () => {
 	try {
 		return await api.Get(`${baseUrl}${apiEndpoints.ME}`);
 	} catch (e) {
-		throw Error(e);
+		throw Error('Не удалось получить информацию о пользователе');
 	}
 };
