@@ -1,19 +1,39 @@
 .Button {
+    font-weight: 300;
     border-radius: 8px;
     padding: 10px 16px;
     border-color: transparent;
-    &.contained {
-        background-color: var(--contained-btn-bg);
-        color: var(--contained-btn-color);
+    --bg: var(--primary);
+
+    & svg {
+        stroke: var(--color-dark);
     }
+
+    &.contained {
+        background-color: var(--bg);
+        color: var(--color-light);
+
+        & svg {
+            stroke: var(--color-light);
+        }
+    }
+
     &.text {
         background-color: transparent;
         border-color: transparent;
-        color: var(--text-btn-color);
     }
+
     &.outlined {
         background-color: transparent;
-        color: var(--text-btn-color);
-        border: 1px solid var(--text-btn-color);
+        border: 1px solid var(--bg);
     }
+
+    &.unStyled {
+        padding: 0;
+        border-radius: 0;
+        border: none;
+    }
+
 }
+
+

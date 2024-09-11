@@ -1,7 +1,24 @@
 :root {
     --bg-color: #f9feff;
-    --contained-btn-bg: #9b1d6a;
-    --contained-btn-color: #f9feff;
+    --bg-additional-color: #fff;
+    --primary: #A43270; // Фиолетовый
+    //--primary-light: #A43270; // Дополнительный 1
 
-    --text-btn-color: #3d3f4c;
+    --secondary: #514996; // Синий
+    //--secondary-light: #514996; // Дополнительный 2
+
+    --tertiary: #7B7F9F;
+
+    --color-dark: #3d3f4c;
+    //--color-dark-secondary: #3d3f4c;
+
+    --color-light: #F9FEFF;
+    --color-light-secondary: #FFFFFF;
+
+    --grey: #D1E6EB;
+    --additional-blue: #433FE3;
+
+    --quick-animation: cubic-bezier(.47, 2.1, .33, .68);
+
+    --scollbar-color: 182, 215, 222;
 }

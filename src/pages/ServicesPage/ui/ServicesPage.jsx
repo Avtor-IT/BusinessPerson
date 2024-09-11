@@ -1,7 +1,8 @@
 import React from 'react';
+import ServiceSection from 'widgets/ServiceBlock';
 
 const ServicesPage = () => {
-    return <div>Services page</div>;
+	return <ServiceSection />;
 };
 
 export default ServicesPage;

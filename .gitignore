@@ -1,7 +1,10 @@
 .cache/
 coverage/
 node_modules/
+build/
 *.log
+.idea/
+yarn.lock
 
 # OS generated files
 .DS_Store

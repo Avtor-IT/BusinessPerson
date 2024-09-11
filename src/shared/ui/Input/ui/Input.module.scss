@@ -1,5 +1,45 @@
 .Input {
-    border: 1px solid #6c6e87;
-    border-radius: 8px;
-    padding: 16px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+
+    & svg {
+        stroke: var(--color-dark);
+    }
+
+    & input {
+        border: 1.5px solid #6c6e87;
+        border-radius: 8px;
+        padding: 16px;
+        flex-grow: 1;
+        font-size: 20px;
+
+    }
+
+    &:has(> .IconBefore) {
+        & input {
+            padding-left: 50px;
+        }
+    }
+
+    &:has(> .IconAfter) {
+        & input {
+            padding-right: 50px;
+        }
+    }
+
+    & .IconBefore, & .IconAfter {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    & .IconBefore {
+        left: 16px;
+    }
+
+    & .IconAfter {
+        right: 16px;
+    }
 }

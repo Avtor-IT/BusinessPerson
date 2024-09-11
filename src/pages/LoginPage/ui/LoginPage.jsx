@@ -1,64 +1,80 @@
-import React, { useState } from 'react';
-import Api from 'shared/api';
+import React, { useEffect, useState } from 'react';
 import cls from './LoginPage.module.scss';
+import useLoginMutation from 'features/Auth';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-    const [login, setLogin] = useState('');
-    const [password, setPassword] = useState('');
-    const [showErrorMessage, setShowErrorMessage] = useState(false);
+	const [userName, setUserName] = useState('');
+	const [password, setPassword] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
 
-    const handleLogin = () => {
-        if (!login || !password) {
-            setShowErrorMessage(true);
-            return;
-        }
-        const api = new Api();
-        const params = {
-            login: login,
-            password: password,
-        };
+	const navigate = useNavigate();
 
-        api.Post('https://server/login', params)
-            .then((data) => {
-                sessionStorage.setItem('token', data.token);
-                window.location.href = '/';
-            })
-            .catch((error) => {
-                console.error('Login failed:', error);
-            });
-    };
+	const loginMutation = useLoginMutation();
 
-    return (
-        <div className={cls.LoginPage}>
-            <h1>Login page</h1>
-            <div className={cls.loginForm}>
-                <label>
-                    Login:{' '}
-                    <input
-                        type="text"
-                        placeholder="enter login"
-                        onChange={(e) => setLogin(e.target.value)}
-                    />
-                </label>
-                <br />
-                <label>
-                    Password:{' '}
-                    <input
-                        type="password"
-                        placeholder="enter password"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </label>
-                {showErrorMessage && <p>Please enter login and password</p>}
-                <button
-                    type="submit"
-                    onClick={handleLogin}
-                >
-                    Enter
-                </button>
-            </div>
-        </div>
-    );
+	const handleLogin = (e) => {
+		e && e.preventDefault();
+		if (!userName || !password) {
+			setErrorMessage('Введите имя и пароль');
+			return;
+		}
+		const params = {
+			username: userName,
+			password: password,
+		};
+		loginMutation.mutate(params);
+	};
+
+	useEffect(() => {
+		if (loginMutation.error) {
+			if (loginMutation.error.message === 'Unauthorized') {
+				setErrorMessage('Пользователь не найден');
+			} else {
+				console.log(loginMutation.error);
+				setErrorMessage(
+					'Ошибка при входе в аккаунт. Повторите попытку позже.'
+				);
+			}
+			return;
+		}
+
+		if (loginMutation.data) {
+			navigate('/', { replace: true });
+		}
+	}, [loginMutation]);
+
+	return (
+		<div className={cls.LoginPage}>
+			<h1>Login page</h1>
+			<form
+				className={cls.loginForm}
+				onSubmit={handleLogin}
+			>
+				<label>
+					Login:{' '}
+					<input
+						type="text"
+						placeholder="enter login"
+						onChange={(e) => setUserName(e.target.value)}
+						disabled={loginMutation.isPending}
+						required
+					/>
+				</label>
+				<br />
+				<label>
+					Password:{' '}
+					<input
+						type="password"
+						placeholder="enter password"
+						onChange={(e) => setPassword(e.target.value)}
+						required
+					/>
+				</label>
+				<p>{errorMessage}</p>
+				<button disabled={loginMutation.isPending}>Enter</button>
+			</form>
+		</div>
+	);
 };
 
 export default LoginPage;

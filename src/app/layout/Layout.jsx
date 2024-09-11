@@ -1,28 +1,43 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { SideMenu } from 'widgets/SideMenu';
 import { LogoLink } from 'widgets/LogoLink';
 import { Navigation } from 'widgets/Navigation';
 import { Header } from 'widgets/Header';
-import { Logo } from 'shared/ui/Logo';
+import { LogoIcon, LogoText } from 'shared/ui/Logo';
 import { Outlet } from 'react-router-dom';
+import { Box, Container } from '@mui/material';
+import { Stack } from '@mui/system';
 
 export const Layout = () => (
-    <div
-        className="container"
-        style={{ display: 'flex', gap: 32, paddingTop: 34 }}
-    >
-        <SideMenu>
-            <div>
-                <LogoLink style={{ marginBottom: 62 }}>
-                    <Logo />
-                    <span style={{ color: 'black' }}>Название</span>{' '}
-                </LogoLink>
-                <Navigation />
-            </div>
-        </SideMenu>
-        <div style={{ flex: 1 }}>
-            <Header style={{ marginBottom: 62 }} />
-            <Outlet />
-        </div>
-    </div>
+	<Container
+		fixed
+		maxWidth="xl"
+	>
+		<Stack
+			direction="row"
+			spacing="32px"
+			pt="35px"
+		>
+			<SideMenu>
+				<LogoLink style={{ marginBottom: 62 }}>
+					<Stack
+						direction="row"
+						alignItems="center"
+						justifyContent="center"
+						spacing="14px"
+					>
+						<LogoIcon />
+						<LogoText />
+					</Stack>
+				</LogoLink>
+				<Navigation />
+			</SideMenu>
+			<Box flexGrow={1}>
+				<Header style={{ marginBottom: 62 }} />
+				<Suspense fallback={<div>loading</div>}>
+					<Outlet />
+				</Suspense>
+			</Box>
+		</Stack>
+	</Container>
 );

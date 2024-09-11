@@ -1,3 +1,8 @@
-export { userActions, userReducer } from './model/userSlice';
-export { useAuth } from './model/hooks';
-export { UserBlock } from './ui/UserBlock';
+export {
+	setUser,
+	setToken,
+	removeUser,
+	removeToken,
+	userReducer,
+} from './model/userSlice';
+export { useAuth, useCurrentUserQuery, useCheckStatus } from './model/hooks';

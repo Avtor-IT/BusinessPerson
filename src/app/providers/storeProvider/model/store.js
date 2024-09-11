@@ -3,5 +3,5 @@ import { userReducer } from 'entities/User';
 import { pageReducer } from 'shared/model/pageSlice';
 
 export default configureStore({
-    reducer: { user: userReducer, page: pageReducer },
+	reducer: { user: userReducer, page: pageReducer },
 });

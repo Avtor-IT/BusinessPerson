@@ -1,37 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-import Api from 'shared/api';
+import React, { useEffect, useState } from 'react';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Layout } from 'app/layout/Layout';
+import { useCheckStatus } from 'entities/User';
+import { useQueryClient } from '@tanstack/react-query';
 
-const PrivateRoute = () => {
-    const [auth, setAuth] = useState(null);
+const PrivateRoute = ({ children }) => {
+	const [auth, setAuth] = useState(null);
+	const queryClient = useQueryClient();
+	const location = useLocation();
+	const navigate = useNavigate();
 
-    const [isLoading, setLoading] = useState(false);
+	const statusQuery = useCheckStatus();
 
-    useEffect(() => {
-        const api = new Api();
-        setLoading(true);
-        api.Get('https://server/checkToken')
-            .then((data) => {
-                console.log('Token validation successful');
-                setAuth(true);
-            })
-            .catch((error) => {
-                console.error('Token validation failed:', error);
-                setAuth(false);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    }, []);
+	useEffect(() => {
+		if (statusQuery.data) {
+			const isAuthenticated =
+				statusQuery.data.is_authenticated &&
+				sessionStorage.getItem('access');
+			setAuth(isAuthenticated);
+			if (!isAuthenticated) {
+				navigate('/login', { replace: true });
+			}
+		}
+		if (statusQuery.error) {
+			setAuth(false);
+			navigate('/login', { replace: true });
+		}
+	}, [statusQuery]);
 
-    if (isLoading) return <div>Загрузка...</div>;
+	useEffect(() => {
+		queryClient.invalidateQueries({ queryKey: ['status'] });
+	}, [location.pathname]);
 
-    if (auth === null) {
-        return null;
-    }
+	if (statusQuery.isPending) return <div>Загрузка...</div>;
 
-    return auth ? <Layout /> : <Navigate to="/login" />;
+	if (auth === null) {
+		return null;
+	}
+
+	return auth ? (
+		{ children } && <Layout />
+	) : (
+		<Navigate
+			to="/login"
+			replace
+		/>
+	);
 };
 
 export default PrivateRoute;
