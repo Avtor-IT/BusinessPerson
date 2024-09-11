@@ -1,1 +1,1 @@
-export LetterIcon from './ui/LetterIcon';
+export { default } from './ui/LetterIcon';

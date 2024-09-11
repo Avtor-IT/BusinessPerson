@@ -1,4 +1,3 @@
-import React from 'react';
 import { createTheme, ThemeProvider as MaterialTheme } from '@mui/material';
 
 export const ThemeProvider = ({ children }) => {

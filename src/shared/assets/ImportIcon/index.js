@@ -1,1 +1,1 @@
-import ImportIcon from "./ui/ImportIcon";
+export { default } from './ui/ImportIcon';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useParams } from 'react-router';
 import { useChat } from 'entities/Chat';
 import { Box } from '@mui/system';

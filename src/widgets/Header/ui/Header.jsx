@@ -1,4 +1,3 @@
-import React from 'react';
 import { ChatBot } from 'features/ChatBot';
 import ProfileBlock from 'widgets/ProfileBlock';
 import cls from './Header.module.scss';

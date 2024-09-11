@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Layout } from 'app/layout/Layout';
 import { useCheckStatus } from 'entities/User';
@@ -26,11 +26,11 @@ const PrivateRoute = ({ children }) => {
 			setAuth(false);
 			navigate('/login', { replace: true });
 		}
-	}, [statusQuery]);
+	}, [navigate, statusQuery]);
 
 	useEffect(() => {
 		queryClient.invalidateQueries({ queryKey: ['status'] });
-	}, [location.pathname]);
+	}, [queryClient, location.pathname]);
 
 	if (statusQuery.isPending) return <div>Загрузка...</div>;
 
@@ -38,14 +38,20 @@ const PrivateRoute = ({ children }) => {
 		return null;
 	}
 
-	return auth ? (
-		{ children } && <Layout />
-	) : (
-		<Navigate
-			to="/login"
-			replace
-		/>
-	);
+	if (!auth) {
+		return (
+			<Navigate
+				to="/login"
+				replace
+			/>
+		);
+	}
+
+	if (!children) {
+		return <Layout />;
+	}
+
+	return { children };
 };
 
 export default PrivateRoute;

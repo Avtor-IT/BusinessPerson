@@ -25,7 +25,7 @@ const TaxesTable = () => {
 				})
 			);
 		}
-	}, [sortBy]);
+	}, [taxesList, sortBy]);
 	return (
 		<Card
 			variant="ServiceCard"

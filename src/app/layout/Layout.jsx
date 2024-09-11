@@ -1,9 +1,9 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { SideMenu } from 'widgets/SideMenu';
 import { LogoLink } from 'widgets/LogoLink';
 import { Navigation } from 'widgets/Navigation';
 import { Header } from 'widgets/Header';
-import { LogoIcon, LogoText } from 'shared/ui/Logo';
+import LogoText, { LogoIcon } from 'shared/ui/Logo';
 import { Outlet } from 'react-router-dom';
 import { Box, Container } from '@mui/material';
 import { Stack } from '@mui/system';

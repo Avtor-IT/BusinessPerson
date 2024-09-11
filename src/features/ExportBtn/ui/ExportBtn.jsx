@@ -1,4 +1,3 @@
-import React from 'react';
 import ExportIcon from 'shared/assets/ExportIcon/ui/ExportIcon';
 import { Button } from 'shared/ui/Button';
 

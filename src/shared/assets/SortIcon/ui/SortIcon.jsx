@@ -1,5 +1,3 @@
-import React from 'react';
-
 const SortIcon = ({ width, height, fill, stroke, variant, ...otherProps }) => {
 	function renderVariantPath(variant) {
 		switch (variant) {

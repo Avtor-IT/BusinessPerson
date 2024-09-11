@@ -1,1 +1,1 @@
-export ListIcon from './ui/ListIcon'
+export { default } from './ui/ListIcon';

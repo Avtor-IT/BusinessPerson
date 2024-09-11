@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import cls from './LogoLink.module.scss';

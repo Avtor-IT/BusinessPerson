@@ -1,4 +1,3 @@
-import React from 'react';
 import cls from './ArrowIcon.module.scss';
 
 const ArrowIcon = ({

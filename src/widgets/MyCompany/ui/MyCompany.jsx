@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Typography } from '@mui/material';
 import ExportBtn from 'features/ExportBtn/ui/ExportBtn';
 import ImportBtn from 'features/ImportBtn/ui/ImportBtn';

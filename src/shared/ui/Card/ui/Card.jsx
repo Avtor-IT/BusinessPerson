@@ -1,4 +1,3 @@
-import React from 'react';
 import cls from './Card.module.scss';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';

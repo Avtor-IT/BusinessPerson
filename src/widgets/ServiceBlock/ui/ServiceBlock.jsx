@@ -1,4 +1,3 @@
-import React from 'react';
 import { Grid, Skeleton, Typography } from '@mui/material';
 import cls from './ServiceBlock.module.scss';
 

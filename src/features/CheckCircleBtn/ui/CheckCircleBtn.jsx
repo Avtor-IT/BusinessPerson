@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from 'shared/ui/Button';
 import CheckCircle from 'shared/assets/CheckCircle';
 

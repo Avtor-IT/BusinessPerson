@@ -1,5 +1,3 @@
-import React from 'react';
-
 const CoinsIcon = ({ width, height, stroke, ...otherProps }) => {
 	return (
 		<svg

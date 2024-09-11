@@ -1,1 +1,1 @@
-export HomeIcon from './ui/HomeIcon';
+export { default } from './ui/HomeIcon';

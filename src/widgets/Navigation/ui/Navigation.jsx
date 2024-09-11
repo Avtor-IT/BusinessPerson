@@ -1,11 +1,10 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Box } from '@mui/material';
-import { HomeIcon } from 'shared/assets/HomeIcon';
-import { LetterIcon } from 'shared/assets/LetterIcon';
-import { ListIcon } from 'shared/assets/ListIcon';
-import { OfficeIcon } from 'shared/assets/OfficeIcon';
+import HomeIcon from 'shared/assets/HomeIcon';
+import LetterIcon from 'shared/assets/LetterIcon';
+import ListIcon from 'shared/assets/ListIcon';
+import OfficeIcon from 'shared/assets/OfficeIcon';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import { pageActions } from 'shared/model/pageSlice';
 import { Button } from 'shared/ui/Button';

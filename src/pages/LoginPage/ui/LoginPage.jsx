@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import cls from './LoginPage.module.scss';
 import useLoginMutation from 'features/Auth';
 import { useNavigate } from 'react-router-dom';
@@ -41,7 +41,7 @@ const LoginPage = () => {
 		if (loginMutation.data) {
 			navigate('/', { replace: true });
 		}
-	}, [loginMutation]);
+	}, [loginMutation, navigate]);
 
 	return (
 		<div className={cls.LoginPage}>

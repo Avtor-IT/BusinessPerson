@@ -1,4 +1,3 @@
-import React from 'react';
 import ChatItem, { useChatIds } from 'entities/Chat';
 
 const ChatList = () => {

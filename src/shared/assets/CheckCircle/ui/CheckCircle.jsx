@@ -1,5 +1,3 @@
-import React from 'react';
-
 const CheckCircle = ({ width, height, fill, stroke, ...otherProps }) => {
 	return (
 		<svg

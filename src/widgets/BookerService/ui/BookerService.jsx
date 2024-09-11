@@ -1,4 +1,3 @@
-import React from 'react';
 import { Grid } from '@mui/material';
 import { TaxesInfographics, TaxesTable } from 'entities/Tax';
 

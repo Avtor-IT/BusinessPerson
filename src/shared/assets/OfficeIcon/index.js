@@ -1,1 +1,1 @@
-export OfficeIcon from './ui/OfficeIcon';
+export { default } from './ui/OfficeIcon';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ScalesIcon = ({ width, height, fill, stroke, ...otherProps }) => {
 	return (
 		<svg

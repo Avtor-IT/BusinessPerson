@@ -1,4 +1,3 @@
-import React from 'react';
 import { Grid } from '@mui/material';
 import { MyCompanyAccounts } from 'widgets/MyCompanyAccounts';
 import { MyManager } from 'widgets/MyManager';

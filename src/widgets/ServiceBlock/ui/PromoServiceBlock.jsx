@@ -1,4 +1,4 @@
-import React, { cloneElement, useState } from 'react';
+import { cloneElement, useState } from 'react';
 import { Card } from 'shared/ui/Card';
 import { Grid, Typography } from '@mui/material';
 import { Stack } from '@mui/system';

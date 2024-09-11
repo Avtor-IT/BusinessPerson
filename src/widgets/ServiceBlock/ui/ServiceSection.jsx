@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ServiceBlock from './ServiceBlock';
 import PromoServiceBlock from './PromoServiceBlock';
-import { SectionTitle } from 'shared/ui/SectionTitle';
+import SectionTitle from 'shared/ui/SectionTitle';
 import { merge } from 'shared/lib';
 import BookerService from 'widgets/BookerService';
 import CoinsIcon from 'shared/assets/CoinsIcon';
