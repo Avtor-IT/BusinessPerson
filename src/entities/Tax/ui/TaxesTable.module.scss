@@ -1,0 +1,38 @@
+.BookerServiceContent {
+    font-size: 20px;
+
+    & .TableHeader {
+        font-weight: 600;
+        margin-bottom: 4px;
+
+        & > div:last-child {
+            text-align: end;
+        }
+    }
+
+
+    & .TableScrollableBody {
+        overflow: auto;
+        margin-right: -24px;
+        padding-right: 17px;
+        max-height: 225px;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            //background: rgba(182, 215, 222, 0.5);
+            background: rgba(var(--scollbar-color), 0.5);
+        }
+
+        & .TableRow {
+            padding-block: 12px;
+
+            & > div:last-child {
+                text-align: end;
+            }
+        }
+    }
+
+}
