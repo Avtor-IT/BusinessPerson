@@ -39,6 +39,7 @@ class Api {
 				if (response.status === 403) {
 					sessionStorage.removeItem('access');
 					sessionStorage.removeItem('refresh');
+					return Promise.reject('Unauthorized');
 				} else {
 					return Promise.resolve(response.data);
 				}
