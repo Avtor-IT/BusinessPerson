@@ -8,10 +8,11 @@ import { Outlet } from 'react-router-dom';
 import { Box, Container } from '@mui/material';
 import { Stack } from '@mui/system';
 
-export const Layout = () => (
+export const Layout = ({ ...props }) => (
 	<Container
 		fixed
 		maxWidth="xl"
+		{...props}
 	>
 		<Stack
 			direction="row"

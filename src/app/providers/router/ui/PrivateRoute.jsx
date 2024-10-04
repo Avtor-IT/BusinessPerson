@@ -1,38 +1,35 @@
 import { useEffect, useState } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { Layout } from 'app/layout/Layout';
 import { useCheckStatus } from 'entities/User';
 import { useQueryClient } from '@tanstack/react-query';
+import { Box } from '@mui/system';
 
 const PrivateRoute = ({ children }) => {
 	const [auth, setAuth] = useState(null);
 	const queryClient = useQueryClient();
 	const location = useLocation();
-	const navigate = useNavigate();
 
 	const statusQuery = useCheckStatus();
 
 	useEffect(() => {
 		if (statusQuery.data) {
-			const isAuthenticated =
-				statusQuery.data.is_authenticated &&
-				sessionStorage.getItem('access');
+			const isAuthenticated = statusQuery.data.is_authenticated;
 			setAuth(isAuthenticated);
-			if (!isAuthenticated) {
-				navigate('/login', { replace: true });
-			}
 		}
+
 		if (statusQuery.error) {
 			setAuth(false);
-			navigate('/login', { replace: true });
 		}
-	}, [navigate, statusQuery]);
+	}, [statusQuery]);
 
 	useEffect(() => {
 		queryClient.invalidateQueries({ queryKey: ['status'] });
-	}, [queryClient, location.pathname]);
+	}, [location.pathname]);
 
-	if (statusQuery.isPending) return <div>Загрузка...</div>;
+	if (statusQuery.isPending) {
+		return <Box data-testid="loader">Загрузка...</Box>;
+	}
 
 	if (auth === null) {
 		return null;
