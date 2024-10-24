@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import cls from './circle.module.scss';
+import cls from './Circle.module.scss';
 
 const Circle = ({
 	top,

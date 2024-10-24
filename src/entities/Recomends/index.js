@@ -1,1 +1,1 @@
-export { default } from './ui/recommendsCard';
+export { default } from './ui/RecommendsCard.jsx';

@@ -5,7 +5,7 @@ import { useRecomendsQuery } from 'entities/Recomends/model/hooks';
 import Slider from 'react-slick';
 import CheckCircleBtn from 'features/CheckCircleBtn';
 import cls from './MyRecomends.module.scss';
-import './myRecomends.scss';
+import './MyRecomends.scss';
 import ArrowIcon from 'shared/assets/ArrowIcon/ui/ArrowIcon';
 import { Button } from 'shared/ui/Button';
 import Circle from 'shared/assets/Circle';

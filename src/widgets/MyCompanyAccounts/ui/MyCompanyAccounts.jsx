@@ -1,5 +1,5 @@
 import { Card } from 'shared/ui/Card';
-import cls from './myCompanyAccounts.module.scss';
+import cls from './MyCompanyAccounts.module.scss';
 
 export const MyCompanyAccounts = ({ LeftComponent, RightComponent }) => {
 	return (

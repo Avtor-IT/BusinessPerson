@@ -3,7 +3,7 @@ import ExportBtn from 'features/ExportBtn/ui/ExportBtn';
 import ImportBtn from 'features/ImportBtn/ui/ImportBtn';
 import ArrowIcon from 'shared/assets/ArrowIcon/ui/ArrowIcon';
 import CopyBtn from 'features/CopyBtn/ui/CopyBtn';
-import cls from './myCompany.module.scss';
+import cls from './MyCompany.module.scss';
 import { Link } from 'react-router-dom';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 
