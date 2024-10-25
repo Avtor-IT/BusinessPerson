@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import { TaxesInfographics, TaxesTable } from 'entities/Tax';
+import { TaxesInfographics, TaxesTable } from 'entities/TaxService';
 
 const BookerService = () => {
 	return (

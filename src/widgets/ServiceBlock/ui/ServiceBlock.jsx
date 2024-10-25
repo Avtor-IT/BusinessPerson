@@ -29,7 +29,7 @@ const ServiceBlock = ({ serviceTitle, children }) => {
 				item
 				xs={6}
 				xl={5}
-				className={cls.serviceContent}
+				className={cls.ServiceContent}
 			>
 				{children || (
 					<Skeleton

@@ -46,9 +46,9 @@ export const MyManager = ({ ...props }) => {
 						style={{ lineHeight: '1.3' }}
 					>
 						Менеджерова
-						<br />
+						<br /> {/* ??? */}
 						Менедж
-						<br />
+						<br /> {/* ??? */}
 						Менеджеровна
 					</Typography>
 				</Box>

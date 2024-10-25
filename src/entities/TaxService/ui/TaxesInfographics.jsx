@@ -1,4 +1,4 @@
-import RecommendsCard from 'entities/Recomends';
+import RecommendsCard from 'entities/Recommends';
 
 const TaxesInfographics = () => {
 	return <RecommendsCard></RecommendsCard>;

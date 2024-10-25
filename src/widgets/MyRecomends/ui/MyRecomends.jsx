@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { Card } from 'shared/ui/Card';
-import { useRecomendsQuery } from 'entities/Recomends/model/hooks';
+import { useRecomendsQuery } from 'entities/Recommends/model/hooks';
 import Slider from 'react-slick';
 import CheckCircleBtn from 'features/CheckCircleBtn';
 import cls from './MyRecomends.module.scss';
