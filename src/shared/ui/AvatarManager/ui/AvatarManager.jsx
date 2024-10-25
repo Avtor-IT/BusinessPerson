@@ -4,12 +4,12 @@ import { Avatar, Box } from '@mui/material';
 // (картинок на сайте нет, поэтому ради тестовой картинки не будем делать норм)
 // Возможно этот файл не нужен
 
-const AvatarManager = () => {
+const AvatarManager = ({ src }) => {
 	return (
 		<Box>
 			<Avatar
 				alt="Тестовый аватар"
-				// src="../ui/temporaryAvatar.jpg"
+				src={src}
 				sx={{ width: 82, height: 82 }}
 			/>
 		</Box>

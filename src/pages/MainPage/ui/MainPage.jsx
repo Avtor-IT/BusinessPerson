@@ -1,10 +1,8 @@
 import { Grid } from '@mui/material';
-import { MyCompanyAccounts } from 'widgets/MyCompanyAccounts';
 import { MyManager } from 'widgets/MyManager';
 import { MyDocuments } from 'widgets/MyDocuments';
 import { MyRecomends } from 'widgets/MyRecomends';
 import { MyCompany } from 'widgets/MyCompany';
-import { MyAccounts } from 'widgets/MyAccounts';
 import ServiceSection from 'widgets/ServiceBlock';
 
 const MainPage = () => {
@@ -18,12 +16,19 @@ const MainPage = () => {
 			>
 				<Grid
 					item
-					xl={3}
+					xl={2}
 				>
-					<MyCompanyAccounts
-						LeftComponent={MyCompany}
-						RightComponent={MyAccounts}
-					/>
+					<MyCompany />
+					{/*<MyCompanyAccounts
+					 LeftComponent={MyCompany}
+					 RightComponent={MyAccounts}
+					 />*/}
+				</Grid>
+				<Grid
+					item
+					xl={1}
+				>
+					Уедомления
 				</Grid>
 				<Grid
 					item
