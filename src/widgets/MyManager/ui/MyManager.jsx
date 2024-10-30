@@ -21,7 +21,7 @@ export const MyManager = ({ ...props }) => {
 			<Skeleton
 				variant="rectangular"
 				height="100%"
-				sx={{ borderRadius: '16px' }}
+				sx={{ borderRadius: '16px', minHeight: '192px' }}
 			/>
 		);
 
@@ -46,57 +46,63 @@ export const MyManager = ({ ...props }) => {
 			</Card>
 		);
 
-	return (
-		<Card
-			className={`${cls.MyManager}`}
-			onMouseOver={() => setHovered(true)}
-			onMouseOut={() => setHovered(false)}
-			{...props}
-		>
-			<Circle
-				width={474}
-				height={474}
-				top={-197}
-				right={hovered ? -98 : -148}
-			/>
-			<Box
-				display={'flex'}
-				justifyContent={'space-between'}
+	if (manager) {
+		return (
+			<Card
+				className={`${cls.MyManager}`}
+				onMouseOver={() => setHovered(true)}
+				onMouseOut={() => setHovered(false)}
+				{...props}
 			>
-				<Typography variant="M24">Мой менеджер</Typography>
-				<Link
-					to={RoutePath[AppRoutes.MAIN]}
-					className={`${cls.btnMessage}`}
+				<Circle
+					width={474}
+					height={474}
+					top={-197}
+					right={hovered ? -98 : -148}
+				/>
+				<Box
+					display={'flex'}
+					justifyContent={'space-between'}
 				>
-					<Typography variant="L16">Написать</Typography>
-					<MessageIcon />
-				</Link>
-			</Box>
-			<Box className={`${cls.infoManager}`}>
-				<Box className={`${cls.avatarFIO}`}>
-					<AvatarManager src={manager.result[0]['PERSONAL_PHOTO']} />
-					<Typography
-						variant="R20"
-						style={{ lineHeight: '1.3' }}
+					<Typography variant="M24">Мой менеджер</Typography>
+					<Link
+						to={RoutePath[AppRoutes.MAIN]}
+						className={`${cls.btnMessage}`}
 					>
-						{manager.result[0]['LAST_NAME']}
-						<br />
-						{manager.result[0]['NAME']}
-						<br />
-						{manager.result[0]['SECOND_NAME']}
-					</Typography>
+						<Typography variant="L16">Написать</Typography>
+						<MessageIcon />
+					</Link>
 				</Box>
-				{manager.result[0]['WORK_PHONE'] ? (
-					<CopyBtn
-						className={`${cls.phoneManager}`}
-						textToCopy={manager.result[0]['WORK_PHONE']}
-					>
-						<Typography variant="L24">
-							{formatPhoneNumber(manager.result[0]['WORK_PHONE'])}
+				<Box className={`${cls.infoManager}`}>
+					<Box className={`${cls.avatarFIO}`}>
+						<AvatarManager
+							src={manager.result[0]['PERSONAL_PHOTO']}
+						/>
+						<Typography
+							variant="R20"
+							style={{ lineHeight: '1.3' }}
+						>
+							{manager.result[0]['LAST_NAME']}
+							<br />
+							{manager.result[0]['NAME']}
+							<br />
+							{manager.result[0]['SECOND_NAME']}
 						</Typography>
-					</CopyBtn>
-				) : null}
-			</Box>
-		</Card>
-	);
+					</Box>
+					{manager.result[0]['WORK_PHONE'] ? (
+						<CopyBtn
+							className={`${cls.phoneManager}`}
+							textToCopy={manager.result[0]['WORK_PHONE']}
+						>
+							<Typography variant="L24">
+								{formatPhoneNumber(
+									manager.result[0]['WORK_PHONE']
+								)}
+							</Typography>
+						</CopyBtn>
+					) : null}
+				</Box>
+			</Card>
+		);
+	}
 };

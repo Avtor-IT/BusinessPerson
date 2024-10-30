@@ -6,8 +6,6 @@ import PrivateRoute from 'app/providers/router/ui/PrivateRoute';
 import { ServicesPage } from 'pages/ServicesPage';
 import { TutorialPage } from 'pages/TutorialPage';
 import { LoginPage } from 'pages/LoginPage';
-import { AppealPage } from 'pages/AppealPage';
-import { AppealsPage } from 'pages/AppealsPage';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import B24WidgetProvider from 'app/providers/b24WidgetProvider';
 
@@ -42,22 +40,22 @@ const Routes = () => {
 						</B24WidgetProvider>
 					),
 				},
-				{
-					path: RoutePath[AppRoutes.APPEALS],
-					element: (
-						<B24WidgetProvider>
-							<AppealsPage />
-						</B24WidgetProvider>
-					),
-				},
-				{
-					path: RoutePath[AppRoutes.APPEAL],
-					element: (
-						<B24WidgetProvider>
-							<AppealPage />
-						</B24WidgetProvider>
-					),
-				},
+				// {
+				// 	path: RoutePath[AppRoutes.APPEALS],
+				// 	element: (
+				// 		<B24WidgetProvider>
+				// 			<AppealsPage />
+				// 		</B24WidgetProvider>
+				// 	),
+				// },
+				// {
+				// 	path: RoutePath[AppRoutes.APPEAL],
+				// 	element: (
+				// 		<B24WidgetProvider>
+				// 			<AppealPage />
+				// 		</B24WidgetProvider>
+				// 	),
+				// },
 				{
 					path: RoutePath[AppRoutes.NOT_FOUND],
 					element: (
