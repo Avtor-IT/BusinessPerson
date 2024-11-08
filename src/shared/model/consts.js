@@ -12,7 +12,7 @@ export const apiEndpoints = {
 	JWT_VERIFY: 'auth/jwt/verify',
 	JWT_REFRESH: 'auth/jwt/refresh',
 	MANAGER: 'hooks/users_me_manager/',
-	COMPANIES: '/hooks/user_me_company/',
+	COMPANIES: 'hooks/user_me_company/',
 };
 
 /**

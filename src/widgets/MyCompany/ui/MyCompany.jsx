@@ -69,16 +69,16 @@ export const MyCompany = () => {
 					justifyContent={'space-between'}
 					alignItems={'center'}
 				>
-					{/* {selectedCompany && (*/}
-					<CopyBtn
-						className={`${cls.btnCopy}`}
-						textToCopy="123456890"
-					>
-						<Typography variant="L20">
-							{`ИНН: ${123456890}`}
-						</Typography>
-					</CopyBtn>
-					{/* )}*/}
+					{selectedCompany?.['UF_CRM_COMPANY_INN'] && (
+						<CopyBtn
+							className={`${cls.btnCopy}`}
+							textToCopy={selectedCompany['UF_CRM_COMPANY_INN']}
+						>
+							<Typography variant="L20">
+								{`ИНН: ${selectedCompany['UF_CRM_COMPANY_INN']}`}
+							</Typography>
+						</CopyBtn>
+					)}
 					<Box
 						display={'flex'}
 						gap={'16px'}
