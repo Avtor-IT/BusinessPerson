@@ -4,6 +4,7 @@ import { MyDocuments } from 'widgets/MyDocuments';
 import { MyRecomends } from 'widgets/MyRecomends';
 import { MyCompany } from 'widgets/MyCompany';
 import ServiceSection from 'widgets/ServiceBlock';
+import { Card } from 'shared/ui/Card/index.js';
 
 const MainPage = () => {
 	return (
@@ -28,7 +29,7 @@ const MainPage = () => {
 					item
 					xl={1}
 				>
-					Уедомления
+					<Card style={{ height: '100%' }}>Уедомления</Card>
 				</Grid>
 				<Grid
 					item

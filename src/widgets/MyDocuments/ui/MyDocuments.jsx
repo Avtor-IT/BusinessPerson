@@ -46,12 +46,12 @@ export const MyDocuments = ({ ...props }) => {
 				{/* или */}
 
 				{/* <Link
-                 to={RoutePath[AppRoutes.MAIN]}
-                 className={`${cls.btnAddMyDocument}`}
-                 >
-                 <Typography variant="L16">Добавить</Typography>
-                 <AddSquareIcon />
-                 </Link> */}
+				 to={RoutePath[AppRoutes.MAIN]}
+				 className={`${cls.btnAddMyDocument}`}
+				 >
+				 <Typography variant="L16">Добавить</Typography>
+				 <AddSquareIcon />
+				 </Link> */}
 			</Box>
 			<Box
 				marginTop={'32px'}

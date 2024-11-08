@@ -69,14 +69,16 @@ export const MyCompany = () => {
 					justifyContent={'space-between'}
 					alignItems={'center'}
 				>
+					{/* {selectedCompany && (*/}
 					<CopyBtn
 						className={`${cls.btnCopy}`}
-						textToCopy="1234567890"
+						textToCopy="123456890"
 					>
 						<Typography variant="L20">
-							{selectedCompany && 'ИНН: 1234567890'}
+							{`ИНН: ${123456890}`}
 						</Typography>
 					</CopyBtn>
+					{/* )}*/}
 					<Box
 						display={'flex'}
 						gap={'16px'}
