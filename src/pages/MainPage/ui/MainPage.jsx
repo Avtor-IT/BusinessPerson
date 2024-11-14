@@ -1,59 +1,63 @@
-import { Grid } from '@mui/material';
-import { MyManager } from 'widgets/MyManager';
-import { MyDocuments } from 'widgets/MyDocuments';
-import { MyRecomends } from 'widgets/MyRecomends';
+import Grid2 from '@mui/material/Unstable_Grid2';
 import { MyCompany } from 'widgets/MyCompany';
+import { Notifications } from 'widgets/Notifications';
+import { MyManager } from 'widgets/MyManager';
+// import { MyDocuments } from 'widgets/MyDocuments';
+import { MyRecommends } from 'widgets/MyRecommends';
 import ServiceSection from 'widgets/ServiceBlock';
-import { Card } from 'shared/ui/Card/index.js';
 
 const MainPage = () => {
 	return (
 		<>
-			<Grid
+			<Grid2
 				container
 				columns={5}
-				columnSpacing={'19px'}
+				columnSpacing={'16px'}
 				rowSpacing={'16px'}
 			>
-				<Grid
+				<Grid2
 					item
 					xl={2}
+					xs={3}
 				>
 					<MyCompany />
-					{/*<MyCompanyAccounts
-					 LeftComponent={MyCompany}
-					 RightComponent={MyAccounts}
-					 />*/}
-				</Grid>
-				<Grid
+				</Grid2>
+				<Grid2
 					item
-					xl={1}
+					xl
+					xs={2}
 				>
-					<Card style={{ height: '100%' }}>Уедомления</Card>
-				</Grid>
-				<Grid
+					<Notifications />
+				</Grid2>
+				<Grid2
 					item
 					xl={2}
 					xs={5}
 				>
 					<MyManager />
-				</Grid>
-
-				<Grid
+				</Grid2>
+			</Grid2>
+			<Grid2
+				container
+				columns={5}
+				columnSpacing={'16px'}
+				rowSpacing={'16px'}
+			>
+				{/* <Grid2
 					item
 					xl={2}
 					xs={5}
 				>
 					<MyDocuments />
-				</Grid>
-				<Grid
+				</Grid2> */}
+				<Grid2
 					item
-					xl={3}
+					xl={5}
 					xs={5}
 				>
-					<MyRecomends />
-				</Grid>
-			</Grid>
+					<MyRecommends />
+				</Grid2>
+			</Grid2>
 			<ServiceSection mt="72px" />
 		</>
 	);

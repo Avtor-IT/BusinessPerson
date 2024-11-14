@@ -1,14 +1,14 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
-import { Card } from 'shared/ui/Card';
-import { useRecomendsQuery } from 'entities/Recommends/model/hooks';
 import Slider from 'react-slick';
+import { Box, Typography } from '@mui/material';
+import { useRecommendsQuery } from 'entities/Recommends/model/hooks';
 import CheckCircleBtn from 'features/CheckCircleBtn';
-import cls from './MyRecomends.module.scss';
-import './MyRecomends.scss';
-import ArrowIcon from 'shared/assets/ArrowIcon/ui/ArrowIcon';
+import { Card } from 'shared/ui/Card';
 import { Button } from 'shared/ui/Button';
+import ArrowIcon from 'shared/assets/ArrowIcon';
 import Circle from 'shared/assets/Circle';
+import './MyRecommendsSlider.scss';
+import cls from './MyRecommends.module.scss';
 
 /*
  * Отсюда брал
@@ -69,13 +69,11 @@ const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
 	</Button>
 );
 
-export const MyRecomends = ({ ...props }) => {
+export const MyRecommends = ({ ...props }) => {
 	const settings = {
 		dots: false,
-		// accessibility: false,
 		slidesToShow: 2,
-		// slidesToScroll: 3,
-		swipeToSlide: true, // Вместо свойства выше
+		swipeToSlide: true,
 		focusOnSelect: true,
 		infinite: false,
 		variableWidth: true,
@@ -86,7 +84,7 @@ export const MyRecomends = ({ ...props }) => {
 
 	const [hovered, setHovered] = React.useState(false); // для анимации при наведении
 
-	const { isLoading, error, data } = useRecomendsQuery(); // recoMMends!!!!!
+	const { isLoading, error, data } = useRecommendsQuery();
 
 	if (isLoading) return 'Loading...';
 
@@ -94,7 +92,7 @@ export const MyRecomends = ({ ...props }) => {
 
 	return (
 		<Card
-			className={`${cls.MyRecomends}`}
+			className={cls.MyRecommends}
 			onMouseOver={() => setHovered(true)}
 			onMouseOut={() => setHovered(false)}
 			{...props}
@@ -111,17 +109,14 @@ export const MyRecomends = ({ ...props }) => {
 				height="289px"
 				position="relative"
 			>
-				<Box
-					className={`${cls.sliderRecomends} slider-container`}
-					position="absolute !important" /* Просто чтобы вставал на всю ширину */
-					right={0} /* И не вылезал дальшье */
-					left={0}
-				>
-					<Typography variant="M24">Рекомендации</Typography>
+				<Box className={`${cls.sliderRecommends} slider-container`}>
+					<Typography variant="M24">
+						Актуальные изменения в законодательстве
+					</Typography>
 					<Slider {...settings}>
 						{data.map((item, index) => (
 							<Card
-								className={cls.recomendItem}
+								className={cls.recommendItem}
 								key={index}
 							>
 								<Box

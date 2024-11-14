@@ -1,16 +1,18 @@
-.MyRecomends {
+.MyRecommends {
     padding: 32px 24px 15px;
     overflow: hidden;
     position: relative;
     //height: 100%;
 }
 
-.sliderRecomends {
-    position: relative;
+.sliderRecommends {
+    position: absolute;
+    right: 0;
+    left: 0;
     z-index: 2;
 }
 
-.recomendItem {
+.recommendItem {
     border-radius: 32px;
     padding: 16px;
     display: flex !important;

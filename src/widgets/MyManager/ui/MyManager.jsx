@@ -1,18 +1,19 @@
-import React from 'react';
+// import React from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import { Box, Skeleton, Typography } from '@mui/material';
-import { Card } from 'shared/ui/Card';
-import Circle from 'shared/assets/Circle/ui/Circle';
-import AvatarManager from 'shared/ui/AvatarManager';
-import MessageIcon from 'shared/assets/MessageIcon/ui/MessageIcon';
-import CopyBtn from 'features/CopyBtn';
-import cls from './MyManager.module.scss';
 import { useManager } from 'entities/Manager';
+import CopyBtn from 'features/CopyBtn';
+import MailBtn from 'features/MailBtn';
+import MessageBtn from 'features/MessageBtn';
+import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import { formatPhoneNumber } from 'shared/lib';
+import { Card } from 'shared/ui/Card';
+import AvatarManager from 'shared/ui/AvatarManager';
+// import Circle from 'shared/assets/Circle/ui/Circle';
+import cls from './MyManager.module.scss';
 
 export const MyManager = ({ ...props }) => {
-	const [hovered, setHovered] = React.useState(false); // для анимации при наведении
+	// const [hovered, setHovered] = React.useState(false); // для анимации при наведении
 
 	const { data: manager, isLoading, isError } = useManager();
 
@@ -29,8 +30,8 @@ export const MyManager = ({ ...props }) => {
 		return (
 			<Card
 				className={`${cls.MyManager}`}
-				onMouseOver={() => setHovered(true)}
-				onMouseOut={() => setHovered(false)}
+				// onMouseOver={() => setHovered(true)}
+				// onMouseOut={() => setHovered(false)}
 				{...props}
 			>
 				<Box
@@ -50,28 +51,19 @@ export const MyManager = ({ ...props }) => {
 		return (
 			<Card
 				className={`${cls.MyManager}`}
-				onMouseOver={() => setHovered(true)}
-				onMouseOut={() => setHovered(false)}
+				// onMouseOver={() => setHovered(true)}
+				// onMouseOut={() => setHovered(false)}
 				{...props}
 			>
-				<Circle
+				{/* <Circle
 					width={474}
 					height={474}
 					top={-197}
 					right={hovered ? -98 : -148}
-				/>
-				<Box
-					display={'flex'}
-					justifyContent={'space-between'}
-				>
+				/> */}
+				<Box className={`${cls.titleManager}`}>
 					<Typography variant="M24">Мой менеджер</Typography>
-					<Link
-						to={RoutePath[AppRoutes.MAIN]}
-						className={`${cls.btnMessage}`}
-					>
-						<Typography variant="L16">Написать</Typography>
-						<MessageIcon />
-					</Link>
+					<MailBtn />
 				</Box>
 				<Box className={`${cls.infoManager}`}>
 					<Box className={`${cls.avatarFIO}`}>
@@ -89,18 +81,27 @@ export const MyManager = ({ ...props }) => {
 							{manager.result[0]['SECOND_NAME']}
 						</Typography>
 					</Box>
-					{manager.result[0]['WORK_PHONE'] ? (
-						<CopyBtn
-							className={`${cls.phoneManager}`}
-							textToCopy={manager.result[0]['WORK_PHONE']}
+					<Box className={`${cls.contactManager}`}>
+						{manager.result[0]['WORK_PHONE'] ? (
+							<CopyBtn
+								className={`${cls.phoneManager}`}
+								textToCopy={manager.result[0]['WORK_PHONE']}
+							>
+								<Typography variant="L24">
+									{formatPhoneNumber(
+										manager.result[0]['WORK_PHONE']
+									)}
+								</Typography>
+							</CopyBtn>
+						) : null}
+						<Link
+							to={RoutePath[AppRoutes.MAIN]}
+							className={`${cls.btnMessage}`}
 						>
-							<Typography variant="L24">
-								{formatPhoneNumber(
-									manager.result[0]['WORK_PHONE']
-								)}
-							</Typography>
-						</CopyBtn>
-					) : null}
+							<Typography variant="L16">Написать</Typography>
+							<MessageBtn />
+						</Link>
+					</Box>
 				</Box>
 			</Card>
 		);

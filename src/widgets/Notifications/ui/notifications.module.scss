@@ -1,0 +1,44 @@
+.notificationsCard {
+    padding: 24px 24px 29px;
+    border: 4px solid #A43270;
+    height: 100%;
+}
+
+.sliderNotifications {
+    position: absolute;   
+    right: 0;
+    left: 0;
+}
+
+.sliderNotifications > div > div { // .slick-list
+    overflow: hidden !important;    
+}
+
+.sliderNotifications > div > div > div > div { // .slick-slide
+    margin-inline: 0 !important;
+}
+
+.notificationsTitle {
+    color: #A43270;
+}
+
+.slideNotification {
+    display: flex !important; 
+    flex-direction: column; 
+    gap: 16px;
+}
+
+.slickDots {
+    display: flex !important;
+    gap: 8px;
+    width: auto;
+    bottom: auto;
+    top: 14px;
+    right: 92px; // 156 - 24 - 16 - 24 
+}
+
+.slickDots li {
+    width: 8px;
+    height: 8px;
+    margin: 0;
+}

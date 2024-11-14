@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import cls from './Circle.module.scss';
+import cls from './circle.module.scss';
 
 const Circle = ({
 	top,
@@ -19,8 +19,8 @@ const Circle = ({
 	].join(' ');
 	return (
 		<Box
-			width={width || '445px'}
-			height={height || '445px'}
+			width={width || '678px'}
+			height={height || '678px'}
 			className={`${cls.Circle || ''} ${classNames}`}
 			style={{
 				top: top,
@@ -28,8 +28,7 @@ const Circle = ({
 				left: left,
 				bottom: bottom,
 				backgroundColor: bg,
-				transition: transition || 'all .6s var(--quick-animation)', // НУЖНАЯ АНИМАЦИЯ!!!!!!!! вручную подбирал
-				// блин
+				transition: transition || 'all .6s var(--quick-animation)',
 			}}
 			{...otherProps}
 		></Box>

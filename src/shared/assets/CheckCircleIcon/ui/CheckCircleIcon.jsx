@@ -1,10 +1,12 @@
-const CheckCircle = ({ width, height, fill, stroke, ...otherProps }) => {
+import cls from './checkCircleIcon.module.scss';
+const CheckCircleIcon = ({ width, height, fill, stroke, ...otherProps }) => {
 	return (
 		<svg
 			width={width || '24'}
 			height={height || '24'}
 			fill={fill || 'none'}
 			viewBox="0 0 24 24"
+			className={`${cls.checkCircle}`}
 			{...otherProps}
 		>
 			<path
@@ -18,4 +20,4 @@ const CheckCircle = ({ width, height, fill, stroke, ...otherProps }) => {
 	);
 };
 
-export default CheckCircle;
+export default CheckCircleIcon;
