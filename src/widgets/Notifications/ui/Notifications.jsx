@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Slider from 'react-slick';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
@@ -37,12 +37,24 @@ export const Notifications = () => {
 	// 	);
 	// }
 
+	const [navSlider, setNavSlider] = React.useState(null);
+	const [navDots, setNavDots] = React.useState(null);
+	let refSlider = React.useRef(null);
+	let refDots = React.useRef(null);
+
+	useEffect(() => {
+		setNavSlider(refSlider);
+		setNavDots(refDots);
+	}, []);
+
 	const notifications = [
-		'Необходимо предоставить документы вновь принятого сотрудника до 16:00 текущего дня. В противном случае датой приема будет следующий день.',
-		'Тестовое уведомление тестовое тестовое тестовое тестовое уведомление. ',
-		'Тестовое уведомление тестовое тестовое тестовое уведомление. ',
-		'Тестовое уведомление тестовое тестовое уведомление. ',
-		'Тестовое уведомление тестовое. ',
+		'1. Необходимо предоставить документы вновь принятого сотрудника до 16:00 текущего дня. В противном случае датой приема будет следующий день.',
+		'2. Тестовое уведомление тестовое тестовое тестовое тестовое уведомление. ',
+		'3. Тестовое уведомление тестовое тестовое тестовое уведомление. ',
+		'4. Тестовое уведомление тестовое тестовое уведомление. ',
+		'5. Тестовое уведомление все еще тест. ',
+		'6. Тестовое уведомление и здесь тест. ',
+		'7. Тестовое уведомление здесь тоже тест. ',
 	];
 
 	const [currentSlide, setCurrentSlide] = React.useState(0); // Состояние для хранения текущего слайда
@@ -67,51 +79,56 @@ export const Notifications = () => {
 		}
 	};
 
+	const func = (i) => {
+		if (notifications.length < 3) {
+			return (
+				<li
+					style={{
+						display: 'block',
+						width: '8px',
+						height: '8px',
+						borderRadius: '50%',
+						backgroundColor: bgPaging(i),
+						cursor: 'pointer',
+					}}
+				></li>
+			);
+		} else if (notifications.length === 3) {
+			return (
+				<li
+					style={{
+						display: 'block',
+						width: sizePaging(i),
+						height: sizePaging(i),
+						borderRadius: '50%',
+						backgroundColor: bgPaging(i),
+						cursor: 'pointer',
+					}}
+				></li>
+			);
+		} else if (notifications.length > 3) {
+			return (
+				<li
+					style={{
+						display: 'block',
+						width: sizePaging(i),
+						height: sizePaging(i),
+						borderRadius: '50%',
+						backgroundColor: bgPaging(i),
+						cursor: 'pointer',
+					}}
+				></li>
+			);
+		}
+	};
+
 	const settings = {
-		customPaging: function (i) {
-			if (notifications.length < 3) {
-				return (
-					<div
-						style={{
-							width: '8px',
-							height: '8px',
-							borderRadius: '50%',
-							backgroundColor: bgPaging(i),
-						}}
-					></div>
-				);
-			} else if (notifications.length === 3) {
-				return (
-					<div
-						style={{
-							width: sizePaging(i),
-							height: sizePaging(i),
-							borderRadius: '50%',
-							backgroundColor: bgPaging(i),
-						}}
-					></div>
-				);
-			} else if (notifications.length > 3) {
-				return (
-					<div
-						style={{
-							width: sizePaging(i),
-							height: sizePaging(i),
-							borderRadius: '50%',
-							backgroundColor: bgPaging(i),
-						}}
-					></div>
-				);
-			}
-		},
-		dots: true,
-		dotsClass: `${cls.slickDots} slick-dots slick-thumb`,
+		dots: false,
 		arrows: false,
 		fade: true,
 		slidesToShow: 1,
 		swipeToSlide: true,
 		waitForAnimate: false,
-		beforeChange: (current, next) => setCurrentSlide(next),
 		// после добавления адаптива в макете дописать
 		// responsive: [
 		// 	{
@@ -129,6 +146,16 @@ export const Notifications = () => {
 		// ],
 	};
 
+	const settingsDots = {
+		dots: false,
+		arrows: false,
+		centerMode: true,
+		focusOnSelect: true,
+		centerPadding: '20%',
+		slidesToShow: 3,
+		beforeChange: (current, next) => setCurrentSlide(next),
+	};
+
 	return (
 		<Card className={cls.notificationsCard}>
 			<Box
@@ -137,34 +164,73 @@ export const Notifications = () => {
 			>
 				<Box className={`${cls.sliderNotifications} slider-container`}>
 					{notifications?.length > 0 ? (
-						<Slider {...settings}>
-							{notifications.map((notification, index) => (
-								<div
-									key={index}
-									className={cls.slideNotification}
-								>
-									<Typography
-										variant="M24"
-										className={cls.notificationsTitle}
-									>
-										Внимание!
-									</Typography>
-									<Typography variant="R16">
-										{notification}
-									</Typography>
+						<>
+							<Slider
+								{...settings}
+								asNavFor={navDots}
+								ref={(slider) => (refSlider = slider)}
+							>
+								{notifications.map((notification, index) => (
 									<div
-										style={{
-											position: 'absolute',
-											right: '0',
-										}}
+										key={index}
+										className={cls.slideNotification}
 									>
-										<CheckCircleBtn />
+										<Typography
+											variant="M24"
+											className={cls.notificationsTitle}
+										>
+											Внимание!
+										</Typography>
+										<Typography variant="R16">
+											{notification}
+										</Typography>
+										<div
+											style={{
+												position: 'absolute',
+												right: '0',
+											}}
+										>
+											<CheckCircleBtn />
+										</div>
 									</div>
-								</div>
-							))}
-						</Slider>
+								))}
+							</Slider>
+							<Box
+								className={`${cls.sliderDots} slider-container`}
+							>
+								<Slider
+									{...settingsDots}
+									asNavFor={navSlider}
+									ref={(slider) => (refDots = slider)}
+								>
+									{notifications.map((note, index) => (
+										<>{func(index)}</>
+									))}
+								</Slider>
+							</Box>
+						</>
 					) : (
-						<Typography variant="R16">Нет уведомлений</Typography>
+						<Box
+							style={{
+								display: 'flex',
+								flexDirection: 'column',
+								gap: '16px',
+							}}
+						>
+							<Typography
+								variant="M24"
+								style={{ color: '#7B7F9F' }}
+							>
+								Ничего срочного!
+							</Typography>
+							<Typography
+								variant="R16"
+								style={{ color: '#7B7F9F' }}
+							>
+								Если у вас возникли трудности, обратитесь к
+								менеджеру.
+							</Typography>
+						</Box>
 					)}
 				</Box>
 			</Box>

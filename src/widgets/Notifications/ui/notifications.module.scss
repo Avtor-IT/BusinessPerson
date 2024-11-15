@@ -11,6 +11,7 @@
 }
 
 .sliderNotifications > div > div { // .slick-list
+    margin-inline: 0 !important;
     overflow: hidden !important;    
 }
 
@@ -28,21 +29,24 @@
     gap: 16px;
 }
 
-.slickDots {
-    display: flex !important;
-    align-items: center;
-    gap: 8px;
-    width: auto;
-    bottom: auto;
-    top: 14px;
-    left: 139px;  
+.sliderDots {
+    position: absolute;
+    top: 8px;
+    right: 73px;
+    left: 132px;
 }
 
-.slickDots li {
+.sliderDots > div > div { // .slick-list
+    margin-inline: 0 !important;
+    overflow: hidden !important;    
+}
+
+.sliderDots > div > div > div > div { // .slick-slide
+    margin-inline: 0 !important;
+}
+
+.sliderDots > div > div > div > div > div { // .slick-track
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 8px;
-    height: 8px;
-    margin: 0;
 }
