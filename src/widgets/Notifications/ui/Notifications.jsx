@@ -41,34 +41,92 @@ export const Notifications = () => {
 		'Необходимо предоставить документы вновь принятого сотрудника до 16:00 текущего дня. В противном случае датой приема будет следующий день.',
 		'Тестовое уведомление тестовое тестовое тестовое тестовое уведомление. ',
 		'Тестовое уведомление тестовое тестовое тестовое уведомление. ',
-		// 'Тестовое уведомление тестовое тестовое уведомление. ',
+		'Тестовое уведомление тестовое тестовое уведомление. ',
+		'Тестовое уведомление тестовое. ',
 	];
 
 	const [currentSlide, setCurrentSlide] = React.useState(0); // Состояние для хранения текущего слайда
 
+	const sizePaging = (i) => {
+		if (i === currentSlide) {
+			return '8px';
+		} else if (i === currentSlide + 1 || i === currentSlide - 1) {
+			return '6px';
+		} else if (i === currentSlide + 2 || i === currentSlide - 2) {
+			return '4px';
+		}
+	};
+
+	const bgPaging = (i) => {
+		if (i === currentSlide) {
+			return '#A43270';
+		} else if (i === currentSlide + 1 || i === currentSlide - 1) {
+			return 'rgb(123, 127, 159, 0.5)';
+		} else if (i === currentSlide + 2 || i === currentSlide - 2) {
+			return 'rgb(123, 127, 159, 0.2)';
+		}
+	};
+
 	const settings = {
 		customPaging: function (i) {
-			return (
-				<div
-					style={{
-						width: '8px',
-						height: '8px',
-						borderRadius: '50%',
-						backgroundColor:
-							i === currentSlide ? '#A43270' : '#7B7F9F',
-					}}
-				></div>
-			);
+			if (notifications.length < 3) {
+				return (
+					<div
+						style={{
+							width: '8px',
+							height: '8px',
+							borderRadius: '50%',
+							backgroundColor: bgPaging(i),
+						}}
+					></div>
+				);
+			} else if (notifications.length === 3) {
+				return (
+					<div
+						style={{
+							width: sizePaging(i),
+							height: sizePaging(i),
+							borderRadius: '50%',
+							backgroundColor: bgPaging(i),
+						}}
+					></div>
+				);
+			} else if (notifications.length > 3) {
+				return (
+					<div
+						style={{
+							width: sizePaging(i),
+							height: sizePaging(i),
+							borderRadius: '50%',
+							backgroundColor: bgPaging(i),
+						}}
+					></div>
+				);
+			}
 		},
 		dots: true,
 		dotsClass: `${cls.slickDots} slick-dots slick-thumb`,
 		arrows: false,
 		fade: true,
-		infinite: true,
 		slidesToShow: 1,
 		swipeToSlide: true,
 		waitForAnimate: false,
 		beforeChange: (current, next) => setCurrentSlide(next),
+		// после добавления адаптива в макете дописать
+		// responsive: [
+		// 	{
+		// 		breakpoint: 600,
+		// 		settings: {
+		// 			slidesToShow: 1,
+		// 		},
+		// 	},
+		// 	{
+		// 		breakpoint: 1024,
+		// 		settings: {
+		// 			slidesToShow: 1,
+		// 		},
+		// 	},
+		// ],
 	};
 
 	return (

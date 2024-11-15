@@ -30,14 +30,18 @@
 
 .slickDots {
     display: flex !important;
+    align-items: center;
     gap: 8px;
     width: auto;
     bottom: auto;
     top: 14px;
-    right: 92px; // 156 - 24 - 16 - 24 
+    left: 139px;  
 }
 
 .slickDots li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 8px;
     height: 8px;
     margin: 0;
