@@ -14,7 +14,6 @@ import cls from './MyManager.module.scss';
 
 export const MyManager = ({ ...props }) => {
 	// const [hovered, setHovered] = React.useState(false); // для анимации при наведении
-
 	const { data: manager, isLoading, isError } = useManager();
 
 	if (isLoading)
@@ -56,11 +55,11 @@ export const MyManager = ({ ...props }) => {
 				{...props}
 			>
 				{/* <Circle
-					width={474}
-					height={474}
-					top={-197}
-					right={hovered ? -98 : -148}
-				/> */}
+				 width={474}
+				 height={474}
+				 top={-197}
+				 right={hovered ? -98 : -148}
+				 /> */}
 				<Box className={`${cls.titleManager}`}>
 					<Typography variant="M24">Мой менеджер</Typography>
 					<MailBtn />

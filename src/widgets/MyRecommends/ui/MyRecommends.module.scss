@@ -1,5 +1,5 @@
 .MyRecommends {
-    padding: 32px 24px 15px;
+    padding: 32px 24px 12px;
     overflow: hidden;
     position: relative;
     //height: 100%;
@@ -18,9 +18,9 @@
     display: flex !important;
     flex-direction: column;
     gap: 16px;
-    width: 288px !important;
-    height: 246px;
-    margin-top: 15px;
+    width: 328px !important;
+    height: 229px;
+    margin-top: 32px;
 }
 
 // для непрочитанных карточек
