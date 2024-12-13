@@ -36,7 +36,7 @@ export const Notifications = () => {
 	// 		</Card>
 	// 	);
 	// }
-
+  
 	const [currentSlide, setCurrentSlide] = React.useState(0); // Состояние для хранения текущего слайда
 
 	const [navSlider, setNavSlider] = React.useState(null);
