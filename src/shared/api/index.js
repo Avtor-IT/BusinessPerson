@@ -12,17 +12,19 @@ class Api {
 				params,
 			})
 			.then((response) => {
-				if (response.status === 403) {
-					sessionStorage.removeItem('access');
-					sessionStorage.removeItem('refresh');
-				} else {
-					return Promise.resolve(response.data);
-				}
+				// if (!response.status === 403) {
+				return Promise.resolve(response.data);
+				// }
+
+				// При ошибке запроса выкидывать из акка
+				// Убрал так как при ошибке со стороны битрикса нелогично
+				// 	sessionStorage.removeItem('access');
+				// 	sessionStorage.removeItem('refresh');
 			})
 			.catch((error) => {
 				console.error('Error:', error);
-				sessionStorage.removeItem('access');
-				sessionStorage.removeItem('refresh');
+				// sessionStorage.removeItem('access');
+				// sessionStorage.removeItem('refresh');
 				return Promise.reject(error);
 			});
 	};
@@ -36,17 +38,19 @@ class Api {
 				},
 			})
 			.then((response) => {
-				if (response.status === 403) {
-					sessionStorage.removeItem('access');
-					sessionStorage.removeItem('refresh');
-				} else {
-					return Promise.resolve(response.data);
-				}
+				// if (!response.status === 403) {
+				return Promise.resolve(response.data);
+				// }
+
+				// При ошибке запроса выкидывать из акка
+				// Убрал так как при ошибке со стороны битрикса нелогично
+				// 	sessionStorage.removeItem('access');
+				// 	sessionStorage.removeItem('refresh');
 			})
 			.catch((error) => {
 				console.error('Error:', error);
-				sessionStorage.removeItem('access');
-				sessionStorage.removeItem('refresh');
+				// sessionStorage.removeItem('access');
+				// sessionStorage.removeItem('refresh');
 				return Promise.reject(error);
 			});
 	};
