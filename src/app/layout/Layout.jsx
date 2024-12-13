@@ -16,15 +16,15 @@ export const Layout = () => (
 		<Stack
 			direction="row"
 			spacing="32px"
-			pt="35px"
+			pt="32px"
 		>
 			<SideMenu>
-				<LogoLink style={{ marginBottom: 62 }}>
+				<LogoLink style={{ marginBottom: 64 }}>
 					<Stack
 						direction="row"
 						alignItems="center"
 						justifyContent="center"
-						spacing="14px"
+						spacing="16px"
 					>
 						<LogoIcon />
 						<LogoText />
@@ -33,7 +33,7 @@ export const Layout = () => (
 				<Navigation />
 			</SideMenu>
 			<Box flexGrow={1}>
-				<Header style={{ marginBottom: 62 }} />
+				<Header style={{ marginBottom: 64 }} />
 				<Suspense fallback={<div>loading</div>}>
 					<Outlet />
 				</Suspense>

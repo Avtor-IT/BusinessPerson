@@ -1,6 +1,6 @@
-import cls from './arrowIcon.module.scss';
+import cls from './ArrowInCircle.module.scss';
 
-const ArrowIcon = ({
+const ArrowInCircle = ({
 	variant = 'right',
 	width,
 	height,
@@ -29,15 +29,24 @@ const ArrowIcon = ({
 
 	return (
 		<svg
-			width={width || '24'}
-			height={height || '24'}
+			width={width || '32'}
+			height={height || '32'}
 			fill={fill || 'none'}
-			viewBox="0 0 24 24"
+			viewBox="0 0 32 32"
 			className={`${cls[variant]} ${className}`}
 			{...otherProps}
 		>
+			<rect
+				x="1"
+				y="1"
+				width="30"
+				height="30"
+				rx="15"
+				stroke="white"
+				strokeWidth="2"
+			/>
 			<path
-				d="M8.94998 19.9201L15.47 13.4001C16.24 12.6301 16.24 11.3701 15.47 10.6001L8.94999 4.08008"
+				d="M13 22L19 16L13 10"
 				stroke={strokeColor()}
 				strokeWidth={strokeWidth}
 				strokeLinecap="round"
@@ -47,4 +56,4 @@ const ArrowIcon = ({
 	);
 };
 
-export default ArrowIcon;
+export default ArrowInCircle;

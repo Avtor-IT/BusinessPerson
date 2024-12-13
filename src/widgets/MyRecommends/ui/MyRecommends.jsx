@@ -1,14 +1,14 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
-import { Card } from 'shared/ui/Card';
-import { useRecomendsQuery } from 'entities/Recommends/model/hooks';
 import Slider from 'react-slick';
+import { Box, Typography } from '@mui/material';
+import { useRecommendsQuery } from 'entities/Recommends/model/hooks';
 import CheckCircleBtn from 'features/CheckCircleBtn';
-import cls from './MyRecomends.module.scss';
-import './MyRecomends.scss';
-import ArrowIcon from 'shared/assets/ArrowIcon/ui/ArrowIcon';
+import { Card } from 'shared/ui/Card';
 import { Button } from 'shared/ui/Button';
 import Circle from 'shared/assets/Circle';
+import './MyRecommendsSlider.scss';
+import cls from './MyRecommends.module.scss';
+import { ArrowInCircle } from 'shared/assets/ArrowInCircle';
 
 /*
  * Отсюда брал
@@ -38,11 +38,12 @@ const SlickArrowLeft = ({ currentSlide, ...props }) => {
 			aria-disabled={currentSlide === 0}
 			type="button"
 		>
-			<ArrowIcon
+			<ArrowInCircle
 				variant={'left'}
 				width={32}
 				height={32}
 				strokeWidth={2}
+				color={'white'}
 			/>
 		</Button>
 	);
@@ -60,22 +61,21 @@ const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
 		aria-disabled={currentSlide === slideCount - 1}
 		type="button"
 	>
-		<ArrowIcon
+		<ArrowInCircle
 			variant={'right'}
 			width={32}
 			height={32}
 			strokeWidth={2}
+			color={'white'}
 		/>
 	</Button>
 );
 
-export const MyRecomends = ({ ...props }) => {
+export const MyRecommends = ({ ...props }) => {
 	const settings = {
 		dots: false,
-		// accessibility: false,
 		slidesToShow: 2,
-		// slidesToScroll: 3,
-		swipeToSlide: true, // Вместо свойства выше
+		swipeToSlide: true,
 		focusOnSelect: true,
 		infinite: false,
 		variableWidth: true,
@@ -84,9 +84,10 @@ export const MyRecomends = ({ ...props }) => {
 		nextArrow: <SlickArrowRight />,
 	};
 
+	// eslint-disable-next-line no-unused-vars
 	const [hovered, setHovered] = React.useState(false); // для анимации при наведении
 
-	const { isLoading, error, data } = useRecomendsQuery(); // recoMMends!!!!!
+	const { isLoading, error, data } = useRecommendsQuery();
 
 	if (isLoading) return 'Loading...';
 
@@ -94,34 +95,37 @@ export const MyRecomends = ({ ...props }) => {
 
 	return (
 		<Card
-			className={`${cls.MyRecomends}`}
+			className={cls.MyRecommends}
 			onMouseOver={() => setHovered(true)}
 			onMouseOut={() => setHovered(false)}
+			style={{
+				height: '337px',
+				background: 'linear-gradient(to left, #FFF 0%, #4C5385 220%)',
+			}}
 			{...props}
 		>
 			<Circle
-				width={hovered ? 560 : 522}
-				height={522}
-				right={hovered ? -130 : -185}
-				bottom={hovered ? -145 : -159}
-				variant={'purple'}
+				width={813}
+				height={813}
+				right={-350}
+				bottom={260}
+				bg={'linear-gradient(22deg, #514996 0%, #FFF 50%)'}
 			/>
-			<Box
-				width="100%"
-				height="289px"
-				position="relative"
-			>
-				<Box
-					className={`${cls.sliderRecomends} slider-container`}
-					position="absolute !important" /* Просто чтобы вставал на всю ширину */
-					right={0} /* И не вылезал дальшье */
-					left={0}
-				>
-					<Typography variant="M24">Рекомендации</Typography>
+			<Box position="relative">
+				<Box className={`${cls.sliderRecommends} slider-container`}>
+					<Typography
+						variant="M24"
+						color="#FFF"
+						sx={{
+							textShadow: '0 2px 4px rgba(0,0,0,0.5)',
+						}}
+					>
+						Актуальные изменения в законодательстве
+					</Typography>
 					<Slider {...settings}>
 						{data.map((item, index) => (
 							<Card
-								className={cls.recomendItem}
+								className={cls.recommendItem}
 								key={index}
 							>
 								<Box
