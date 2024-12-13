@@ -27,7 +27,7 @@ const Circle = ({
 				right: right,
 				left: left,
 				bottom: bottom,
-				backgroundColor: bg,
+				background: bg,
 				transition: transition || 'all .6s var(--quick-animation)',
 			}}
 			{...otherProps}

@@ -13,16 +13,16 @@ class Api {
 			})
 			.then((response) => {
 				if (response.status === 403) {
-					sessionStorage.removeItem('access');
-					sessionStorage.removeItem('refresh');
+					// sessionStorage.removeItem('access');
+					// sessionStorage.removeItem('refresh');
 				} else {
 					return Promise.resolve(response.data);
 				}
 			})
 			.catch((error) => {
 				console.error('Error:', error);
-				sessionStorage.removeItem('access');
-				sessionStorage.removeItem('refresh');
+				// sessionStorage.removeItem('access');
+				// sessionStorage.removeItem('refresh');
 				return Promise.reject(error);
 			});
 	};
@@ -37,16 +37,16 @@ class Api {
 			})
 			.then((response) => {
 				if (response.status === 403) {
-					sessionStorage.removeItem('access');
-					sessionStorage.removeItem('refresh');
+					// sessionStorage.removeItem('access');
+					// sessionStorage.removeItem('refresh');
 				} else {
 					return Promise.resolve(response.data);
 				}
 			})
 			.catch((error) => {
 				console.error('Error:', error);
-				sessionStorage.removeItem('access');
-				sessionStorage.removeItem('refresh');
+				// sessionStorage.removeItem('access');
+				// sessionStorage.removeItem('refresh');
 				return Promise.reject(error);
 			});
 	};

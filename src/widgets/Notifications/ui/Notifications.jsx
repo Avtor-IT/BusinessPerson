@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import Slider from 'react-slick';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import CheckCircleBtn from 'features/CheckCircleBtn';
 import { Card } from 'shared/ui/Card';
 import cls from './notifications.module.scss';
+import SliderDots from 'widgets/Notifications/ui/slider/SliderDots.jsx';
+import SliderNotifications from 'widgets/Notifications/ui/slider/SliderNotifications.jsx';
 
 export const Notifications = () => {
 	// const { data: companies, isError, isLoading } = useCompanies();
@@ -37,6 +37,8 @@ export const Notifications = () => {
 	// 	);
 	// }
 
+	const [currentSlide, setCurrentSlide] = React.useState(0); // Состояние для хранения текущего слайда
+
 	const [navSlider, setNavSlider] = React.useState(null);
 	const [navDots, setNavDots] = React.useState(null);
 	let refSlider = React.useRef(null);
@@ -57,157 +59,38 @@ export const Notifications = () => {
 		'7. Тестовое уведомление здесь тоже тест. ',
 	];
 
-	const [currentSlide, setCurrentSlide] = React.useState(0); // Состояние для хранения текущего слайда
-
-	const sizePaging = (i) => {
-		if (i === currentSlide) {
-			return '8px';
-		} else if (i === currentSlide + 1 || i === currentSlide - 1) {
-			return '6px';
-		} else if (i === currentSlide + 2 || i === currentSlide - 2) {
-			return '4px';
-		}
-	};
-
-	const bgPaging = (i) => {
-		if (i === currentSlide) {
-			return '#A43270';
-		} else if (i === currentSlide + 1 || i === currentSlide - 1) {
-			return 'rgb(123, 127, 159, 0.5)';
-		} else if (i === currentSlide + 2 || i === currentSlide - 2) {
-			return 'rgb(123, 127, 159, 0.2)';
-		}
-	};
-
-	const func = (i) => {
-		if (notifications.length < 3) {
-			return (
-				<li
-					style={{
-						display: 'block',
-						width: '8px',
-						height: '8px',
-						borderRadius: '50%',
-						backgroundColor: bgPaging(i),
-						cursor: 'pointer',
-					}}
-				></li>
-			);
-		} else if (notifications.length === 3) {
-			return (
-				<li
-					style={{
-						display: 'block',
-						width: sizePaging(i),
-						height: sizePaging(i),
-						borderRadius: '50%',
-						backgroundColor: bgPaging(i),
-						cursor: 'pointer',
-					}}
-				></li>
-			);
-		} else if (notifications.length > 3) {
-			return (
-				<li
-					style={{
-						display: 'block',
-						width: sizePaging(i),
-						height: sizePaging(i),
-						borderRadius: '50%',
-						backgroundColor: bgPaging(i),
-						cursor: 'pointer',
-					}}
-				></li>
-			);
-		}
-	};
-
-	const settings = {
-		dots: false,
-		arrows: false,
-		fade: true,
-		slidesToShow: 1,
-		swipeToSlide: true,
-		waitForAnimate: false,
-		// после добавления адаптива в макете дописать
-		// responsive: [
-		// 	{
-		// 		breakpoint: 600,
-		// 		settings: {
-		// 			slidesToShow: 1,
-		// 		},
-		// 	},
-		// 	{
-		// 		breakpoint: 1024,
-		// 		settings: {
-		// 			slidesToShow: 1,
-		// 		},
-		// 	},
-		// ],
-	};
-
-	const settingsDots = {
-		dots: false,
-		arrows: false,
-		centerMode: true,
-		focusOnSelect: true,
-		centerPadding: '20%',
-		slidesToShow: 3,
-		beforeChange: (current, next) => setCurrentSlide(next),
-	};
-
 	return (
 		<Card className={cls.notificationsCard}>
 			<Box
 				width="100%"
 				position="relative"
 			>
-				<Box className={`${cls.sliderNotifications} slider-container`}>
+				<Box>
 					{notifications?.length > 0 ? (
 						<>
-							<Slider
-								{...settings}
-								asNavFor={navDots}
-								ref={(slider) => (refSlider = slider)}
+							<Typography
+								variant="M24"
+								color="#A43270"
 							>
-								{notifications.map((notification, index) => (
-									<div
-										key={index}
-										className={cls.slideNotification}
-									>
-										<Typography
-											variant="M24"
-											className={cls.notificationsTitle}
-										>
-											Внимание!
-										</Typography>
-										<Typography variant="R16">
-											{notification}
-										</Typography>
-										<div
-											style={{
-												position: 'absolute',
-												right: '0',
-											}}
-										>
-											<CheckCircleBtn />
-										</div>
-									</div>
-								))}
-							</Slider>
-							<Box
-								className={`${cls.sliderDots} slider-container`}
-							>
-								<Slider
-									{...settingsDots}
-									asNavFor={navSlider}
-									ref={(slider) => (refDots = slider)}
-								>
-									{notifications.map((note, index) => (
-										<>{func(index)}</>
-									))}
-								</Slider>
-							</Box>
+								Внимание!
+							</Typography>
+
+							<SliderNotifications
+								navDots={navDots}
+								currentSlide={currentSlide}
+								notifications={notifications}
+								refFunction={(slider) => (refSlider = slider)}
+							/>
+
+							<SliderDots
+								navSlider={navSlider}
+								refFunction={(slider) => (refDots = slider)}
+								notifications={notifications}
+								beforeChange={(_, next) =>
+									setCurrentSlide(next)
+								}
+								currentSlide={currentSlide}
+							/>
 						</>
 					) : (
 						<Box

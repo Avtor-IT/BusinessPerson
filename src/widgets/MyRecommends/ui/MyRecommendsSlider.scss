@@ -12,23 +12,22 @@
 .slick-prev, .slick-next {
     width: 32px;
     height: 32px;
+    transform: none !important;
 }
 
 .slick-prev {
     left: auto;
     right: 60px;
-    //top: -30px;
-    top: -20px;
+    top: -28px;
 }
 
 .slick-next {
-    right: 0;
-    //top: -30px;
-    top: -20px;
+    right: 9px;
+    top: -28px;
 }
 
 .slick-prev:before, .slick-next:before {
     display: none;
     font-size: 32px;
-    opacity: 1 !important;
+    //opacity: 1 !important;
 }

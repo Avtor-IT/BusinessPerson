@@ -1,44 +1,63 @@
 .notificationsCard {
     padding: 24px 24px 29px;
     border: 4px solid #A43270;
-    height: 100%;
+    min-height: 192px;
 }
 
 .sliderNotifications {
-    position: absolute;   
+    position: absolute;
     right: 0;
     left: 0;
+    padding-top: 16px;
+}
+
+.fadeIn {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.fadeOut {
+    opacity: 0;
+    transform: scale(0.95);
 }
 
 .sliderNotifications > div > div { // .slick-list
     margin-inline: 0 !important;
-    overflow: hidden !important;    
+    //overflow: hidden !important;
 }
 
 .sliderNotifications > div > div > div > div { // .slick-slide
     margin-inline: 0 !important;
 }
 
-.notificationsTitle {
-    color: #A43270;
+.slideNotification {
+    transition: opacity .5s ease, transform .5s ease;
+    display: flex !important;
+    flex-direction: column;
+    gap: 16px;
+
+    &.fadeIn {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    &.fadeOut {
+        opacity: 0;
+        transform: scale(0.95);
+    }
 }
 
-.slideNotification {
-    display: flex !important; 
-    flex-direction: column; 
-    gap: 16px;
-}
 
 .sliderDots {
     position: absolute;
-    top: 8px;
+    top: 14px;
     right: 73px;
     left: 132px;
 }
 
 .sliderDots > div > div { // .slick-list
     margin-inline: 0 !important;
-    overflow: hidden !important;    
+    overflow: hidden !important;
 }
 
 .sliderDots > div > div > div > div { // .slick-slide
@@ -49,4 +68,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.dot {
+    display: block;
+    cursor: pointer;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    background: rgb(123, 127, 159);
+    transition: width .2s ease, opacity .2s ease;
+
+    &.current {
+        width: 8px;
+        background: #A43270;
+    }
+
+    &.neighbor {
+        width: 6px;
+        opacity: 50%;
+    }
+
+    &.far {
+        width: 4px;
+        opacity: 50%;
+    }
+
+    &.invisible {
+        opacity: 0;
+    }
 }
