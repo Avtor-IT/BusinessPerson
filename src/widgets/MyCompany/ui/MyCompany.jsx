@@ -14,7 +14,7 @@ import cls from './myCompany.module.scss';
 export const MyCompany = () => {
 	const [hovered, setHovered] = React.useState(false); // для анимации при наведении
 
-	const { data: companies, isError, isLoading, error } = useCompanies();
+	const { data: companies, isError, isLoading } = useCompanies();
 
 	const [selectedCompany, setSelectedCompany] = React.useState();
 
@@ -35,7 +35,7 @@ export const MyCompany = () => {
 	}
 
 	if (isError) {
-		return <ErrorCard text={`Ошибка при загрузке компании ${error}`} />;
+		return <ErrorCard text={`Ошибка при загрузке компании`} />;
 	}
 
 	return (
