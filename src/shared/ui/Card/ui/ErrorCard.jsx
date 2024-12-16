@@ -4,7 +4,7 @@ import { Card } from 'shared/ui/Card/index.js';
 
 const ErrorCard = ({ text }) => {
 	return (
-		<Card style={{ height: '100%' }}>
+		<Card style={{ height: '100%', padding: '24px' }}>
 			<Stack
 				alignItems="center"
 				height="100%"
