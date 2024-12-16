@@ -30,7 +30,7 @@ const LoginPage = () => {
 			if (loginMutation.error.message === 'Unauthorized') {
 				setErrorMessage('Пользователь не найден');
 			} else {
-				console.log(loginMutation.error);
+				console.error(loginMutation.error);
 				setErrorMessage(
 					'Ошибка при входе в аккаунт. Повторите попытку позже.'
 				);

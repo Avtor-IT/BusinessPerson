@@ -7,14 +7,14 @@ import ImportBtn from 'features/ImportBtn';
 import CopyBtn from 'features/CopyBtn';
 import ArrowBtn from 'features/ArrowBtn';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
-import { Card } from 'shared/ui/Card';
+import { Card, ErrorCard } from 'shared/ui/Card';
 import Circle from 'shared/assets/Circle';
 import cls from './myCompany.module.scss';
 
 export const MyCompany = () => {
 	const [hovered, setHovered] = React.useState(false); // для анимации при наведении
 
-	const { data: companies, isError, isLoading } = useCompanies();
+	const { data: companies, isError, isLoading, error } = useCompanies();
 
 	const [selectedCompany, setSelectedCompany] = React.useState();
 
@@ -35,13 +35,7 @@ export const MyCompany = () => {
 	}
 
 	if (isError) {
-		return (
-			<Card style={{ height: '100%' }}>
-				<Typography variant="M24">
-					Ошибка при загрузке компаний
-				</Typography>
-			</Card>
-		);
+		return <ErrorCard text={`Ошибка при загрузке компании ${error}`} />;
 	}
 
 	return (

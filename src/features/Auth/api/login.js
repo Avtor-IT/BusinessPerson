@@ -9,12 +9,13 @@ export const login = async (params) => {
 			`${baseUrl}${apiEndpoints.JWT_CREATE}`,
 			params
 		);
-		if (response && response.access) {
+		if (response?.access) {
 			sessionStorage.setItem('access', response.access);
 			sessionStorage.setItem('refresh', response.refresh);
 			// window.location.href = '/';
 			return response.access;
 		}
+		return response;
 	} catch (e) {
 		console.error('Login failed:', e);
 		if (e.response.status === 401) {

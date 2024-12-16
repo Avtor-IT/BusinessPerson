@@ -7,7 +7,7 @@ import MailBtn from 'features/MailBtn';
 import MessageBtn from 'features/MessageBtn';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import { formatPhoneNumber } from 'shared/lib';
-import { Card } from 'shared/ui/Card';
+import { Card, ErrorCard } from 'shared/ui/Card';
 import AvatarManager from 'shared/ui/AvatarManager';
 // import Circle from 'shared/assets/Circle/ui/Circle';
 import cls from './MyManager.module.scss';
@@ -25,26 +25,7 @@ export const MyManager = ({ ...props }) => {
 			/>
 		);
 
-	if (isError)
-		return (
-			<Card
-				className={`${cls.MyManager}`}
-				// onMouseOver={() => setHovered(true)}
-				// onMouseOut={() => setHovered(false)}
-				{...props}
-			>
-				<Box
-					display={'flex'}
-					justifyContent={'space-between'}
-					alignItems={'center'}
-					height={'100%'}
-				>
-					<Typography variant="M24">
-						Ошибка при загрузке менеджера
-					</Typography>
-				</Box>
-			</Card>
-		);
+	if (isError) return <ErrorCard text="Ошибка при загрузке менеджера" />;
 
 	if (manager) {
 		return (
