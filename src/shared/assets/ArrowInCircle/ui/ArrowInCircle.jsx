@@ -18,6 +18,8 @@ const ArrowInCircle = ({
 				return '#FFFFFF';
 			case 'gray':
 				return '#7B7F9F';
+			case 'dark-gray':
+				return '#8580B3';
 			case 'blue':
 				return '#514996';
 			case 'purple':
@@ -42,7 +44,7 @@ const ArrowInCircle = ({
 				width="30"
 				height="30"
 				rx="15"
-				stroke="white"
+				stroke={strokeColor()}
 				strokeWidth="2"
 			/>
 			<path

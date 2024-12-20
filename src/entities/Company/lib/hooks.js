@@ -6,4 +6,5 @@ export const useCompanies = () =>
 		queryKey: ['companies'],
 		queryFn: getCompanies,
 		staleTime: Infinity,
+		// enabled: false, // Чтобы ошибки глаза не мозолили
 	});

@@ -8,68 +8,53 @@ import { TutorialPage } from 'pages/TutorialPage';
 import { LoginPage } from 'pages/LoginPage';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import B24WidgetProvider from 'app/providers/b24WidgetProvider';
+import { Box } from '@mui/system';
 
 const Routes = () => {
 	const router = createBrowserRouter([
 		{
 			id: 'root',
 			path: '/',
-			element: <PrivateRoute />,
+			element: (
+				<B24WidgetProvider>
+					<PrivateRoute />
+				</B24WidgetProvider>
+			),
 			children: [
 				{
 					index: true,
-					element: (
-						<B24WidgetProvider>
-							<MainPage />
-						</B24WidgetProvider>
-					),
+					element: <MainPage />,
 				},
 				{
 					path: RoutePath[AppRoutes.SERVICES],
-					element: (
-						<B24WidgetProvider>
-							<ServicesPage />
-						</B24WidgetProvider>
-					),
+					element: <ServicesPage />,
 				},
 				{
 					path: RoutePath[AppRoutes.TUTORIAL],
-					element: (
-						<B24WidgetProvider>
-							<TutorialPage />
-						</B24WidgetProvider>
-					),
+					element: <TutorialPage />,
 				},
 				// {
 				// 	path: RoutePath[AppRoutes.APPEALS],
 				// 	element: (
-				// 		<B24WidgetProvider>
 				// 			<AppealsPage />
-				// 		</B24WidgetProvider>
 				// 	),
 				// },
 				// {
 				// 	path: RoutePath[AppRoutes.APPEAL],
 				// 	element: (
-				// 		<B24WidgetProvider>
 				// 			<AppealPage />
-				// 		</B24WidgetProvider>
 				// 	),
 				// },
 				{
 					path: RoutePath[AppRoutes.NOT_FOUND],
-					element: (
-						<B24WidgetProvider>
-							<NotFoundPage />
-						</B24WidgetProvider>
-					),
+					element: <NotFoundPage />,
 				},
 			],
 		},
 		{
 			path: 'login',
 			element: (
-				<Suspense fallback={<div>loading</div>}>
+				<Suspense fallback={<Box>Загрузка</Box>}>
 					<LoginPage />
 				</Suspense>
 			),

@@ -17,6 +17,10 @@ export const ThemeProvider = ({ children }) => {
 				fontSize: 40,
 				fontWeight: 500,
 			},
+			M32: {
+				fontSize: 32,
+				fontWeight: 500,
+			},
 			M24: {
 				fontSize: 24,
 				fontWeight: 500,

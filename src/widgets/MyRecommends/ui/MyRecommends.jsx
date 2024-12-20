@@ -30,10 +30,6 @@ const SlickArrowLeft = ({ currentSlide, ...props }) => {
 		<Button
 			variant="unStyled"
 			{...otherProps}
-			className={
-				'slick-prev slick-arrow' +
-				(currentSlide === 0 ? ' slick-disabled' : '')
-			}
 			aria-hidden={true}
 			aria-disabled={currentSlide === 0}
 			type="button"
@@ -43,22 +39,23 @@ const SlickArrowLeft = ({ currentSlide, ...props }) => {
 				width={32}
 				height={32}
 				strokeWidth={2}
-				color={'white'}
+				color={currentSlide === 0 ? 'dark-gray' : 'white'}
 			/>
 		</Button>
 	);
 };
 
-const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
+const SlickArrowRight = ({
+	currentSlide,
+	slideCount,
+	slidesToShow,
+	...props
+}) => (
 	<Button
 		variant="unStyled"
 		{...props}
-		className={
-			'slick-next slick-arrow' +
-			(currentSlide === slideCount - 1 ? ' slick-disabled' : '')
-		}
 		aria-hidden="true"
-		aria-disabled={currentSlide === slideCount - 1}
+		aria-disabled={currentSlide === slideCount - slidesToShow}
 		type="button"
 	>
 		<ArrowInCircle
@@ -66,22 +63,27 @@ const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
 			width={32}
 			height={32}
 			strokeWidth={2}
-			color={'white'}
+			color={
+				currentSlide === slideCount - slidesToShow
+					? 'dark-gray'
+					: 'white'
+			}
 		/>
 	</Button>
 );
 
 export const MyRecommends = ({ ...props }) => {
+	const slidesToShow = 2;
 	const settings = {
 		dots: false,
-		slidesToShow: 2,
+		slidesToShow,
 		swipeToSlide: true,
 		focusOnSelect: true,
 		infinite: false,
 		variableWidth: true,
 		navButtonsAlwaysVisible: true,
 		prevArrow: <SlickArrowLeft />,
-		nextArrow: <SlickArrowRight />,
+		nextArrow: <SlickArrowRight slidesToShow={slidesToShow} />,
 	};
 
 	// eslint-disable-next-line no-unused-vars
@@ -100,7 +102,7 @@ export const MyRecommends = ({ ...props }) => {
 			onMouseOut={() => setHovered(false)}
 			style={{
 				height: '337px',
-				background: 'linear-gradient(to left, #FFF 0%, #4C5385 220%)',
+				background: 'linear-gradient(to left, #FFF 0%, #4C5385 240%)',
 			}}
 			{...props}
 		>
@@ -109,7 +111,7 @@ export const MyRecommends = ({ ...props }) => {
 				height={813}
 				right={-350}
 				bottom={260}
-				bg={'linear-gradient(22deg, #514996 0%, #FFF 50%)'}
+				bg={'linear-gradient(22deg, #514996 0%, #FFF 100%)'}
 			/>
 			<Box position="relative">
 				<Box className={`${cls.sliderRecommends} slider-container`}>

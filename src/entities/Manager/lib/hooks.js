@@ -6,4 +6,5 @@ export const useManager = () =>
 		queryKey: ['manager'],
 		queryFn: getManager,
 		staleTime: Infinity,
+		// enabled: false, // Чтобы ошибки глаза не мозолили
 	});

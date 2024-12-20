@@ -74,7 +74,7 @@ export const MyCompany = () => {
 				gap={'16px'}
 			>
 				<Typography variant="R20">
-					{selectedCompany && selectedCompany['TITLE']}
+					{selectedCompany?.['TITLE']}
 				</Typography>
 				<Box
 					display={'flex'}

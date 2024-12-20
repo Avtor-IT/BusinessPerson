@@ -1,6 +1,5 @@
 /**
  * API params
- *
  **/
 
 export const baseUrl = 'https://intizar.pythonanywhere.com/api/v1/';
@@ -13,11 +12,11 @@ export const apiEndpoints = {
 	JWT_REFRESH: 'auth/jwt/refresh',
 	MANAGER: 'hooks/users_me_manager/',
 	COMPANIES: 'hooks/user_me_company/',
+	USER_SERVICES: 'hooks/user-service/check-expiration/',
 };
 
 /**
  * BX24 params
- *
  **/
 
 export const portalUrl = 'https://avtorit24.ru/';
