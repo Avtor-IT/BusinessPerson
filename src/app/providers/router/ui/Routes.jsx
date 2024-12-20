@@ -3,12 +3,14 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { MainPage } from 'pages/MainPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import PrivateRoute from 'app/providers/router/ui/PrivateRoute';
-import { ServicesPage } from 'pages/ServicesPage';
 import { TutorialPage } from 'pages/TutorialPage';
 import { LoginPage } from 'pages/LoginPage';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import B24WidgetProvider from 'app/providers/b24WidgetProvider';
 import { Box } from '@mui/system';
+import { MarketPage } from 'pages/MarketPage';
+import { CompanyPage } from 'pages/CompanyPage';
+import { LetterPage } from 'pages/LetterPage';
 
 const Routes = () => {
 	const router = createBrowserRouter([
@@ -26,25 +28,21 @@ const Routes = () => {
 					element: <MainPage />,
 				},
 				{
-					path: RoutePath[AppRoutes.SERVICES],
-					element: <ServicesPage />,
+					path: RoutePath[AppRoutes.COMPANY],
+					element: <CompanyPage />,
+				},
+				{
+					path: RoutePath[AppRoutes.MARKET],
+					element: <MarketPage />,
+				},
+				{
+					path: RoutePath[AppRoutes.LETTER],
+					element: <LetterPage />,
 				},
 				{
 					path: RoutePath[AppRoutes.TUTORIAL],
 					element: <TutorialPage />,
 				},
-				// {
-				// 	path: RoutePath[AppRoutes.APPEALS],
-				// 	element: (
-				// 			<AppealsPage />
-				// 	),
-				// },
-				// {
-				// 	path: RoutePath[AppRoutes.APPEAL],
-				// 	element: (
-				// 			<AppealPage />
-				// 	),
-				// },
 				{
 					path: RoutePath[AppRoutes.NOT_FOUND],
 					element: <NotFoundPage />,

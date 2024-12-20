@@ -1,11 +1,10 @@
-const HomeIcon = ({ color, width, height, fill, ...otherProps }) => {
+const HomeIcon = ({ width, height, fill, ...otherProps }) => {
 	return (
 		<svg
 			width={width || '24'}
 			height={height || '24'}
 			viewBox={'0 0 24 24'}
 			fill={fill || 'none'}
-			style={{ color: color || 'red' }}
 			{...otherProps}
 		>
 			<path

@@ -1,4 +1,4 @@
-import MessageIcon from 'shared/assets/MessageIcon';
+import MessageIcon from 'shared/assets/icons/Message';
 import { Button } from 'shared/ui/Button';
 
 const MessageBtn = ({ ...otherProps }) => {

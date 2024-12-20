@@ -1,7 +1,7 @@
 import React from 'react';
 import { Snackbar } from '@mui/material';
 import { Button } from 'shared/ui/Button';
-import CopyIcon from 'shared/assets/CopyIcon/ui/CopyIcon';
+import CopyIcon from 'shared/assets/icons/Copy/ui/CopyIcon';
 
 const CopyBtn = ({
 	className,

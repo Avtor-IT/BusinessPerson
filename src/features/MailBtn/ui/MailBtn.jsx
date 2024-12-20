@@ -1,4 +1,4 @@
-import MailIcon from 'shared/assets/MailIcon';
+import MailIcon from 'shared/assets/icons/Mail';
 import { Button } from 'shared/ui/Button';
 
 const MailBtn = ({ ...otherProps }) => {

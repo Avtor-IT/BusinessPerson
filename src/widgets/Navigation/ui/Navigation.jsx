@@ -1,12 +1,14 @@
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Box } from '@mui/material';
-import HomeIcon from 'shared/assets/HomeIcon';
-import ListIcon from 'shared/assets/ListIcon';
-import OfficeIcon from 'shared/assets/OfficeIcon';
+import HomeIcon from 'shared/assets/icons/Home';
+import ListIcon from 'shared/assets/icons/List';
+import OfficeIcon from 'shared/assets/icons/Office';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import { pageActions } from 'shared/model/pageSlice';
 import { Button } from 'shared/ui/Button';
+import Market from 'shared/assets/icons/Market';
+import Document from 'shared/assets/icons/Document';
 import cls from './Navigation.module.scss';
 
 export const Navigation = () => {
@@ -23,15 +25,20 @@ export const Navigation = () => {
 				icon: <HomeIcon />,
 			},
 			{
-				title: 'Мои услуги',
-				link: RoutePath[AppRoutes.SERVICES],
+				title: 'Моя компания',
+				link: RoutePath[AppRoutes.COMPANY],
 				icon: <ListIcon />,
 			},
-			// {
-			// 	title: 'Обращения',
-			// 	link: RoutePath[AppRoutes.APPEALS],
-			// 	icon: <LetterIcon />,
-			// },
+			{
+				title: 'Маркетплейс',
+				link: RoutePath[AppRoutes.MARKET],
+				icon: <Market />,
+			},
+			{
+				title: 'Конструктор письма',
+				link: RoutePath[AppRoutes.LETTER],
+				icon: <Document />,
+			},
 			{
 				title: 'Обучение',
 				link: RoutePath[AppRoutes.TUTORIAL],
@@ -66,6 +73,7 @@ export const Navigation = () => {
 						<Box
 							display="flex"
 							alignItems="center"
+							justifyContent="start"
 							gap="16px"
 						>
 							{el.icon} {el.title}

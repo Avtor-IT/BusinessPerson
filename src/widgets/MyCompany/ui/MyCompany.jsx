@@ -8,7 +8,7 @@ import CopyBtn from 'features/CopyBtn';
 import ArrowBtn from 'features/ArrowBtn';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import { Card, ErrorCard } from 'shared/ui/Card';
-import Circle from 'shared/assets/Circle';
+import Circle from 'shared/assets/icons/Circle';
 import cls from './myCompany.module.scss';
 
 export const MyCompany = () => {

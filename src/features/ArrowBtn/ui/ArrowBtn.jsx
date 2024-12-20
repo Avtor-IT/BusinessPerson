@@ -1,4 +1,4 @@
-import ArrowIcon from 'shared/assets/ArrowIcon';
+import ArrowIcon from 'shared/assets/icons/Arrow';
 import { Button } from 'shared/ui/Button';
 
 const ArrowBtn = ({ ...otherProps }) => {

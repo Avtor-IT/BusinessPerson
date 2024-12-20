@@ -1,5 +1,5 @@
 import { cloneElement } from 'react';
-import AddSquareIcon from 'shared/assets/AddSquareIcon/ui/AddSquareIcon';
+import AddSquareIcon from 'shared/assets/icons/AddSquare/ui/AddSquareIcon';
 import { Button } from 'shared/ui/Button';
 import cls from './IconBtn.module.scss';
 

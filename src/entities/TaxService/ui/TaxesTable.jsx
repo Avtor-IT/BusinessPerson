@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, Grid, Stack } from '@mui/material';
 import { Card } from 'shared/ui/Card';
 import { Button } from 'shared/ui/Button';
-import SortIcon from 'shared/assets/SortIcon';
+import SortIcon from 'shared/assets/icons/Sort';
 import { taxes } from 'shared/model';
 
 import cls from './TaxesTable.module.scss';

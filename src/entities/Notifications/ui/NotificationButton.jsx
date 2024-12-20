@@ -1,4 +1,4 @@
-import NotificationsIcon from 'shared/assets/NotificationsIcon';
+import NotificationsIcon from 'shared/assets/icons/Notifications';
 import { Button } from 'shared/ui/Button';
 import Badge from 'shared/ui/Badge';
 

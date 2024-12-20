@@ -3,7 +3,7 @@ import { Card } from 'shared/ui/Card/index.js';
 import { Grid, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import cls from './PromoServiceBlock.module.scss';
-import AddSquareIcon from 'shared/assets/AddSquareIcon/index.js';
+import AddSquareIcon from 'shared/assets/icons/AddSquare/index.js';
 import { Button } from 'shared/ui/Button/index.js';
 import { useMaxWidth } from 'shared/model/index.js';
 

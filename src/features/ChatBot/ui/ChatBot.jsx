@@ -1,4 +1,4 @@
-import SearchIcon from 'shared/assets/SearchIcon';
+import SearchIcon from 'shared/assets/icons/Search';
 import Input from 'shared/ui/Input';
 import cls from './ChatBot.module.scss';
 import { useWidth } from 'shared/model';

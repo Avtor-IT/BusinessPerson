@@ -5,10 +5,10 @@ import { useRecommendsQuery } from 'entities/Recommends/model/hooks';
 import CheckCircleBtn from 'features/CheckCircleBtn';
 import { Card } from 'shared/ui/Card';
 import { Button } from 'shared/ui/Button';
-import Circle from 'shared/assets/Circle';
+import Circle from 'shared/assets/icons/Circle';
 import './MyRecommendsSlider.scss';
 import cls from './MyRecommends.module.scss';
-import { ArrowInCircle } from 'shared/assets/ArrowInCircle';
+import { ArrowInCircle } from 'shared/assets/icons/ArrowInCircle';
 
 /*
  * Отсюда брал
