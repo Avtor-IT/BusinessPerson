@@ -7,7 +7,7 @@ import { Typography } from '@mui/material';
 export const NotFoundPage = () => {
 	return (
 		<Box>
-			<Typography variant="h3">Страница не найдена</Typography>
+			<Typography variant="M40">Страница не найдена</Typography>
 			<Box mt={2}>
 				<Button>
 					<Link

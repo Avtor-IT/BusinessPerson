@@ -9,13 +9,13 @@
 		width: 100%;
 		text-align: center;
 		position: relative;
+		padding-right: 0;
 
-        & svg path {
-            stroke: var(--color-light);
-        }
+		& svg path {
+			stroke: var(--color-light);
+		}
 
 		&.isNotSelected {
-
 			& svg path {
 				stroke: var(--tertiary);
 			}

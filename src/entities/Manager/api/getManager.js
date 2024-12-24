@@ -1,11 +1,11 @@
-import api from 'shared/api/index.js';
-import { apiEndpoints, baseUrl } from 'shared/model';
+import { apiCaller } from 'shared/api';
 
-export const getManager = () => {
+const getManager = async () => {
 	try {
-		const Api = new api();
-		return Api.Get(`${baseUrl}${apiEndpoints.MANAGER}`);
+		return await apiCaller('MANAGER');
 	} catch (e) {
 		throw Error(e);
 	}
 };
+
+export default getManager;

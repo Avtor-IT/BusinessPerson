@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getManager } from '../api/getManager.js';
+import getManager from '../api/getManager';
 
 export const useManager = () =>
 	useQuery({

@@ -115,7 +115,14 @@ export const MyCompany = () => {
 						variant="R20"
 						style={{ zIndex: '2', color: '#fff' }}
 					>
-						Мои документы
+						<Link
+							to={`${RoutePath[AppRoutes.COMPANY]}/${
+								selectedCompany?.['TITLE']
+							}/documents`}
+							state={{ company: selectedCompany }}
+						>
+							Мои документы
+						</Link>
 					</Typography>
 					<Circle
 						top={hovered ? 110 : 131}

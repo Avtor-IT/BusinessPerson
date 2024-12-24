@@ -1,4 +1,4 @@
-import ServiceBlock from 'entities/Service/ui/ServiceBlock.jsx';
+import ServiceBlock from 'widgets/ServiceBlock/ui/ServiceBlock.jsx';
 import SectionTitle from 'shared/ui/SectionTitle';
 import { Box } from '@mui/system';
 import { RenderService, useGetUserServices } from 'entities/Service/index.js';

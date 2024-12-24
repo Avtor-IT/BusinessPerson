@@ -1,12 +1,11 @@
-import api from 'shared/api/index.js';
-import { apiEndpoints, baseUrl } from 'shared/model';
+import { apiCaller } from 'shared/api';
 
-export const getCompanies = () => {
-	const Api = new api();
-
+const getCompanies = () => {
 	try {
-		return Api.Get(`${baseUrl}${apiEndpoints.COMPANIES}`);
+		return apiCaller('COMPANIES');
 	} catch (e) {
 		throw Error(e);
 	}
 };
+
+export default getCompanies;

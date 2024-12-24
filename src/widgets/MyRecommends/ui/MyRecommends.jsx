@@ -80,6 +80,7 @@ export const MyRecommends = ({ ...props }) => {
 		swipeToSlide: true,
 		focusOnSelect: true,
 		infinite: false,
+		slidesToScroll: 2,
 		variableWidth: true,
 		navButtonsAlwaysVisible: true,
 		prevArrow: <SlickArrowLeft />,

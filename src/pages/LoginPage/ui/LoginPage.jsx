@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import cls from './LoginPage.module.scss';
 import useLoginMutation from 'features/Auth';
 import { useNavigate } from 'react-router-dom';
+import { Box } from '@mui/system';
 
 const LoginPage = () => {
 	const [userName, setUserName] = useState('');
@@ -44,8 +45,7 @@ const LoginPage = () => {
 	}, [loginMutation, navigate]);
 
 	return (
-		<div className={cls.LoginPage}>
-			<h1>Login page</h1>
+		<Box className={cls.LoginPage}>
 			<form
 				className={cls.loginForm}
 				onSubmit={handleLogin}
@@ -67,13 +67,15 @@ const LoginPage = () => {
 						type="password"
 						placeholder="enter password"
 						onChange={(e) => setPassword(e.target.value)}
+						disabled={loginMutation.isPending}
 						required
 					/>
 				</label>
 				<p>{errorMessage}</p>
+				<p>{loginMutation.isPending ? 'Вход в аккаунт...' : ''}</p>
 				<button disabled={loginMutation.isPending}>Enter</button>
 			</form>
-		</div>
+		</Box>
 	);
 };
 

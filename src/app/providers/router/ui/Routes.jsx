@@ -7,10 +7,11 @@ import { TutorialPage } from 'pages/TutorialPage';
 import { LoginPage } from 'pages/LoginPage';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import B24WidgetProvider from 'app/providers/b24WidgetProvider';
-import { Box } from '@mui/system';
 import { MarketPage } from 'pages/MarketPage';
 import { CompanyPage } from 'pages/CompanyPage';
 import { LetterPage } from 'pages/LetterPage';
+import CompanyDocumentsPage from 'pages/CompanyDocumentsPage/ui/CompanyDocumentsPage';
+import { FallbackPage } from 'pages/FallbackPage';
 
 const Routes = () => {
 	const router = createBrowserRouter([
@@ -30,6 +31,12 @@ const Routes = () => {
 				{
 					path: RoutePath[AppRoutes.COMPANY],
 					element: <CompanyPage />,
+				},
+				{
+					path: `${
+						RoutePath[AppRoutes.COMPANY]
+					}/:companyTitle/documents`,
+					element: <CompanyDocumentsPage />,
 				},
 				{
 					path: RoutePath[AppRoutes.MARKET],
@@ -52,7 +59,7 @@ const Routes = () => {
 		{
 			path: 'login',
 			element: (
-				<Suspense fallback={<Box>Загрузка</Box>}>
+				<Suspense fallback={<FallbackPage />}>
 					<LoginPage />
 				</Suspense>
 			),

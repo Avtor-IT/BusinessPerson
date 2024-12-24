@@ -1,6 +1,6 @@
-import Accounting from 'entities/Service/ui/Services/accounting/Accounting.jsx';
-import HumanResources from 'entities/Service/ui/Services/humanResources/HumanResources.jsx';
-import LegalSupport from 'entities/Service/ui/Services/legalSupport/LegalSupport.jsx';
+import Accounting from 'widgets/ServiceBlock/ui/Services/accounting/Accounting.jsx';
+import HumanResources from 'widgets/ServiceBlock/ui/Services/humanResources/HumanResources.jsx';
+import LegalSupport from 'widgets/ServiceBlock/ui/Services/legalSupport/ui/LegalSupport.jsx';
 
 const servicesDictionary = {
 	1: Accounting,

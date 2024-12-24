@@ -1,21 +1,20 @@
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { Box } from '@mui/material';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Box, Typography } from '@mui/material';
 import HomeIcon from 'shared/assets/icons/Home';
 import ListIcon from 'shared/assets/icons/List';
 import OfficeIcon from 'shared/assets/icons/Office';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
-import { pageActions } from 'shared/model/pageSlice';
 import { Button } from 'shared/ui/Button';
 import Market from 'shared/assets/icons/Market';
 import Document from 'shared/assets/icons/Document';
 import cls from './Navigation.module.scss';
 
-export const Navigation = () => {
+export const Navigation = ({ ...props }) => {
 	// const page = useSelector((state) => state.page.page);
+	// const dispatch = useDispatch();
 
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	const location = useLocation();
 
 	const menu = {
 		list: [
@@ -48,39 +47,46 @@ export const Navigation = () => {
 	};
 
 	return (
-		<div className={cls.NavigationList}>
-			{menu.list.map((el) => (
-				<Link
-					key={el.link}
-					to={el.link}
-				>
-					<Button
-						variant={
-							window.location.pathname === el.link
-								? 'contained'
-								: 'text'
-						}
-						onClick={() => {
-							dispatch(pageActions.setPage({ link: el.link }));
-							navigate(el.link);
-						}}
-						className={`${cls.NavigationItem} ${
-							window.location.pathname !== el.link
-								? cls.isNotSelected
-								: ''
-						}`}
+		<Box
+			className={cls.NavigationList}
+			{...props}
+		>
+			{menu.list.map((el) => {
+				const isActive =
+					el.link === RoutePath[AppRoutes.COMPANY]
+						? location.pathname.startsWith(el.link) // Для "Моя компания" проверяем, начинается ли путь с /company
+						: location.pathname === el.link; // Для остальных точное совпадение
+
+				return (
+					<Link
+						key={el.link}
+						to={el.link}
 					>
-						<Box
-							display="flex"
-							alignItems="center"
-							justifyContent="start"
-							gap="16px"
+						<Button
+							variant={isActive ? 'contained' : 'text'}
+							onClick={() => {
+								// dispatch(pageActions.setPage({ link: el.link }));
+								navigate(el.link);
+							}}
+							className={`${cls.NavigationItem} ${
+								isActive ? '' : cls.isNotSelected
+							}`}
 						>
-							{el.icon} {el.title}
-						</Box>
-					</Button>
-				</Link>
-			))}
-		</div>
+							<Box
+								display="flex"
+								alignItems="center"
+								justifyContent="start"
+								gap="16px"
+							>
+								{el.icon}
+								<Typography variant="L16">
+									{el.title}
+								</Typography>
+							</Box>
+						</Button>
+					</Link>
+				);
+			})}
+		</Box>
 	);
 };

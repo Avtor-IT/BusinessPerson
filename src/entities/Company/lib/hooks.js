@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getCompanies } from '../api/getCompanies.js';
+import getCompanies from '../api/getCompanies';
 
 export const useCompanies = () =>
 	useQuery({

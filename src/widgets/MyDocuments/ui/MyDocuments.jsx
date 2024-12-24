@@ -8,13 +8,13 @@ import ArrowIcon from 'shared/assets/icons/Arrow/ui/ArrowIcon';
 import IconButton from 'shared/ui/Button';
 import CopyBtn from 'features/CopyBtn';
 import cls from './MyDocuments.module.scss';
-import { useDocumentsQuery } from 'entities/Documents/model/hooks';
+import { useGetPersonalDocuments } from 'entities/Documents/hooks/useGetPersonalDocuments';
 // import AddSquareIcon from 'shared/assets/AddSquareIcon'; для возможного линка
 
 export const MyDocuments = ({ ...props }) => {
 	const [hovered, setHovered] = React.useState(false); // для анимации при наведении
 
-	const { isLoading, error, data } = useDocumentsQuery();
+	const { isLoading, error, data } = useGetPersonalDocuments();
 
 	if (isLoading) return 'Loading...';
 

@@ -1,11 +1,8 @@
-import Api from 'shared/api';
-import { apiEndpoints, baseUrl } from 'shared/model';
+import { apiCaller } from 'shared/api';
 
 export const getCurrentUser = async () => {
-	const api = new Api();
-
 	try {
-		return await api.Get(`${baseUrl}${apiEndpoints.ME}`);
+		return apiCaller('ME');
 	} catch (_e) {
 		throw Error('Не удалось получить информацию о пользователе');
 	}

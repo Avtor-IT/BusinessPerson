@@ -1,3 +1,6 @@
-.Sectiontitle {
-  font-size: 40px;
+.TitleBox {
+	border: 2px solid
+		color-mix(in srgb, var(--tertiary) 20%, rgba(255, 255, 255, 0) 80%);
+	border-left: transparent;
+	border-right: transparent;
 }

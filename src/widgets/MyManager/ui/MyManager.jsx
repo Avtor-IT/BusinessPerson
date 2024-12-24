@@ -51,7 +51,7 @@ export const MyManager = ({ ...props }) => {
 							src={manager.result[0]['PERSONAL_PHOTO']}
 						/>
 						<Typography
-							variant="R20"
+							variant="M16"
 							style={{ lineHeight: '1.3' }}
 						>
 							{manager.result[0]['LAST_NAME']}
@@ -67,7 +67,10 @@ export const MyManager = ({ ...props }) => {
 								className={`${cls.phoneManager}`}
 								textToCopy={manager.result[0]['WORK_PHONE']}
 							>
-								<Typography variant="L24">
+								<Typography
+									variant="R20"
+									color="var(--tertiary)"
+								>
 									{formatPhoneNumber(
 										manager.result[0]['WORK_PHONE']
 									)}
@@ -78,7 +81,12 @@ export const MyManager = ({ ...props }) => {
 							to={RoutePath[AppRoutes.MAIN]}
 							className={`${cls.btnMessage}`}
 						>
-							<Typography variant="L16">Написать</Typography>
+							<Typography
+								variant="R16"
+								color="var(--tertiary)"
+							>
+								Написать
+							</Typography>
 							<MessageBtn />
 						</Link>
 					</Box>

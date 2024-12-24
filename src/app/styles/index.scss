@@ -1,5 +1,6 @@
-@import './reset';
-@import './variables/vars';
+@use 'fonts';
+@use 'reset';
+@use 'variables/vars';
 
 * {
     box-sizing: border-box;
