@@ -5,7 +5,6 @@ const useGetUserServices = () =>
 	useQuery({
 		queryKey: ['user_services'],
 		queryFn: getUserServices,
-		staleTime: Infinity,
 		// enabled: false, // Чтобы ошибки глаза не мозолили
 	});
 
