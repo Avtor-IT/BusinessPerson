@@ -1,5 +1,6 @@
-import { Typography } from '@mui/material';
+import { CircularProgress, Typography } from '@mui/material';
 import { Grid, Stack } from '@mui/system';
+import { useDownloadMutation } from 'entities/Documents';
 import humanFileSize from 'entities/Documents/lib/humanFileSize';
 import ImportIcon from 'shared/assets/icons/Import';
 import { Button } from 'shared/ui/Button';
@@ -32,7 +33,10 @@ const documentName = (name) => {
 	);
 };
 
-const DocumentCard = ({ document, download, ...props }) => {
+const DocumentCard = ({ document, ...props }) => {
+	const { mutate: download, isPending: isDownloading } = useDownloadMutation(
+		document.ID
+	);
 	return (
 		<Grid {...props}>
 			<Card height="100%">
@@ -47,10 +51,11 @@ const DocumentCard = ({ document, download, ...props }) => {
 						alignItems="center"
 						marginTop={4}
 					>
-						<Typography variant="M16">
+						<Typography variant="R16">
 							{humanFileSize(document.SIZE)}
 						</Typography>
 						<Button
+							disabled={isDownloading}
 							variant="unStyled"
 							onClick={() =>
 								download &&
@@ -62,7 +67,21 @@ const DocumentCard = ({ document, download, ...props }) => {
 								})
 							}
 						>
-							<ImportIcon />
+							<Stack
+								direction="row"
+								alignItems="center"
+								spacing={1}
+								height={'1rem'}
+							>
+								{isDownloading ? (
+									<CircularProgress
+										color="inherit"
+										size="1rem"
+									/>
+								) : (
+									<ImportIcon variant="R16" />
+								)}
+							</Stack>
 						</Button>
 					</Stack>
 				</Stack>

@@ -1,15 +1,10 @@
 import { Typography } from '@mui/material';
 import { Box, Grid } from '@mui/system';
-import {
-	useDownloadMutation,
-	useGetCompanyDocuments,
-} from 'entities/Documents';
+import { useGetCompanyDocuments } from 'entities/Documents';
 import DocumentCard from './DocumentCard';
 
 const DocumentList = ({ company, ...otherProps }) => {
 	const { data: documents, isLoading, error } = useGetCompanyDocuments();
-
-	const { mutate: download } = useDownloadMutation();
 
 	if (!company) {
 		return (
@@ -55,7 +50,6 @@ const DocumentList = ({ company, ...otherProps }) => {
 					<DocumentCard
 						key={document.ID}
 						document={document}
-						download={download}
 						size={3}
 						alignItems="stretch"
 					/>

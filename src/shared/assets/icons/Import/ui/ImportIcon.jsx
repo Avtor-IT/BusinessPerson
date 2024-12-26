@@ -1,8 +1,8 @@
-const ImportIcon = ({ width, height, fill, ...otherProps }) => {
+const ImportIcon = ({ size, width, height, fill, ...otherProps }) => {
 	return (
 		<svg
-			width={width || '24'}
-			height={height || '24'}
+			width={width || size || '24'}
+			height={height || size || '24'}
 			fill={fill || 'none'}
 			{...otherProps}
 		>
