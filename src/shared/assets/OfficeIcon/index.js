@@ -1,1 +1,0 @@
-export OfficeIcon from './ui/OfficeIcon';

@@ -12,6 +12,7 @@ const useMinWidth = () => {
 	const breakpointsMap = new Map();
 
 	keys.forEach((key) => {
+		// eslint-disable-next-line react-hooks/rules-of-hooks
 		const matches = useMediaQuery(theme.breakpoints.down(key));
 		breakpointsMap.set(key, matches);
 	});

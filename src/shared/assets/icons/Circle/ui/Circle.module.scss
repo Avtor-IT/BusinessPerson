@@ -1,0 +1,15 @@
+.Circle {
+    position: absolute;
+    z-index: 1;
+    border-radius: 100%;
+    transition: all .3s ease;
+}
+
+.purple {
+    background-color: var(--primary);
+}
+
+.blue {
+    background: rgb(81,73,150);
+    background: linear-gradient(157deg, rgba(81,73,150,1) 0%, rgba(255,255,255,1) 100%);
+}

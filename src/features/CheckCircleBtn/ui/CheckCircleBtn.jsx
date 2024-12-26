@@ -1,6 +1,5 @@
-import React from 'react';
 import { Button } from 'shared/ui/Button';
-import CheckCircle from 'shared/assets/CheckCircle';
+import CheckCircle from 'shared/assets/icons/CheckCircle';
 
 const CheckCircleBtn = ({ className, stroke = '#7B7F9F', ...otherProps }) => {
 	return (

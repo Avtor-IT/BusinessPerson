@@ -1,81 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import ServiceBlock from './ServiceBlock';
-import PromoServiceBlock from './PromoServiceBlock';
-import { SectionTitle } from 'shared/ui/SectionTitle';
-import { merge } from 'shared/lib';
-import BookerService from 'widgets/BookerService';
-import CoinsIcon from 'shared/assets/CoinsIcon';
-import ScalesIcon from 'shared/assets/ScalesIcon';
-import UsersIcon from 'shared/assets/UsersIcon';
-import LineChartIcon from 'shared/assets/LineChartIcon';
-import { services } from 'shared/json';
+import ServiceBlock from 'widgets/ServiceBlock/ui/ServiceBlock.jsx';
+import SectionTitle from 'shared/ui/SectionTitle';
 import { Box } from '@mui/system';
+import { RenderService, useGetUserServices } from 'entities/Service/index.js';
+import { Typography } from '@mui/material';
+
+const renderServices = (services) =>
+	services.map(({ service }) => (
+		<RenderService
+			key={service}
+			id={service}
+		/>
+	));
+
+const renderSkeleton = () =>
+	Array.from({ length: 4 }).map((_, i) => <ServiceBlock key={i} />);
 
 const ServiceSection = ({ ...props }) => {
-	const [preparedServices, setPreparedServices] = useState();
+	const {
+		data: userServices,
+		error: userServicesError,
+		isPending: isUserServicesPending,
+	} = useGetUserServices();
 
-	useEffect(() => {
-		setPreparedServices(
-			merge(
-				{
-					booker: {
-						component: <BookerService />,
-						promoContent: { icon: <CoinsIcon /> },
-					},
-					legal: {
-						component: null,
-						promoContent: {
-							icon: <ScalesIcon />,
-						},
-					},
-					personnel: {
-						component: null,
-						promoContent: {
-							icon: <UsersIcon />,
-						},
-					},
-					marketing: {
-						component: null,
-						promoContent: {
-							icon: <LineChartIcon />,
-						},
-					},
-				},
-				services
-			)
+	if (isUserServicesPending) {
+		return (
+			<Box
+				component="section"
+				{...props}
+			>
+				<SectionTitle>Мои услуги</SectionTitle>
+				{renderSkeleton()}
+			</Box>
 		);
-	}, []);
+	}
 
-	const renderServices = (services) => {
-		const result = [];
-
-		for (let [name, options] of Object.entries(services)) {
-			result.push(
-				<ServiceBlock
-					serviceTitle={options.title}
-					key={name}
-				>
-					{options.isAvailable ? (
-						options.component
-					) : (
-						<PromoServiceBlock
-							title={options.title}
-							tagList={options.promoContent.tagList}
-							icon={options.promoContent.icon}
-						/>
-					)}
-				</ServiceBlock>
-			);
-		}
-
-		return result;
-	};
-
-	const renderSkeleton = () => {
-		return Array.from({ length: 4 }).map((_, i) => (
-			<ServiceBlock key={i} />
-		));
-	};
+	if (userServicesError) {
+		return (
+			<Box
+				component="section"
+				{...props}
+			>
+				<SectionTitle>Мои услуги</SectionTitle>
+				<Typography>Ошибка при загрузке услуг</Typography>
+			</Box>
+		);
+	}
 
 	return (
 		<Box
@@ -83,9 +52,7 @@ const ServiceSection = ({ ...props }) => {
 			{...props}
 		>
 			<SectionTitle>Мои услуги</SectionTitle>
-			{preparedServices
-				? renderServices(preparedServices)
-				: renderSkeleton()}
+			{renderServices(userServices['active_services'])}
 		</Box>
 	);
 };

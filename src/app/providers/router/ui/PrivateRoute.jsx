@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Layout } from 'app/layout/Layout';
 import { useCheckStatus } from 'entities/User';
 import { useQueryClient } from '@tanstack/react-query';
+import { FallbackPage } from 'pages/FallbackPage';
 
 const PrivateRoute = ({ children }) => {
 	const [auth, setAuth] = useState(null);
@@ -26,26 +27,32 @@ const PrivateRoute = ({ children }) => {
 			setAuth(false);
 			navigate('/login', { replace: true });
 		}
-	}, [statusQuery]);
+	}, [navigate, statusQuery]);
 
 	useEffect(() => {
 		queryClient.invalidateQueries({ queryKey: ['status'] });
-	}, [location.pathname]);
+	}, [queryClient, location.pathname]);
 
-	if (statusQuery.isPending) return <div>Загрузка...</div>;
+	if (statusQuery.isPending) return <FallbackPage />;
 
 	if (auth === null) {
 		return null;
 	}
 
-	return auth ? (
-		{ children } && <Layout />
-	) : (
-		<Navigate
-			to="/login"
-			replace
-		/>
-	);
+	if (!auth) {
+		return (
+			<Navigate
+				to="/login"
+				replace
+			/>
+		);
+	}
+
+	if (!children) {
+		return <Layout />;
+	}
+
+	return { children };
 };
 
 export default PrivateRoute;

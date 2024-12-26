@@ -1,1 +1,1 @@
-import ImportBtn from "./ui/ImportBtn";
+export { default } from './ui/ImportBtn';

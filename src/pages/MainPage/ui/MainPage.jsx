@@ -1,55 +1,53 @@
-import React from 'react';
-import { Grid } from '@mui/material';
-import { MyCompanyAccounts } from 'widgets/MyCompanyAccounts';
-import { MyManager } from 'widgets/MyManager';
-import { MyDocuments } from 'widgets/MyDocuments';
-import { MyRecomends } from 'widgets/MyRecomends';
+import { Grid } from '@mui/system';
 import { MyCompany } from 'widgets/MyCompany';
-import { MyAccounts } from 'widgets/MyAccounts';
+import { Notifications } from 'widgets/Notifications';
+import { MyManager } from 'widgets/MyManager';
+// import { MyDocuments } from 'widgets/MyDocuments';
+import { MyRecommends } from 'widgets/MyRecommends';
 import ServiceSection from 'widgets/ServiceBlock';
+import { Stack } from '@mui/material';
 
 const MainPage = () => {
 	return (
 		<>
-			<Grid
-				container
-				columns={5}
-				columnSpacing={'19px'}
-				rowSpacing={'16px'}
-			>
+			<Stack spacing={2}>
 				<Grid
-					item
-					xl={3}
+					container
+					columns={5}
+					spacing={2}
 				>
-					<MyCompanyAccounts
-						LeftComponent={MyCompany}
-						RightComponent={MyAccounts}
-					/>
+					<Grid
+						size={{
+							xl: 2,
+							xs: 3,
+						}}
+					>
+						<MyCompany />
+					</Grid>
+					<Grid size={1}>
+						<Notifications />
+					</Grid>
+					<Grid
+						size={{
+							xl: 2,
+							xs: 5,
+						}}
+					>
+						<MyManager />
+					</Grid>
 				</Grid>
 				<Grid
-					item
-					xl={2}
-					xs={5}
+					container
+					columns={5}
+					columnSpacing={2}
+					rowSpacing={2}
 				>
-					<MyManager />
+					<Grid size={5}>
+						<MyRecommends />
+					</Grid>
 				</Grid>
-
-				<Grid
-					item
-					xl={2}
-					xs={5}
-				>
-					<MyDocuments />
-				</Grid>
-				<Grid
-					item
-					xl={3}
-					xs={5}
-				>
-					<MyRecomends />
-				</Grid>
-			</Grid>
-			<ServiceSection mt="72px" />
+			</Stack>
+			<ServiceSection marginTop={4} />
 		</>
 	);
 };

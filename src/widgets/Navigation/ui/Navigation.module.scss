@@ -1,36 +1,43 @@
 .NavigationList {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: stretch;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	align-items: stretch;
+	color: var(--tertiary);
 
-    & .NavigationItem {
-        width: 100%;
-        text-align: center;
-        position: relative;
+	& .NavigationItem {
+		width: 100%;
+		text-align: center;
+		position: relative;
+		padding-right: 0;
 
-        &.isNotSelected {
+		& svg path {
+			stroke: var(--color-light);
+		}
 
-            &::before {
-                display: block;
-                content: '';
-                position: absolute;
-                background-color: var(--primary);
-                height: 100%;
-                width: 4px;
-                border-radius: 8px;
-                left: 0;
-                top: 50%;
-                transform: translateY(-50%) scaleX(0);
-                transform-origin: left;
-                transition: all .2s ease;
+		&.isNotSelected {
+			& svg path {
+				stroke: var(--tertiary);
+			}
 
-            }
+			&::before {
+				display: block;
+				content: '';
+				position: absolute;
+				background-color: var(--primary);
+				height: 100%;
+				width: 4px;
+				border-radius: 8px;
+				left: 0;
+				top: 50%;
+				transform: translateY(-50%) scaleX(0);
+				transform-origin: left;
+				transition: all 0.2s ease;
+			}
 
-            &:hover::before {
-                transform: translateY(-50%) scaleX(1);
-            }
-
-        }
-    }
+			&:hover::before {
+				transform: translateY(-50%) scaleX(1);
+			}
+		}
+	}
 }

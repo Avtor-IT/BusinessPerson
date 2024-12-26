@@ -1,4 +1,3 @@
-import React from 'react';
 import { ChatBot } from 'features/ChatBot';
 import ProfileBlock from 'widgets/ProfileBlock';
 import cls from './Header.module.scss';
@@ -9,14 +8,16 @@ export const Header = ({ className, ...props }) => {
 	const { lg } = useMinWidth();
 
 	return (
-		<header
+		<Box
+			component="header"
 			className={`${cls.Header} ${className}`}
 			{...props}
 		>
 			<Stack
 				direction="row"
-				spacing="16px"
+				spacing={2}
 				justifyContent="space-between"
+				alignItems="center"
 			>
 				<Box
 					alignSelf="center"
@@ -29,6 +30,6 @@ export const Header = ({ className, ...props }) => {
 					<ProfileBlock />
 				</Box>
 			</Stack>
-		</header>
+		</Box>
 	);
 };

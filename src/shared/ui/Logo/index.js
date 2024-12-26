@@ -1,2 +1,2 @@
-export {LogoIcon} from './ui/LogoIcon';
-export LogoText from './ui/LogoText';
+export { LogoIcon } from './ui/LogoIcon';
+export { default } from './ui/LogoText';

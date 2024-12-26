@@ -1,1 +1,1 @@
-export SectionTitle from './ui/SectionTitle'
+export { default } from './ui/SectionTitle';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useCurrentUserQuery } from 'entities/User';
 import { Button } from 'shared/ui/Button';
 import { useNavigate } from 'react-router-dom';

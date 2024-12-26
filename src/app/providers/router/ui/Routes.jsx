@@ -1,77 +1,65 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { MainPage } from 'pages/MainPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import PrivateRoute from 'app/providers/router/ui/PrivateRoute';
-import { ServicesPage } from 'pages/ServicesPage';
 import { TutorialPage } from 'pages/TutorialPage';
 import { LoginPage } from 'pages/LoginPage';
-import { AppealPage } from 'pages/AppealPage';
-import { AppealsPage } from 'pages/AppealsPage';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import B24WidgetProvider from 'app/providers/b24WidgetProvider';
+import { MarketPage } from 'pages/MarketPage';
+import { CompanyPage } from 'pages/CompanyPage';
+import { LetterPage } from 'pages/LetterPage';
+import CompanyDocumentsPage from 'pages/CompanyDocumentsPage/ui/CompanyDocumentsPage';
+import { FallbackPage } from 'pages/FallbackPage';
 
 const Routes = () => {
 	const router = createBrowserRouter([
 		{
 			id: 'root',
 			path: '/',
-			element: <PrivateRoute />,
+			element: (
+				<B24WidgetProvider>
+					<PrivateRoute />
+				</B24WidgetProvider>
+			),
 			children: [
 				{
 					index: true,
-					element: (
-						<B24WidgetProvider>
-							<MainPage />
-						</B24WidgetProvider>
-					),
+					element: <MainPage />,
 				},
 				{
-					path: RoutePath[AppRoutes.SERVICES],
-					element: (
-						<B24WidgetProvider>
-							<ServicesPage />
-						</B24WidgetProvider>
-					),
+					path: RoutePath[AppRoutes.COMPANY],
+					element: <CompanyPage />,
+				},
+				{
+					path: `${
+						RoutePath[AppRoutes.COMPANY]
+					}/:companyTitle/documents`,
+					element: <CompanyDocumentsPage />,
+				},
+				{
+					path: RoutePath[AppRoutes.MARKET],
+					element: <MarketPage />,
+				},
+				{
+					path: RoutePath[AppRoutes.LETTER],
+					element: <LetterPage />,
 				},
 				{
 					path: RoutePath[AppRoutes.TUTORIAL],
-					element: (
-						<B24WidgetProvider>
-							<TutorialPage />
-						</B24WidgetProvider>
-					),
-				},
-				{
-					path: RoutePath[AppRoutes.APPEALS],
-					element: (
-						<B24WidgetProvider>
-							<AppealsPage />
-						</B24WidgetProvider>
-					),
-				},
-				{
-					path: RoutePath[AppRoutes.APPEAL],
-					element: (
-						<B24WidgetProvider>
-							<AppealPage />
-						</B24WidgetProvider>
-					),
+					element: <TutorialPage />,
 				},
 				{
 					path: RoutePath[AppRoutes.NOT_FOUND],
-					element: (
-						<B24WidgetProvider>
-							<NotFoundPage />
-						</B24WidgetProvider>
-					),
+					element: <NotFoundPage />,
 				},
 			],
 		},
 		{
 			path: 'login',
 			element: (
-				<Suspense fallback={<div>loading</div>}>
+				<Suspense fallback={<FallbackPage />}>
 					<LoginPage />
 				</Suspense>
 			),

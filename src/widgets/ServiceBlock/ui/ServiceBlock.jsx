@@ -1,45 +1,31 @@
-import React from 'react';
-import { Grid, Skeleton, Typography } from '@mui/material';
+import { Skeleton, Typography } from '@mui/material';
 import cls from './ServiceBlock.module.scss';
+import { Stack } from '@mui/system';
 
 const ServiceBlock = ({ serviceTitle, children }) => {
 	return (
-		<Grid
-			container
-			columns={6}
+		<Stack
 			className={cls.ServiceBlock}
-			columnSpacing={{ xs: '16px' }}
-			marginBottom={'54px'}
+			spacing={{ xs: '32px' }}
+			marginBlock="54px"
+			minHeight="520px"
 		>
-			<Grid
-				item
-				xl={6}
-				className={cls.ServiceTitle}
-				marginBottom={'32px'}
-			>
-				<Typography variant="M24">
-					{serviceTitle || (
-						<Skeleton
-							variant="rounded"
-							height="60px"
-						/>
-					)}
-				</Typography>
-			</Grid>
-			<Grid
-				item
-				xs={6}
-				xl={5}
-				className={cls.serviceContent}
-			>
-				{children || (
+			<Typography variant="M32">
+				{serviceTitle || (
 					<Skeleton
-						variant="rounded"
-						height="310px"
+						variant="text"
+						height="60px"
 					/>
 				)}
-			</Grid>
-		</Grid>
+			</Typography>
+
+			{children || (
+				<Skeleton
+					variant="rectangular"
+					height="520px"
+				/>
+			)}
+		</Stack>
 	);
 };
 

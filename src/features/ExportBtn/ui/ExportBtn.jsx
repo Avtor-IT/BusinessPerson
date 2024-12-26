@@ -1,5 +1,4 @@
-import React from 'react';
-import ExportIcon from 'shared/assets/ExportIcon/ui/ExportIcon';
+import ExportIcon from 'shared/assets/icons/Export/ui/ExportIcon';
 import { Button } from 'shared/ui/Button';
 
 const ExportBtn = ({ ...otherProps }) => {

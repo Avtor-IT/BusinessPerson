@@ -1,4 +1,3 @@
-import React from 'react';
 import { useChat } from 'entities/Chat';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';

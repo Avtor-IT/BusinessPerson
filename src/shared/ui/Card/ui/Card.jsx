@@ -1,6 +1,4 @@
-import React from 'react';
 import cls from './Card.module.scss';
-import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 
 export const Card = ({
@@ -8,7 +6,6 @@ export const Card = ({
 	className,
 	variant,
 	serviceColor,
-	serviceTitle,
 	style,
 	...props
 }) => {
@@ -25,16 +22,6 @@ export const Card = ({
 			style={resultStyles}
 			{...props}
 		>
-			{serviceTitle ? (
-				<Typography
-					variant="M24"
-					sx={{ mb: '24px' }}
-				>
-					{serviceTitle}
-				</Typography>
-			) : (
-				''
-			)}
 			{children}
 		</Box>
 	);

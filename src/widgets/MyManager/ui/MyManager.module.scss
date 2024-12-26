@@ -1,0 +1,49 @@
+.MyManager {
+    height: 100%;
+    min-height: 192px;
+    position: relative;
+    padding-bottom: 24px;
+    overflow: hidden;
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--color-dark);
+}
+
+.titleManager {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.infoManager {
+    display: flex;
+    justify-content: space-between;
+}
+
+.avatarFIO {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.contactManager {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.phoneManager {
+    display: flex;
+    gap: 8px;
+    justify-content: end;
+    align-items: center;
+}
+
+.btnMessage {
+    display: flex;
+    gap: 8px;
+    justify-content: end;
+    align-items: center;
+}

@@ -1,14 +1,15 @@
-import React from 'react';
 import { Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import cls from './SectionTitle.module.scss';
 
 const SectionTitle = ({ children }) => {
 	return (
-		<Typography
-			variant="M40"
-			sx={{ mb: '54px' }}
+		<Box
+			paddingBlock="51px"
+			className={cls.TitleBox}
 		>
-			{children}
-		</Typography>
+			<Typography variant="M40">{children}</Typography>
+		</Box>
 	);
 };
 

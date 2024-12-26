@@ -1,12 +1,9 @@
-import Api from 'shared/api';
-import { apiEndpoints, baseUrl } from 'shared/model';
+import { apiCaller } from 'shared/api';
 
 export const checkStatus = async () => {
-	const api = new Api();
-
 	try {
-		return await api.Get(`${baseUrl}${apiEndpoints.STATUS}`);
-	} catch (e) {
+		return apiCaller('STATUS');
+	} catch (_e) {
 		throw Error('Не удалось проверить статус пользователя');
 	}
 };

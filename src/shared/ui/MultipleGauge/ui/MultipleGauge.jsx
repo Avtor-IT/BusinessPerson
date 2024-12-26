@@ -1,4 +1,3 @@
-import React from 'react';
 import { Gauge, gaugeClasses } from '@mui/x-charts/Gauge';
 import { Box, Typography } from '@mui/material';
 import cls from './MultipleGauge.module.scss';

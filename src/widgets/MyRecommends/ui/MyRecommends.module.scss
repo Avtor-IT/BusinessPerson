@@ -1,0 +1,30 @@
+.MyRecommends {
+    padding: 32px 24px 12px;
+    overflow: hidden;
+    position: relative;
+    //height: 100%;
+}
+
+.sliderRecommends {
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.recommendItem {
+    border-radius: 32px;
+    padding: 16px;
+    display: flex !important;
+    flex-direction: column;
+    gap: 16px;
+    width: 328px !important;
+    height: 229px;
+    margin-top: 32px;
+}
+
+// для непрочитанных карточек
+// border: 2px solid #A43270;
+
+// для прочитанных
+// color: #7B7F9F;

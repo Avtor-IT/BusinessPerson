@@ -1,1 +1,1 @@
-import ExportBtn from "./ui/ExportBtn";
+export { default } from './ui/ExportBtn';
