@@ -10,4 +10,8 @@ export default defineConfig({
 			...autoAlias,
 		},
 	},
+	build: {
+		outDir: './docs',
+		emptyOutDir: true, // also necessary
+	},
 });

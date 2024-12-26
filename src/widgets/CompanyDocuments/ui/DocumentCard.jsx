@@ -3,14 +3,12 @@ import { Grid, Stack } from '@mui/system';
 import { useDownloadMutation } from 'entities/Documents';
 import humanFileSize from 'entities/Documents/lib/humanFileSize';
 import ImportIcon from 'shared/assets/icons/Import';
+import splitFilename from 'shared/lib/splitFilename';
 import { Button } from 'shared/ui/Button';
 import { Card } from 'shared/ui/Card';
 
-const documentName = (name) => {
-	const nameArray = name.split('.');
-
-	const title = nameArray.slice(0, -1).join('.');
-	const extension = nameArray.at(-1);
+const renderDocumentName = (name) => {
+	const [title, extension] = splitFilename(name);
 
 	return extension ? (
 		<Stack
@@ -44,7 +42,7 @@ const DocumentCard = ({ document, ...props }) => {
 					height="100%"
 					justifyContent="space-between"
 				>
-					{documentName(document.NAME)}
+					{renderDocumentName(document.NAME)}
 					<Stack
 						direction="row"
 						spacing={2}
