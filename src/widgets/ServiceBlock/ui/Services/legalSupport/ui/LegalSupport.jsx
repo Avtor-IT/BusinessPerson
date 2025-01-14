@@ -1,8 +1,8 @@
 import { Grid } from '@mui/system';
-import { Card } from 'shared/ui/Card/index.js';
-import ServiceBlock from 'widgets/ServiceBlock/ui/ServiceBlock.jsx';
-import LegalSupportReports from 'widgets/ServiceBlock/ui/Services/legalSupport/ui/LegalSupportReports.jsx';
-import Docs from 'widgets/ServiceBlock/ui/Services/legalSupport/ui/Docs.jsx';
+import { Card } from 'shared/ui/Card';
+import ServiceBlock from '../../../ServiceBlock';
+import LegalSupportReports from './LegalSupportReports';
+import Docs from './Docs';
 
 const LegalSupport = () => {
 	return (

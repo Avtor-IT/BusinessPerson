@@ -1,9 +1,9 @@
-import SearchIcon from 'shared/assets/icons/Search';
+import SearchIcon from 'shared/icons/Search';
 import Input from 'shared/ui/Input';
 import cls from './ChatBot.module.scss';
 import { useWidth } from 'shared/model';
 
-export const ChatBot = ({ ...inputProps }) => {
+export const ChatBot = () => {
 	const size = useWidth();
 
 	const getInputWidth = (size) => {
@@ -39,8 +39,7 @@ export const ChatBot = ({ ...inputProps }) => {
 			}
 			style={{ minWidth: getInputWidth(size) }}
 			className={cls.ChatBot}
-			placeholder="Чат бот"
-			{...inputProps}
+			inputProps={{ placeholder: 'Чат бот' }}
 		/>
 	);
 };

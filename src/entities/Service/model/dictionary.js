@@ -1,11 +1,14 @@
-import Accounting from 'widgets/ServiceBlock/ui/Services/accounting/Accounting.jsx';
-import HumanResources from 'widgets/ServiceBlock/ui/Services/humanResources/HumanResources.jsx';
-import LegalSupport from 'widgets/ServiceBlock/ui/Services/legalSupport/ui/LegalSupport.jsx';
+import { Accounting, HumanResources, LegalSupport } from 'widgets/ServiceBlock';
 
-const servicesDictionary = {
-	1: Accounting,
-	2: HumanResources,
-	3: LegalSupport,
+const servicesDictionary = (id) => {
+	switch (id) {
+		case 1:
+			return Accounting;
+		case 2:
+			return HumanResources;
+		case 3:
+			return LegalSupport;
+	}
 };
 
 export default servicesDictionary;

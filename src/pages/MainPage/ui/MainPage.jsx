@@ -1,11 +1,10 @@
 import { Grid } from '@mui/system';
-import { MyCompany } from 'widgets/MyCompany';
+import { CompanyCard } from 'widgets/CompanyCard';
 import { Notifications } from 'widgets/Notifications';
-import { MyManager } from 'widgets/MyManager';
-// import { MyDocuments } from 'widgets/MyDocuments';
-import { MyRecommends } from 'widgets/MyRecommends';
-import ServiceSection from 'widgets/ServiceBlock';
+import { MyManager } from 'widgets/ManagerCard';
+import { MyRecommends } from 'widgets/RecommendationsCard';
 import { Stack } from '@mui/material';
+import { ServiceSection } from 'widgets/ServiceBlock';
 
 const MainPage = () => {
 	return (
@@ -22,7 +21,7 @@ const MainPage = () => {
 							xs: 3,
 						}}
 					>
-						<MyCompany />
+						<CompanyCard />
 					</Grid>
 					<Grid size={1}>
 						<Notifications />

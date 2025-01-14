@@ -85,5 +85,13 @@ export const theme = createTheme({
 				},
 			},
 		},
+		MuiTooltip: {
+			styleOverrides: {
+				tooltipPlacementTop: {
+					fontSize: '1rem',
+					background: 'var(--tertiary)',
+				},
+			},
+		},
 	},
 });

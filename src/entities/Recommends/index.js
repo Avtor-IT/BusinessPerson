@@ -1,1 +1,1 @@
-export { default } from './ui/RecommendsCard.jsx';
+export { default as useRecommendsQuery } from './hooks/useRecommendsQuery.js';

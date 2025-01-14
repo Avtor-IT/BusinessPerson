@@ -53,30 +53,21 @@ class Api {
 			});
 	};
 
-	DownloadFile = async (url, params) => {
+	GetBlob = async (url, params) => {
 		try {
-			const { filename, ...restParams } = params;
-
 			const response = await axios.get(url, {
 				headers: {
 					Authorization: 'Bearer ' + sessionStorage.getItem('access'),
 				},
 				responseType: 'arraybuffer',
-				...restParams,
+				...params,
 			});
 
-			const blob = new Blob([response.data], {
+			return new Blob([response.data], {
 				type:
 					response.headers['content-type'] ||
 					'application/octet-stream',
 			});
-
-			const link = document.createElement('a');
-			link.href = URL.createObjectURL(blob);
-			link.download = `${filename || 'file'}`; // Имя файла
-			document.body.appendChild(link);
-			link.click();
-			document.body.removeChild(link);
 		} catch (e) {
 			throw Error(e?.response?.data?.error || e);
 		}

@@ -31,6 +31,37 @@ export default [
 			...react.configs.recommended.rules,
 			...react.configs['jsx-runtime'].rules,
 			...reactHooks.configs.recommended.rules,
+			'no-restricted-imports': [
+				'error',
+				{
+					patterns: [
+						{
+							group: [
+								'shared/*/*/**',
+								'entities/*/**',
+								'features/*/**',
+								'widgets/*/**',
+								'pages/*/**',
+								'app/*/**',
+							],
+							message:
+								'Direct access to the internal parts of the module is prohibited',
+						},
+						{
+							group: [
+								'../**/shared',
+								'../**/entities',
+								'../**/features',
+								'../**/widgets',
+								'../**/pages',
+								'../**/app',
+							],
+							message:
+								'Prefer absolute imports instead of relatives',
+						},
+					],
+				},
+			],
 			'react/jsx-no-target-blank': 'off',
 			'react-refresh/only-export-components': [
 				'warn',

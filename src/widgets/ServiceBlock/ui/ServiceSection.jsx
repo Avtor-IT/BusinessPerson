@@ -1,12 +1,13 @@
-import ServiceBlock from 'widgets/ServiceBlock/ui/ServiceBlock.jsx';
 import SectionTitle from 'shared/ui/SectionTitle';
 import { Box } from '@mui/system';
-import { RenderService, useGetUserServices } from 'entities/Service/index.js';
 import { Typography } from '@mui/material';
+import { useGetUserServices } from 'entities/Service';
+import ServiceBlock from './ServiceBlock';
+import RenderServiceById from './RenderServiceById';
 
 const renderServices = (services) =>
 	services.map(({ service }) => (
-		<RenderService
+		<RenderServiceById
 			key={service}
 			id={service}
 		/>

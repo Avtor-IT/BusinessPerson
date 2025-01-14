@@ -1,5 +1,4 @@
 import React from 'react';
-import { StoreProvider } from './storeProvider';
 import { ThemeProvider } from './themeProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Routes from './router/ui/Routes';
@@ -9,13 +8,11 @@ export const Providers = () => {
 
 	return (
 		<React.StrictMode>
-			<StoreProvider>
-				<QueryClientProvider client={queryClient}>
-					<ThemeProvider>
-						<Routes />
-					</ThemeProvider>
-				</QueryClientProvider>
-			</StoreProvider>
+			<QueryClientProvider client={queryClient}>
+				<ThemeProvider>
+					<Routes />
+				</ThemeProvider>
+			</QueryClientProvider>
 		</React.StrictMode>
 	);
 };

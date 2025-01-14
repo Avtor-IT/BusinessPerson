@@ -3,8 +3,8 @@ import { Box } from '@mui/system';
 
 export const Card = ({
 	children,
-	className,
-	variant,
+	className = '',
+	variant = 'default',
 	serviceColor,
 	style,
 	...props
@@ -16,9 +16,7 @@ export const Card = ({
 
 	return (
 		<Box
-			className={`${cls.Card} ${variant ? cls[variant] : ''} ${
-				className || ''
-			}`}
+			className={`card-styled ${cls.Card} ${cls[variant]} ${className}`}
 			style={resultStyles}
 			{...props}
 		>

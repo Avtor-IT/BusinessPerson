@@ -8,8 +8,9 @@
  * splitFilename('example.txt') // ['example', 'txt']
  */
 const splitFilename = (filename) => {
-	const nameArray = filename.split('.');
+	if (!filename) return;
 
+	const nameArray = filename.split('.');
 	const title = nameArray.slice(0, -1).join('.');
 	const extension = nameArray.at(-1);
 

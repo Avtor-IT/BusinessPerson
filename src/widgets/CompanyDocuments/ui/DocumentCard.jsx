@@ -1,86 +1,78 @@
-import { CircularProgress, Typography } from '@mui/material';
 import { Grid, Stack } from '@mui/system';
-import { useDownloadMutation } from 'entities/Documents';
-import humanFileSize from 'entities/Documents/lib/humanFileSize';
-import ImportIcon from 'shared/assets/icons/Import';
-import splitFilename from 'shared/lib/splitFilename';
-import { Button } from 'shared/ui/Button';
+import {
+	DocumentModal,
+	DownloadDocumentButton,
+	ExportDocumentButton,
+} from 'entities/Documents';
 import { Card } from 'shared/ui/Card';
-
-const renderDocumentName = (name) => {
-	const [title, extension] = splitFilename(name);
-
-	return extension ? (
-		<Stack
-			direction="row"
-			justifyContent="space-between"
-			alignItems="start"
-			spacing={2}
-		>
-			<Typography variant="M24">{title}</Typography>
-			<Typography
-				variant="M24"
-				fontStyle="300"
-				color="var(--tertiary)"
-			>
-				{extension}
-			</Typography>
-		</Stack>
-	) : (
-		<Typography variant="M24">{title}</Typography>
-	);
-};
+import DocumentTitle from './DocumentTitle';
+import { useState } from 'react';
+import { Typography } from '@mui/material';
+import { formatDate } from 'shared/lib';
 
 const DocumentCard = ({ document, ...props }) => {
-	const { mutate: download, isPending: isDownloading } = useDownloadMutation(
-		document.ID
-	);
+	const [open, setOpen] = useState(false);
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
+
+	if (document.TYPE !== 'file') {
+		return null;
+	}
+
 	return (
-		<Grid {...props}>
+		<Grid
+			{...props}
+			minHeight={200}
+		>
+			<DocumentModal
+				open={open}
+				onClose={handleClose}
+				document={document}
+			/>
 			<Card height="100%">
 				<Stack
 					height="100%"
 					justifyContent="space-between"
+					gap={2}
 				>
-					{renderDocumentName(document.NAME)}
+					<DocumentTitle
+						name={document.NAME}
+						onClick={handleOpen}
+					/>
 					<Stack
 						direction="row"
-						spacing={2}
-						alignItems="center"
-						marginTop={4}
+						justifyContent="space-between"
+						alignItems="end"
 					>
-						<Typography variant="R16">
-							{humanFileSize(document.SIZE)}
-						</Typography>
-						<Button
-							disabled={isDownloading}
-							variant="unStyled"
-							onClick={() =>
-								download &&
-								download({
-									url: document.DOWNLOAD_URL,
-									params: {
-										filename: document.NAME,
-									},
-								})
-							}
+						<Stack
+							direction="row"
+							spacing={1}
+							alignItems="center"
+							marginTop={4}
 						>
-							<Stack
-								direction="row"
-								alignItems="center"
-								spacing={1}
-								height={'1rem'}
+							<ExportDocumentButton />
+							<DownloadDocumentButton document={document} />
+						</Stack>
+						<Stack
+							alignItems="end"
+							gap={1}
+						>
+							{document.UPDATE_TIME !== document.CREATE_TIME && (
+								<Typography
+									variant="L16"
+									color="var(--tertiary)"
+								>
+									Обновлено:{' '}
+									{formatDate(document.UPDATE_TIME)}
+								</Typography>
+							)}
+							<Typography
+								variant="L16"
+								color="var(--tertiary)"
 							>
-								{isDownloading ? (
-									<CircularProgress
-										color="inherit"
-										size="1rem"
-									/>
-								) : (
-									<ImportIcon variant="R16" />
-								)}
-							</Stack>
-						</Button>
+								Загружено: {formatDate(document.CREATE_TIME)}
+							</Typography>
+						</Stack>
 					</Stack>
 				</Stack>
 			</Card>
