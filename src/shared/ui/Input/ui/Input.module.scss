@@ -1,45 +1,62 @@
 .Input {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    position: relative;
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	position: relative;
 
-    & svg {
-        stroke: var(--color-dark);
-    }
+	&.outline {
+		border-radius: 8px;
+	}
 
-    & input {
-        border: 1.5px solid #6c6e87;
-        border-radius: 8px;
-        padding: 16px;
-        flex-grow: 1;
-        font-size: 20px;
+	&.card-styled {
+		box-shadow: var(--card-shadow);
+		border-radius: 16px;
+		position: relative;
+		overflow: hidden;
 
-    }
+		& input {
+			padding: 14px 28px;
+		}
+	}
 
-    &:has(> .IconBefore) {
-        & input {
-            padding-left: 50px;
-        }
-    }
+	& svg {
+		stroke: var(--color-dark);
+	}
 
-    &:has(> .IconAfter) {
-        & input {
-            padding-right: 50px;
-        }
-    }
+	& input {
+		padding: 16px;
+		flex-grow: 1;
+		font-size: 20px;
 
-    & .IconBefore, & .IconAfter {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-    }
+		&::placeholder {
+			color: var(--color-dark);
+		}
+	}
 
-    & .IconBefore {
-        left: 16px;
-    }
+	&:has(> .IconBefore) {
+		& input {
+			padding-left: 50px;
+		}
+	}
 
-    & .IconAfter {
-        right: 16px;
-    }
+	&:has(> .IconAfter) {
+		& input {
+			padding-right: 50px;
+		}
+	}
+
+	& .IconBefore,
+	& .IconAfter {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	& .IconBefore {
+		left: 16px;
+	}
+
+	& .IconAfter {
+		right: 16px;
+	}
 }

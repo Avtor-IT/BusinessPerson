@@ -1,8 +1,9 @@
 import { ChatBot } from 'features/ChatBot';
-import ProfileBlock from 'widgets/ProfileBlock';
 import cls from './Header.module.scss';
 import { useMinWidth } from 'shared/model';
 import { Box, Stack } from '@mui/system';
+import { NotificationButton } from 'entities/Notifications';
+import { User } from 'entities/User';
 
 export const Header = ({ className, ...props }) => {
 	const { lg } = useMinWidth();
@@ -26,8 +27,14 @@ export const Header = ({ className, ...props }) => {
 				>
 					<ChatBot />
 				</Box>
-				<Box alignSelf="center">
-					<ProfileBlock />
+				<Box
+					alignSelf="center"
+					display="flex"
+					alignItems="center"
+					gap="16px"
+				>
+					<NotificationButton />
+					<User />
 				</Box>
 			</Stack>
 		</Box>

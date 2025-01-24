@@ -2,15 +2,14 @@ import { Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { MainPage } from 'pages/MainPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
-import PrivateRoute from 'app/providers/router/ui/PrivateRoute';
+import PrivateRoute from '../ui/PrivateRoute';
 import { TutorialPage } from 'pages/TutorialPage';
 import { LoginPage } from 'pages/LoginPage';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
-import B24WidgetProvider from 'app/providers/b24WidgetProvider';
 import { MarketPage } from 'pages/MarketPage';
 import { CompanyPage } from 'pages/CompanyPage';
 import { LetterPage } from 'pages/LetterPage';
-import CompanyDocumentsPage from 'pages/CompanyDocumentsPage/ui/CompanyDocumentsPage';
+import { DocumentsPage } from 'pages/DocumentsPage';
 import { FallbackPage } from 'pages/FallbackPage';
 
 const Routes = () => {
@@ -18,11 +17,12 @@ const Routes = () => {
 		{
 			id: 'root',
 			path: '/',
-			element: (
-				<B24WidgetProvider>
-					<PrivateRoute />
-				</B24WidgetProvider>
-			),
+			// element: (
+			// 	<B24WidgetProvider>
+			// 		<PrivateRoute />
+			// 	</B24WidgetProvider>
+			// ),
+			element: <PrivateRoute />,
 			children: [
 				{
 					index: true,
@@ -33,10 +33,8 @@ const Routes = () => {
 					element: <CompanyPage />,
 				},
 				{
-					path: `${
-						RoutePath[AppRoutes.COMPANY]
-					}/:companyTitle/documents`,
-					element: <CompanyDocumentsPage />,
+					path: RoutePath[AppRoutes.COMPANY_DOCUMENTS],
+					element: <DocumentsPage />,
 				},
 				{
 					path: RoutePath[AppRoutes.MARKET],

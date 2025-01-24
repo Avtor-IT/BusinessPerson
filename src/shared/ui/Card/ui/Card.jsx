@@ -1,24 +1,26 @@
-import cls from './Card.module.scss';
 import { Box } from '@mui/system';
+import cls from './Card.module.scss';
 
+/**
+ * @typedef {'default' | 'no-shadow'} variant
+ */
+
+/**
+ * @param {{variant: variant, className?: string, style?: React.CSSProperties, children: React.ReactNode}} props
+ * @returns {ReactNode}
+ */
 export const Card = ({
 	children,
-	className,
-	variant,
-	serviceColor,
-	style,
+	className = '',
+	variant = 'default',
+	style = {},
 	...props
 }) => {
-	const colorStyle = {
-		'--service-color': serviceColor || 'var(--secondary)',
-	};
-	const resultStyles = Object.assign({}, style, colorStyle);
+	const resultStyles = Object.assign({}, style);
 
 	return (
 		<Box
-			className={`${cls.Card} ${variant ? cls[variant] : ''} ${
-				className || ''
-			}`}
+			className={`${cls.Card} ${cls[variant]} ${className}`}
 			style={resultStyles}
 			{...props}
 		>

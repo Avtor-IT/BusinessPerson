@@ -3,72 +3,78 @@
 @use 'variables/vars';
 
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 
+	&::-webkit-scrollbar {
+		background: transparent;
+		width: 4px;
+	}
 
-    &::-webkit-scrollbar {
-        background: transparent;
-        width: 4px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: rgb(var(--scollbar-color));
-        border-radius: 8px;
-    }
+	&::-webkit-scrollbar-thumb {
+		background: rgb(var(--scollbar-color));
+		border-radius: 8px;
+	}
 }
 
 /* For Mozilla Browser */
 @-moz-document url-prefix() {
-    * {
-        scrollbar-color: rgb(var(--scollbar-color)) transparent;
-        scrollbar-width: thin;
-    }
-    .scrollable {
-        scrollbar-color: rgb(var(--scollbar-color), .5) rgb(var(--scollbar-color), .1);
-        scrollbar-width: thin;
-    }
+	* {
+		scrollbar-color: rgb(var(--scollbar-color)) transparent;
+		scrollbar-width: thin;
+	}
+	.scrollable {
+		scrollbar-color: rgb(var(--scollbar-color), 0.5)
+			rgb(var(--scollbar-color), 0.1);
+		scrollbar-width: thin;
+	}
 }
 
 /* For iOS devices */
 @supports (-webkit-touch-callout: none) {
-    * {
-        scrollbar-color: rgb(var(--scollbar-color)) transparent;
-        scrollbar-width: thin;
-    }
-    .scrollable {
-        scrollbar-color: rgb(var(--scollbar-color), .5) rgb(var(--scollbar-color), .1);
-        scrollbar-width: thin;
-    }
+	* {
+		scrollbar-color: rgb(var(--scollbar-color)) transparent;
+		scrollbar-width: thin;
+	}
+	.scrollable {
+		scrollbar-color: rgb(var(--scollbar-color), 0.5)
+			rgb(var(--scollbar-color), 0.1);
+		scrollbar-width: thin;
+	}
 }
 
 #root {
-    min-height: 100vh;
+	min-height: 100vh;
+	overflow-x: hidden;
 }
 
 body,
 html {
-    font-family: 'Rubik', sans-serif;
-    font-weight: 300;
-    color: var(--color-dark);
-    background-color: var(--bg-color);
+	scroll-behavior: smooth;
+	scrollbar-gutter: stable;
+	font-family: 'Rubik', sans-serif;
+	font-weight: 300;
+	color: var(--color-dark);
+	background-color: var(--bg-color);
 
-    &::-webkit-scrollbar {
-        background: transparent;
-        width: 8px;
-    }
+	&::-webkit-scrollbar {
+		background: transparent;
+		width: 8px;
+	}
 
-    &::-webkit-scrollbar-thumb {
-        background: rgb(var(--scollbar-color));
-        border-radius: 8px;
-    }
-
+	&::-webkit-scrollbar-thumb {
+		background: rgb(var(--scollbar-color));
+		border-radius: 8px;
+	}
 }
 
 hr {
-    border: .5px solid var(--grey)
+	border: 0.5px solid var(--grey);
+}
+
+input {
+	all: unset;
 }
 
 .secondary {
-    --bg: var(--secondary)
+	--bg: var(--secondary);
 }
-

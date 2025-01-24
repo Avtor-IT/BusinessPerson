@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { Box, Stack } from '@mui/system';
+import { Box, Grid, Stack } from '@mui/system';
 import { useCompanies } from 'entities/Company';
 import { useMemo } from 'react';
 import { useParams } from 'react-router';
@@ -33,7 +33,7 @@ const CompanyDocuments = () => {
 					<Typography variant="M24">
 						Ошибка при загрузке компании.
 					</Typography>
-					<Typography variant="p">{error}</Typography>
+					<Typography variant="M24">{error.message}</Typography>
 				</Stack>
 			</Box>
 		);
@@ -49,10 +49,17 @@ const CompanyDocuments = () => {
 
 	return (
 		<Box>
-			<DocumentList
-				company={company}
-				marginTop={4}
-			/>
+			<Grid
+				container
+				columns={3}
+			>
+				<Grid size={2}>
+					<DocumentList
+						company={company}
+						marginTop={4}
+					/>
+				</Grid>
+			</Grid>
 		</Box>
 	);
 };

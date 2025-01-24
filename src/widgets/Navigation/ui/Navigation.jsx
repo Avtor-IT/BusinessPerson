@@ -1,18 +1,15 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
-import HomeIcon from 'shared/assets/icons/Home';
-import ListIcon from 'shared/assets/icons/List';
-import OfficeIcon from 'shared/assets/icons/Office';
+import HomeIcon from 'shared/icons/Home';
+import ListIcon from 'shared/icons/List';
+import OfficeIcon from 'shared/icons/Office';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import { Button } from 'shared/ui/Button';
-import Market from 'shared/assets/icons/Market';
-import Document from 'shared/assets/icons/Document';
+import Market from 'shared/icons/Market';
+import Document from 'shared/icons/Document';
 import cls from './Navigation.module.scss';
 
 export const Navigation = ({ ...props }) => {
-	// const page = useSelector((state) => state.page.page);
-	// const dispatch = useDispatch();
-
 	const navigate = useNavigate();
 	const location = useLocation();
 

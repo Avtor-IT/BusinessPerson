@@ -1,6 +1,7 @@
 export const AppRoutes = {
 	MAIN: 'main',
 	COMPANY: 'company',
+	COMPANY_DOCUMENTS: 'companyDocuments',
 	MARKET: 'market',
 	LETTER: 'letter',
 	TUTORIAL: 'tutorial',
@@ -11,6 +12,7 @@ export const AppRoutes = {
 export const RoutePath = {
 	[AppRoutes.MAIN]: '/',
 	[AppRoutes.COMPANY]: '/company',
+	[AppRoutes.COMPANY_DOCUMENTS]: '/company/:companyTitle/documents/*',
 	[AppRoutes.MARKET]: '/market',
 	[AppRoutes.LETTER]: '/letter',
 	[AppRoutes.TUTORIAL]: '/tutorial',

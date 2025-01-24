@@ -26,7 +26,7 @@ export const theme = createTheme({
 		},
 		M20: {
 			fontSize: 20,
-			fontWeight: 400,
+			fontWeight: 500,
 		},
 		M16: {
 			fontSize: 16,
@@ -82,6 +82,14 @@ export const theme = createTheme({
 			styleOverrides: {
 				rounded: {
 					borderRadius: '16px',
+				},
+			},
+		},
+		MuiTooltip: {
+			styleOverrides: {
+				tooltipPlacementTop: {
+					fontSize: '1rem',
+					background: 'var(--tertiary)',
 				},
 			},
 		},

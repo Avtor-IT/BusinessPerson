@@ -1,5 +1,5 @@
 import { cloneElement } from 'react';
-import AddSquareIcon from 'shared/assets/icons/AddSquare/ui/AddSquareIcon';
+import AddSquareIcon from 'shared/icons/AddSquare';
 import { Button } from 'shared/ui/Button';
 import cls from './IconBtn.module.scss';
 
@@ -11,6 +11,19 @@ const IconButton = ({
 	icon = <AddSquareIcon color={color} />,
 	...otherProps
 }) => {
+	if (!children) {
+		return (
+			<Button
+				className={`${className} ${cls.IconButton}`}
+				variant="unStyled"
+				color={color}
+				{...otherProps}
+			>
+				{icon}
+			</Button>
+		);
+	}
+
 	const childrenWithProps = cloneElement(children, {
 		style: { color: color },
 	});
