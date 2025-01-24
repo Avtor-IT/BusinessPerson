@@ -4,7 +4,7 @@ import { Notifications } from 'widgets/Notifications';
 import { MyManager } from 'widgets/ManagerCard';
 import { MyRecommends } from 'widgets/RecommendationsCard';
 import { Stack } from '@mui/material';
-import { ServiceSection } from 'widgets/ServiceBlock';
+import { ServiceSection } from 'widgets/ServiceSection';
 
 const MainPage = () => {
 	return (
@@ -18,7 +18,7 @@ const MainPage = () => {
 					<Grid
 						size={{
 							xl: 2,
-							xs: 3,
+							xs: 5,
 						}}
 					>
 						<CompanyCard />
@@ -29,7 +29,7 @@ const MainPage = () => {
 					<Grid
 						size={{
 							xl: 2,
-							xs: 5,
+							xs: 4,
 						}}
 					>
 						<MyManager />

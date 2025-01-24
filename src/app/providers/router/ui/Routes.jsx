@@ -33,9 +33,7 @@ const Routes = () => {
 					element: <CompanyPage />,
 				},
 				{
-					path: `${
-						RoutePath[AppRoutes.COMPANY]
-					}/:companyTitle/documents`,
+					path: RoutePath[AppRoutes.COMPANY_DOCUMENTS],
 					element: <DocumentsPage />,
 				},
 				{

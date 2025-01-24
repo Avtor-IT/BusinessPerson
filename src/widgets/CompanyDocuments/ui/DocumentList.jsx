@@ -1,14 +1,15 @@
+import { useMemo } from 'react';
 import { Typography } from '@mui/material';
-import { Box, Grid } from '@mui/system';
-import { useGetCompanyDocuments } from 'entities/Documents';
-import DocumentCard from './DocumentCard';
+import { Box, Stack } from '@mui/system';
 import {
 	FilterDocuments,
 	searchSelector,
 	useDocumentsFilterStore,
 } from 'features/DocumentsFilter';
-import { useMemo } from 'react';
-import FolderCard from './FolderCard';
+import { useGetCompanyDocuments } from 'entities/Documents';
+import Folder from './folder/Folder';
+import { Card } from 'shared/ui/Card';
+import FilesList from './file/FIlesList';
 
 const DocumentList = ({ company, ...otherProps }) => {
 	const { data: documents, isLoading, error } = useGetCompanyDocuments();
@@ -16,18 +17,19 @@ const DocumentList = ({ company, ...otherProps }) => {
 
 	const foldersList = useMemo(() => {
 		if (!documents) return [];
-		return Array.from(
-			new Set(documents.filter((doc) => doc['TYPE'] === 'folder'))
-		);
+		return documents.filter((doc) => doc['TYPE'] === 'folder');
 	}, [documents]);
 
+	// @TODO: Система поиска поменяется
 	const filteredDocuments = useMemo(() => {
+		if (!documents) return [];
+		const files = documents.filter((doc) => doc['TYPE'] === 'file');
 		if (search) {
-			return documents.filter((doc) =>
+			return files.filter((doc) =>
 				doc['NAME'].toLowerCase().includes(search.toLowerCase())
 			);
 		}
-		return documents;
+		return files;
 	}, [documents, search]);
 
 	if (!company) {
@@ -67,39 +69,32 @@ const DocumentList = ({ company, ...otherProps }) => {
 	return (
 		<Box {...otherProps}>
 			<FilterDocuments />
-			<Typography
-				variant="M24"
-				color="var(--secondary)"
-				mt={4}
-				mb={3}
+			<Stack
+				gap={2}
+				paddingBottom={2}
 			>
-				{company['TITLE']}
-			</Typography>
-			<Grid
-				container
-				spacing={2}
-				columns={3}
-			>
-				{filteredDocuments.map((document) => (
-					<DocumentCard
-						key={document.ID}
-						document={document}
-						alignItems="stretch"
-						size={1}
+				{foldersList.map((folder) => (
+					<Folder
+						key={folder.ID}
+						folder={folder}
+						// initialOpen={i === 0}
 					/>
 				))}
+
+				{filteredDocuments.length ? (
+					<Card
+						minHeight={76}
+						variant="no-shadow"
+						sx={{ padding: '0 !important' }}
+					>
+						<FilesList files={filteredDocuments} />
+					</Card>
+				) : null}
+
 				{filteredDocuments.length === 0 && (
 					<Typography variant="M20">Документы не найдены.</Typography>
 				)}
-
-				{foldersList.map((folder) => (
-					<FolderCard
-						key={folder.ID}
-						folder={folder}
-						size={3}
-					/>
-				))}
-			</Grid>
+			</Stack>
 		</Box>
 	);
 };

@@ -4,6 +4,7 @@ import { Typography } from '@mui/material';
 import { useGetUserServices } from 'entities/Service';
 import ServiceBlock from './ServiceBlock';
 import RenderServiceById from './RenderServiceById';
+import { useWidth } from 'shared/model';
 
 const renderServices = (services) =>
 	services.map(({ service }) => (
@@ -17,6 +18,8 @@ const renderSkeleton = () =>
 	Array.from({ length: 4 }).map((_, i) => <ServiceBlock key={i} />);
 
 const ServiceSection = ({ ...props }) => {
+	const breakpointWidth = useWidth();
+
 	const {
 		data: userServices,
 		error: userServicesError,
@@ -50,9 +53,18 @@ const ServiceSection = ({ ...props }) => {
 	return (
 		<Box
 			component="section"
+			position="relative"
 			{...props}
 		>
+			<Box
+				position="absolute"
+				width={breakpointWidth}
+				height="2px"
+				bgcolor={'color-mix(in srgb, var(--tertiary) 20%, transparent)'}
+				left="-285px"
+			/>
 			<SectionTitle>Мои услуги</SectionTitle>
+
 			{renderServices(userServices['active_services'])}
 		</Box>
 	);

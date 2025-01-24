@@ -15,4 +15,11 @@ export default defineConfig({
 		outDir: './docs',
 		emptyOutDir: true, // also necessary
 	},
+	css: {
+		preprocessorOptions: {
+			scss: {
+				api: 'modern-compiler', // remove deprecated warning
+			},
+		},
+	},
 });

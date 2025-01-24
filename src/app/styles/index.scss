@@ -44,10 +44,13 @@
 
 #root {
 	min-height: 100vh;
+	overflow-x: hidden;
 }
 
 body,
 html {
+	scroll-behavior: smooth;
+	scrollbar-gutter: stable;
 	font-family: 'Rubik', sans-serif;
 	font-weight: 300;
 	color: var(--color-dark);

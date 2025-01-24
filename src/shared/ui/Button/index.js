@@ -1,2 +1,2 @@
-export { Button } from './ui/Button';
-export { default } from './ui/IconButton';
+export { default as Button } from './ui/Button';
+export { default as IconButton } from './ui/IconButton';

@@ -33,7 +33,7 @@ const CompanyDocuments = () => {
 					<Typography variant="M24">
 						Ошибка при загрузке компании.
 					</Typography>
-					<Typography variant="p">{error}</Typography>
+					<Typography variant="M24">{error.message}</Typography>
 				</Stack>
 			</Box>
 		);

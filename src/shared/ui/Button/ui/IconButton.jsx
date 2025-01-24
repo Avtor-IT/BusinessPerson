@@ -11,6 +11,19 @@ const IconButton = ({
 	icon = <AddSquareIcon color={color} />,
 	...otherProps
 }) => {
+	if (!children) {
+		return (
+			<Button
+				className={`${className} ${cls.IconButton}`}
+				variant="unStyled"
+				color={color}
+				{...otherProps}
+			>
+				{icon}
+			</Button>
+		);
+	}
+
 	const childrenWithProps = cloneElement(children, {
 		style: { color: color },
 	});

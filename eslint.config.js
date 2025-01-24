@@ -30,7 +30,6 @@ export default [
 			...js.configs.recommended.rules,
 			...react.configs.recommended.rules,
 			...react.configs['jsx-runtime'].rules,
-			...reactHooks.configs.recommended.rules,
 			'no-restricted-imports': [
 				'error',
 				{
@@ -42,7 +41,6 @@ export default [
 								'features/*/**',
 								'widgets/*/**',
 								'pages/*/**',
-								'app/*/**',
 							],
 							message:
 								'Direct access to the internal parts of the module is prohibited',

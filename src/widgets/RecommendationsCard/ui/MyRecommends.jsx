@@ -108,12 +108,15 @@ export const MyRecommends = ({ ...props }) => {
 			{...props}
 		>
 			<Circle
-				width={813}
-				height={813}
+				size={813}
 				right={-350}
 				bottom={260}
-				bg={'linear-gradient(22deg, #514996 0%, #FFF 100%)'}
+				sx={{
+					background:
+						'linear-gradient(15deg, var(--secondary) 0%, #FFF 100%) !important',
+				}}
 			/>
+
 			<Box position="relative">
 				<Box className={`${cls.sliderRecommends} slider-container`}>
 					<Typography
@@ -125,6 +128,7 @@ export const MyRecommends = ({ ...props }) => {
 					>
 						Актуальные изменения в законодательстве
 					</Typography>
+
 					<Slider {...settings}>
 						{data.map((item, index) => (
 							<Card
