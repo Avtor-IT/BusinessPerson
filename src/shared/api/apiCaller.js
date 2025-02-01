@@ -16,9 +16,9 @@ const resolveEndpoint = (endpoint) => {
  */
 
 /**
- * @param {ApiEndpointKey} endpoint - Название эндпоинта
- * @param {ApiMethod} method - Метод запроса
- * @returns {Promise<any>} Полный URL для API
+ * @param {ApiEndpointKey} endpoint
+ * @param {ApiMethod} method
+ * @returns {Promise<any>}
  */
 
 const apiCaller = async (endpoint, method = 'GET', options = {}, headers) => {
