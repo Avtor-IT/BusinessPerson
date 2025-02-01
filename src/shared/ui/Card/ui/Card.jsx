@@ -1,5 +1,4 @@
 import { Box } from '@mui/system';
-import cls from './Card.module.scss';
 
 /**
  * @typedef {'default' | 'no-shadow'} variant
@@ -11,18 +10,32 @@ import cls from './Card.module.scss';
  */
 export const Card = ({
 	children,
+	sx,
 	className = '',
 	variant = 'default',
-	style = {},
 	...props
 }) => {
-	const resultStyles = Object.assign({}, style);
+	const defaultSx = {
+		backgroundColor: 'var(--bg-additional-color)',
+		borderRadius: '16px',
+		boxShadow: '0px 1px 3px 1px #00000026, 0px 1px 2px 0px #0000004d',
+		position: 'relative',
+		overflow: 'hidden',
+		padding: '32px 24px 24px',
+	};
+	const variantSx = {
+		'no-shadow': {
+			boxShadow: 'none',
+			border: '0.5px solid var(--gray-light)',
+		},
+		default: {},
+	};
 
 	return (
 		<Box
-			className={`${cls.Card} ${cls[variant]} ${className}`}
-			style={resultStyles}
 			{...props}
+			className={className}
+			sx={{ ...defaultSx, ...variantSx[variant], ...sx }}
 		>
 			{children}
 		</Box>

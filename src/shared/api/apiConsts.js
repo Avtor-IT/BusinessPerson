@@ -15,6 +15,7 @@ export const apiEndpoints = {
 	DOCUMENTS: 'hooks/user_company_documents/',
 	USER_SERVICES: 'hooks/user-service/check-expiration/',
 	DOWNLOAD_FILE: 'hooks/downloadfile/',
+	UPLOAD_FILE: 'hooks/upload_user_file/',
 };
 
 /**

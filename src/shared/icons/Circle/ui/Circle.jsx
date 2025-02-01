@@ -1,17 +1,36 @@
 import { Box } from '@mui/material';
-import cls from './circle.module.scss';
 
-const Circle = ({ width, height, size, variant = 'blue', ...otherProps }) => {
-	const classNames = [
-		cls.Circle,
-		variant === 'blue' ? cls.blue : cls.purple,
-	].join(' ');
+const Circle = ({
+	width,
+	height,
+	size,
+	variant = 'blue',
+	sx,
+	className = '',
+	...otherProps
+}) => {
+	const deafultSx = {
+		position: 'absolute',
+		zIndex: 1,
+		borderRadius: '100%',
+		transition: 'all 0.3s ease',
+	};
+
+	const variantSx = {
+		purple: {
+			backgroundColor: 'var(--primary)',
+		},
+		blue: {
+			backgroundColor: 'rgb(81, 73, 150)',
+		},
+	};
 
 	return (
 		<Box
 			width={width || size || '678px'}
 			height={height || size || '678px'}
-			className={classNames}
+			className={className}
+			sx={{ ...deafultSx, ...variantSx[variant], ...sx }}
 			{...otherProps}
 		></Box>
 	);

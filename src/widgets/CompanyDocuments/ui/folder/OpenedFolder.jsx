@@ -28,12 +28,7 @@ const OpenedFolder = ({ path, open, folder, ...props }) => {
 				textAlign="center"
 			>
 				<Typography variant="R20">
-					{error.response &&
-					error.response.data &&
-					error.response.data.error ===
-						'No documents found in the company folder.'
-						? 'Папка пуста.'
-						: 'Ошибка при загрузке файлов.'}
+					Ошибка при загрузке файлов.
 				</Typography>
 			</Box>
 		);
@@ -46,6 +41,17 @@ const OpenedFolder = ({ path, open, folder, ...props }) => {
 				textAlign="center"
 			>
 				<CircularProgress />
+			</Box>
+		);
+	}
+
+	if (!files?.length) {
+		return (
+			<Box
+				{...props}
+				textAlign="center"
+			>
+				<Typography variant="R20">Папка пуста.</Typography>
 			</Box>
 		);
 	}

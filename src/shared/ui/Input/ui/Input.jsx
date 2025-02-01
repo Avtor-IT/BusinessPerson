@@ -1,6 +1,6 @@
+import { Box } from '@mui/system';
 import { cloneElement } from 'react';
 import cls from './Input.module.scss';
-import { Box } from '@mui/system';
 
 /**
  * @typedef {"outline" | "card-styled"} Variant
@@ -32,6 +32,7 @@ const Input = ({
 	onChange,
 	onInput,
 	value,
+	disabled,
 	...props
 }) => {
 	const BeforeWithProps =
@@ -53,6 +54,7 @@ const Input = ({
 		>
 			{BeforeWithProps}
 			<input
+				disabled={disabled}
 				onChange={onChange}
 				onInput={onInput}
 				value={value}

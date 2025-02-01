@@ -1,19 +1,18 @@
 import { useMemo } from 'react';
 import { Typography } from '@mui/material';
 import { Box, Stack } from '@mui/system';
-import {
-	FilterDocuments,
-	searchSelector,
-	useDocumentsFilterStore,
-} from 'features/DocumentsFilter';
 import { useGetCompanyDocuments } from 'entities/Documents';
 import Folder from './folder/Folder';
 import { Card } from 'shared/ui/Card';
-import FilesList from './file/FIlesList';
+import FilesList from './file/FilesList';
+import {
+	FilterDocuments,
+	useDocumentsFilterStore,
+} from 'features/Documents/DocumentsFilter';
 
 const DocumentList = ({ company, ...otherProps }) => {
 	const { data: documents, isLoading, error } = useGetCompanyDocuments();
-	const search = useDocumentsFilterStore(searchSelector);
+	const { search } = useDocumentsFilterStore.use.filters();
 
 	const foldersList = useMemo(() => {
 		if (!documents) return [];
@@ -77,7 +76,6 @@ const DocumentList = ({ company, ...otherProps }) => {
 					<Folder
 						key={folder.ID}
 						folder={folder}
-						// initialOpen={i === 0}
 					/>
 				))}
 

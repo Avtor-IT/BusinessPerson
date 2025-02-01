@@ -11,7 +11,7 @@ const resolveEndpoint = (endpoint) => {
 
 /**
  * @typedef {'STATUS' | 'ME' | 'JWT_CREATE' | 'JWT_VERIFY' | 'JWT_REFRESH' |
- * 'MANAGER' | 'COMPANIES' | 'DOCUMENTS' | 'USER_SERVICES' | 'DOWNLOAD_FILE'} ApiEndpointKey
+ * 'MANAGER' | 'COMPANIES' | 'DOCUMENTS' | 'USER_SERVICES' | 'DOWNLOAD_FILE' | 'UPLOAD_FILE'} ApiEndpointKey
  * @typedef {'GET' | 'POST'} ApiMethod
  */
 
@@ -21,14 +21,14 @@ const resolveEndpoint = (endpoint) => {
  * @returns {Promise<any>} Полный URL для API
  */
 
-const apiCaller = async (endpoint, method = 'GET', options = {}) => {
+const apiCaller = async (endpoint, method = 'GET', options = {}, headers) => {
 	try {
 		const api = new Api();
 		if (method === 'GET') {
-			return await api.Get(resolveEndpoint(endpoint), options);
+			return await api.Get(resolveEndpoint(endpoint), options, headers);
 		}
 		if (method === 'POST') {
-			return await api.Post(resolveEndpoint(endpoint), options);
+			return await api.Post(resolveEndpoint(endpoint), options, headers);
 		}
 	} catch (e) {
 		throw new Error(

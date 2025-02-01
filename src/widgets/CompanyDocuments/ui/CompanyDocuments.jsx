@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { useParams } from 'react-router';
 import DocumentList from './DocumentList';
 
-const CompanyDocuments = () => {
+const CompanyDocuments = ({ ...props }) => {
 	const { companyTitle } = useParams();
 	const { data: companies, isLoading, error } = useCompanies();
 
@@ -20,7 +20,7 @@ const CompanyDocuments = () => {
 
 	if (isLoading) {
 		return (
-			<Box>
+			<Box {...props}>
 				<Typography variant="M40">Загрузка компании...</Typography>
 			</Box>
 		);
@@ -28,7 +28,7 @@ const CompanyDocuments = () => {
 
 	if (error) {
 		return (
-			<Box>
+			<Box {...props}>
 				<Stack>
 					<Typography variant="M24">
 						Ошибка при загрузке компании.
@@ -40,7 +40,7 @@ const CompanyDocuments = () => {
 	}
 
 	if (!company) {
-		<Box>
+		<Box {...props}>
 			<Stack>
 				<Typography variant="M24">Компания не найдена.</Typography>
 			</Stack>
@@ -48,16 +48,13 @@ const CompanyDocuments = () => {
 	}
 
 	return (
-		<Box>
+		<Box {...props}>
 			<Grid
 				container
 				columns={3}
 			>
 				<Grid size={2}>
-					<DocumentList
-						company={company}
-						marginTop={4}
-					/>
+					<DocumentList company={company} />
 				</Grid>
 			</Grid>
 		</Box>

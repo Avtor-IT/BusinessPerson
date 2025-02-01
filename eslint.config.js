@@ -37,9 +37,9 @@ export default [
 						{
 							group: [
 								'shared/*/*/**',
-								'entities/*/**',
-								'features/*/**',
-								'widgets/*/**',
+								'entities/*/*/**',
+								'features/*/*/**',
+								'widgets/*/*/**',
 								'pages/*/**',
 							],
 							message:

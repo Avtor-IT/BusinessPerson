@@ -6,7 +6,7 @@ import FolderItem from '../folder/FolderItem';
 
 const FilesList = ({ files }) => {
 	const itemVariants = {
-		hidden: { opacity: 0, y: 20 },
+		hidden: { opacity: 0, y: 10 },
 		visible: { opacity: 1, y: 0 },
 	};
 

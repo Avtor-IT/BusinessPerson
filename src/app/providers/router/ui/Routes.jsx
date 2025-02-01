@@ -1,19 +1,19 @@
-import { Suspense } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { MainPage } from 'pages/MainPage';
-import { NotFoundPage } from 'pages/NotFoundPage';
-import PrivateRoute from '../ui/PrivateRoute';
-import { TutorialPage } from 'pages/TutorialPage';
-import { LoginPage } from 'pages/LoginPage';
-import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
-import { MarketPage } from 'pages/MarketPage';
 import { CompanyPage } from 'pages/CompanyPage';
-import { LetterPage } from 'pages/LetterPage';
 import { DocumentsPage } from 'pages/DocumentsPage';
 import { FallbackPage } from 'pages/FallbackPage';
+import { LetterPage } from 'pages/LetterPage';
+import { LoginPage } from 'pages/LoginPage';
+import { MainPage } from 'pages/MainPage';
+import { MarketPage } from 'pages/MarketPage';
+import { NotFoundPage } from 'pages/NotFoundPage';
+import { TutorialPage } from 'pages/TutorialPage';
+import { Suspense } from 'react';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
+import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
+import PrivateRoute from '../ui/PrivateRoute';
 
 const Routes = () => {
-	const router = createBrowserRouter([
+	const router = createHashRouter([
 		{
 			id: 'root',
 			path: '/',

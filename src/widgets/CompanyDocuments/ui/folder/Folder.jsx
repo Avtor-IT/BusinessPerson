@@ -32,6 +32,7 @@ const Folder = ({ folder }) => {
 					<Stack
 						direction="row"
 						alignItems="center"
+						color="var(--secondary)"
 						gap={1}
 					>
 						{folder.NAME}
@@ -52,15 +53,7 @@ const Folder = ({ folder }) => {
 		return (
 			<FolderCard
 				title={<FolderTitle pathArray={pathArray} />}
-				// onTitleClick={() =>
-				// 	navigate(
-				// 		`${
-				// 			RoutePath[AppRoutes.COMPANY]
-				// 		}/${companyTitle}/documents`
-				// 	)
-				// }
 				open={open}
-				sx={{}}
 			>
 				<AnimatePresence>
 					{open && (
@@ -71,7 +64,6 @@ const Folder = ({ folder }) => {
 							exit="hidden"
 							transition={{ duration: 0.1 }}
 						>
-							{/* <FilesList files={files} /> */}
 							<OpenedFolder
 								padding="16px 24px"
 								path={pathArray.slice(1)}

@@ -6,7 +6,6 @@ import { FolderIcon } from 'shared/icons/Folder';
 const FolderItem = ({ folder, ...props }) => {
 	const location = useLocation();
 
-	console.log(location);
 	return (
 		<Link to={`${location.pathname}/${folder.NAME}`}>
 			<Box

@@ -2,12 +2,13 @@ import axios from 'axios';
 import { apiEndpoints, baseUrl } from 'shared/model';
 
 class Api {
-	Get = async (url, params) => {
-		await this.GetAccessToken();
+	Get = async (url, params, headers) => {
+		await this._GetAccessToken();
 		return axios
 			.get(url, {
 				headers: {
 					Authorization: 'Bearer ' + sessionStorage.getItem('access'),
+					...headers,
 				},
 				params,
 			})
@@ -28,12 +29,13 @@ class Api {
 			});
 	};
 
-	Post = async (url, params) => {
-		await this.GetAccessToken();
+	Post = async (url, params, headers) => {
+		await this._GetAccessToken();
 		return axios
 			.post(url, params, {
 				headers: {
 					Authorization: 'Bearer ' + sessionStorage.getItem('access'),
+					...headers,
 				},
 			})
 			.then((response) => {
@@ -73,7 +75,7 @@ class Api {
 		}
 	};
 
-	GetAccessToken = async () => {
+	_GetAccessToken = async () => {
 		try {
 			const access = sessionStorage.getItem('access');
 			return (
@@ -87,7 +89,7 @@ class Api {
 				e.response.status === 401 &&
 				sessionStorage.getItem('refresh')
 			) {
-				return await this.RefreshToken();
+				return await this._RefreshToken();
 			}
 			sessionStorage.removeItem('access');
 			sessionStorage.removeItem('refresh');
@@ -95,7 +97,7 @@ class Api {
 		}
 	};
 
-	RefreshToken = async () => {
+	_RefreshToken = async () => {
 		try {
 			const response = await axios.post(
 				`${baseUrl}${apiEndpoints.JWT_REFRESH}`,
