@@ -17,17 +17,3 @@ export const apiEndpoints = {
 	DOWNLOAD_FILE: 'hooks/downloadfile/',
 	UPLOAD_FILE: 'hooks/upload_user_file/',
 };
-
-/**
- * BX24 params
- **/
-
-export const portalUrl = 'https://avtorit24.ru/';
-export const webhookToken = 'rest/209/y8r6v3pwd77xn4ge/';
-export const contactId = 5770;
-
-export const BXEndpoints = {
-	GET_CHAT_ID: 'imopenlines.crm.chat.get.json',
-	GET_CHAT: 'imopenlines.session.history.get',
-	GET_DIALOG_MESSAGES: 'im.dialog.messages.get',
-};
