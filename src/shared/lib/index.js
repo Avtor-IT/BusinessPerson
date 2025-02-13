@@ -1,3 +1,4 @@
-export * from './mergeObjects';
-export { formatPhoneNumber } from './formatPhoneNumber';
-export { default as formatDate } from './formatDate';
+export { default as formatDate } from './formats/formatDate';
+export { formatPhoneNumber } from './formats/formatPhoneNumber';
+export { default as splitFilename } from './formats/splitFilename';
+export * from './object/mergeObjects';

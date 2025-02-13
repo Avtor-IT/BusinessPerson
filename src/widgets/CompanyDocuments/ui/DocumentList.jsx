@@ -1,16 +1,20 @@
-import { useMemo } from 'react';
 import { Typography } from '@mui/material';
 import { Box, Stack } from '@mui/system';
 import { useGetCompanyDocuments } from 'entities/Documents';
-import Folder from './folder/Folder';
-import { Card } from 'shared/ui/Card';
-import FilesList from './file/FilesList';
 import {
 	FilterDocuments,
 	useDocumentsFilterStore,
 } from 'features/Documents/DocumentsFilter';
+import { useEffect, useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router';
+import { AppRoutes, RoutePath } from 'shared/router';
+import { Card } from 'shared/ui/Card';
+import FilesList from './file/FilesList';
+import Folder from './folder/Folder';
 
 const DocumentList = ({ company, ...otherProps }) => {
+	const { companyTitle, '*': urlPath } = useParams();
+	const navigate = useNavigate();
 	const { data: documents, isLoading, error } = useGetCompanyDocuments();
 	const { search } = useDocumentsFilterStore.use.filters();
 
@@ -18,6 +22,25 @@ const DocumentList = ({ company, ...otherProps }) => {
 		if (!documents) return [];
 		return documents.filter((doc) => doc['TYPE'] === 'folder');
 	}, [documents]);
+
+	const pathArray = useMemo(() => {
+		if (urlPath) {
+			return urlPath.split('/');
+		}
+		return [];
+	}, [urlPath]);
+
+	useEffect(() => {
+		if (foldersList && pathArray) {
+			const folder = pathArray[0];
+			if (!foldersList.map((folder) => folder.NAME).includes(folder)) {
+				navigate(
+					`${RoutePath[AppRoutes.COMPANY]}/${companyTitle}/documents`,
+					{ replace: true }
+				);
+			}
+		}
+	}, [foldersList, pathArray]);
 
 	// @TODO: Система поиска поменяется
 	const filteredDocuments = useMemo(() => {
@@ -76,6 +99,7 @@ const DocumentList = ({ company, ...otherProps }) => {
 					<Folder
 						key={folder.ID}
 						folder={folder}
+						open={pathArray[0] === folder['NAME']}
 					/>
 				))}
 
@@ -88,10 +112,6 @@ const DocumentList = ({ company, ...otherProps }) => {
 						<FilesList files={filteredDocuments} />
 					</Card>
 				) : null}
-
-				{filteredDocuments.length === 0 && (
-					<Typography variant="M20">Документы не найдены.</Typography>
-				)}
 			</Stack>
 		</Box>
 	);

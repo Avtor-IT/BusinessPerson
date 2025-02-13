@@ -2,11 +2,10 @@ import { CircularProgress, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useUploadFilesMutation } from 'entities/Documents';
 import { useState } from 'react';
-import Circle from 'shared/icons/Circle';
 import { CloseIcon } from 'shared/icons/Close';
 import { PaperClipIcon } from 'shared/icons/Paperclip';
 import { Button } from 'shared/ui/Button';
-import { Card } from 'shared/ui/Card';
+import { TitledCard } from 'shared/ui/Card';
 import Input from 'shared/ui/Input';
 
 const UploadFileCard = () => {
@@ -67,9 +66,15 @@ const UploadFileCard = () => {
 	};
 
 	return (
-		<Card
+		<TitledCard
 			sx={{ padding: 0 }}
-			overflow="visible"
+			circleSx={{
+				width: '407px',
+				height: '407px',
+				top: '-297px',
+				left: '-106px',
+				backgroundColor: 'var(--secondary)',
+			}}
 		>
 			<Stack
 				justifyContent={!files?.length ? 'space-between' : 'start'}
@@ -80,12 +85,6 @@ const UploadFileCard = () => {
 					p="32px 24px 24px"
 					position="relative"
 				>
-					<Circle
-						position="absolute"
-						size={407}
-						top={-297}
-						left={-106}
-					/>
 					<Stack
 						direction="row"
 						justifyContent="space-between"
@@ -197,6 +196,7 @@ const UploadFileCard = () => {
 										type="file"
 										onChange={handleFileChange}
 										multiple
+										id="file-input"
 										style={{
 											clip: 'rect(0 0 0 0)',
 											clipPath: 'inset(50%)',
@@ -226,7 +226,7 @@ const UploadFileCard = () => {
 					</Box>
 				) : null}
 			</Stack>
-		</Card>
+		</TitledCard>
 	);
 };
 

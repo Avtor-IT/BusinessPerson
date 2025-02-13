@@ -1,8 +1,8 @@
-import { Box } from '@mui/system';
-import { Button } from 'shared/ui/Button';
-import { Link } from 'react-router-dom';
-import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
 import { Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import { Link } from 'react-router-dom';
+import { AppRoutes, RoutePath } from 'shared/router';
+import { Button } from 'shared/ui/Button';
 
 export const NotFoundPage = () => {
 	return (

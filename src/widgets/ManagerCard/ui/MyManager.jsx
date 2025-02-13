@@ -1,15 +1,14 @@
-import { Link } from 'react-router-dom';
 import { Box, Skeleton, Typography } from '@mui/material';
 import { useManager } from 'entities/Manager';
-import CopyBtn from 'features/Copy';
-import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
-import { formatPhoneNumber } from 'shared/lib';
-import { Card, ErrorCard } from 'shared/ui/Card';
-import AvatarManager from 'shared/ui/AvatarManager';
-import cls from './MyManager.module.scss';
+import { Link } from 'react-router-dom';
 import MailIcon from 'shared/icons/Mail';
-import { Button } from 'shared/ui/Button';
 import MessageIcon from 'shared/icons/Message';
+import { formatPhoneNumber } from 'shared/lib';
+import { AppRoutes, RoutePath } from 'shared/router';
+import AvatarManager from 'shared/ui/AvatarManager';
+import { Button, CopyBtn } from 'shared/ui/Button';
+import { Card, ErrorCard } from 'shared/ui/Card';
+import cls from './MyManager.module.scss';
 
 export const MyManager = ({ ...props }) => {
 	// const [hovered, setHovered] = React.useState(false); // для анимации при наведении
@@ -35,11 +34,11 @@ export const MyManager = ({ ...props }) => {
 				{...props}
 			>
 				{/* <Circle
-				 width={474}
-				 height={474}
-				 top={-197}
-				 right={hovered ? -98 : -148}
-				 /> */}
+				width={474}
+				height={474}
+				top={-197}
+				right={hovered ? -98 : -148}
+				/> */}
 				<Box className={`${cls.titleManager}`}>
 					<Typography variant="M24">Мой менеджер</Typography>
 					<Button

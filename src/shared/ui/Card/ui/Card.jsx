@@ -8,13 +8,7 @@ import { Box } from '@mui/system';
  * @param {{variant: variant, className?: string, style?: React.CSSProperties, children: React.ReactNode}} props
  * @returns {ReactNode}
  */
-export const Card = ({
-	children,
-	sx,
-	className = '',
-	variant = 'default',
-	...props
-}) => {
+export const Card = ({ children, sx, variant = 'default', ...props }) => {
 	const defaultSx = {
 		backgroundColor: 'var(--bg-additional-color)',
 		borderRadius: '16px',
@@ -34,7 +28,6 @@ export const Card = ({
 	return (
 		<Box
 			{...props}
-			className={className}
 			sx={{ ...defaultSx, ...variantSx[variant], ...sx }}
 		>
 			{children}

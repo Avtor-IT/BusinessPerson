@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
-import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
-import cls from './LogoLink.module.scss';
 import { Box } from '@mui/system';
+import { Link } from 'react-router-dom';
+import { AppRoutes, RoutePath } from 'shared/router';
+import cls from './LogoLink.module.scss';
 
 export const LogoLink = ({ className, children, ...props }) => {
 	return (

@@ -9,7 +9,7 @@ import { NotFoundPage } from 'pages/NotFoundPage';
 import { TutorialPage } from 'pages/TutorialPage';
 import { Suspense } from 'react';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
-import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
+import { AppRoutes, RoutePath } from 'shared/router';
 import PrivateRoute from '../ui/PrivateRoute';
 
 const Routes = () => {

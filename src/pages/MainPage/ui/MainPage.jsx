@@ -1,10 +1,10 @@
+import { Stack } from '@mui/material';
 import { Grid } from '@mui/system';
 import { CompanyCard } from 'widgets/CompanyCard';
-import { Notifications } from 'widgets/Notifications';
 import { MyManager } from 'widgets/ManagerCard';
+import { Notifications } from 'widgets/Notifications';
 import { MyRecommends } from 'widgets/RecommendationsCard';
-import { Stack } from '@mui/material';
-import { ServiceSection } from 'widgets/ServiceSection';
+import ServiceSection from './../../../widgets/ServiceSection/ui/ServiceSection';
 
 const MainPage = () => {
 	return (
@@ -21,7 +21,7 @@ const MainPage = () => {
 							xs: 5,
 						}}
 					>
-						<CompanyCard />
+						<CompanyCard height="100%" />
 					</Grid>
 					<Grid size={1}>
 						<Notifications />
@@ -42,7 +42,7 @@ const MainPage = () => {
 					rowSpacing={2}
 				>
 					<Grid size={5}>
-						<MyRecommends />
+						<MyRecommends minHeight="337px" />
 					</Grid>
 				</Grid>
 			</Stack>

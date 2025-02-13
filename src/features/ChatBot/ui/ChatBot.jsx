@@ -1,24 +1,10 @@
 import SearchIcon from 'shared/icons/Search';
 import Input from 'shared/ui/Input';
-import cls from './ChatBot.module.scss';
-import { useWidth } from 'shared/model';
 
 export const ChatBot = () => {
-	const size = useWidth();
-
-	const getInputWidth = (size) => {
-		switch (size) {
-			case 'xl':
-				return '782px';
-			case 'lg':
-				return '565px';
-			default:
-				return 'auto';
-		}
-	};
-
 	return (
 		<Input
+			variant="card-styled"
 			beforePlaceholder={
 				<SearchIcon
 					gradient={
@@ -37,8 +23,6 @@ export const ChatBot = () => {
 					}
 				/>
 			}
-			style={{ minWidth: getInputWidth(size) }}
-			className={cls.ChatBot}
 			inputProps={{ placeholder: 'Чат бот' }}
 		/>
 	);

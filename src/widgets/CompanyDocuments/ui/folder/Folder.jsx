@@ -1,29 +1,23 @@
-import { AnimatePresence } from 'motion/react';
-import * as motion from 'motion/react-client';
-import { useGetFolderChildren } from 'entities/Documents';
-import { useMemo } from 'react';
-import FolderCard from './FolderCard';
-import FilesList from '../file/FIlesList';
 import { CircularProgress } from '@mui/material';
 import { Stack } from '@mui/system';
-import { useLocation, useNavigate, useParams } from 'react-router';
-import OpenedFolder from './OpenedFolder';
+import { useGetFolderChildren } from 'entities/Documents';
+import { AnimatePresence } from 'motion/react';
+import * as motion from 'motion/react-client';
+import { useNavigate, useParams } from 'react-router';
+import FilesList from '../file/FIlesList';
 import { folderVariants } from '../model/animations';
+import FolderCard from './FolderCard';
 import FolderTitle from './folderTitle';
+import OpenedFolder from './OpenedFolder';
 
-const Folder = ({ folder }) => {
+const Folder = ({ folder, open }) => {
 	const { companyTitle, '*': urlPath } = useParams();
-	const location = useLocation();
 	const navigate = useNavigate();
 
 	const pathArray = urlPath ? urlPath.split('/') : [];
 	const { data: files, isLoading } = useGetFolderChildren(
 		folder['DOWNLOAD_URL']
 	);
-
-	const open = useMemo(() => {
-		return pathArray[0] === folder['NAME'];
-	}, [location]);
 
 	if (isLoading) {
 		return (
@@ -38,7 +32,7 @@ const Folder = ({ folder }) => {
 						{folder.NAME}
 						<CircularProgress
 							size="1.5rem"
-							color="inherit"
+							color="secondary"
 						/>
 					</Stack>
 				}
@@ -49,29 +43,30 @@ const Folder = ({ folder }) => {
 		);
 	}
 
-	if (pathArray[0] === folder['NAME']) {
+	if (open) {
 		return (
 			<FolderCard
 				title={<FolderTitle pathArray={pathArray} />}
+				onTitleClick={(e) => {
+					e.stopPropagation();
+					navigate(`/company/${companyTitle}/documents/`);
+				}}
 				open={open}
 			>
 				<AnimatePresence>
-					{open && (
-						<motion.div
-							variants={folderVariants}
-							initial="hidden"
-							animate="visible"
-							exit="hidden"
-							transition={{ duration: 0.1 }}
-						>
-							<OpenedFolder
-								padding="16px 24px"
-								path={pathArray.slice(1)}
-								folder={folder}
-								open={open}
-							/>
-						</motion.div>
-					)}
+					<motion.div
+						variants={folderVariants}
+						initial="hidden"
+						animate="visible"
+						exit="hidden"
+						transition={{ duration: 0.1 }}
+					>
+						<OpenedFolder
+							padding="16px 24px"
+							path={pathArray.slice(1)}
+							folder={folder}
+						/>
+					</motion.div>
 				</AnimatePresence>
 			</FolderCard>
 		);
@@ -80,9 +75,11 @@ const Folder = ({ folder }) => {
 	return (
 		<FolderCard
 			title={folder.NAME}
-			onTitleClick={() =>
-				navigate(`/company/${companyTitle}/documents/${folder['NAME']}`)
-			}
+			onTitleClick={() => {
+				navigate(
+					`/company/${companyTitle}/documents/${folder['NAME']}`
+				);
+			}}
 			open={open}
 			sx={{
 				cursor: 'pointer',

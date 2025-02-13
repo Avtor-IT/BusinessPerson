@@ -1,15 +1,15 @@
+import { Skeleton, Typography } from '@mui/material';
+import { Stack } from '@mui/system';
+import { useCompanies } from 'entities/Company';
+import { INN, KPP } from 'features/GetCompanyInfo';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Skeleton, Typography } from '@mui/material';
-import { useCompanies } from 'entities/Company';
-import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
-import { Card, ErrorCard } from 'shared/ui/Card';
-import Circle from 'shared/icons/Circle';
-import { Stack } from '@mui/system';
-import CompanyTitle from './CompanyTitle';
+import { AppRoutes, RoutePath } from 'shared/router';
+import { Circle, ErrorCard, TitledCard } from 'shared/ui/Card';
 import CompanyBalanceCard from './CompanyBalanceCard';
+import CompanyTitle from './CompanyTitle';
 
-export const CompanyCard = () => {
+export const CompanyCard = ({ documents = true, ...props }) => {
 	const { data: companies, isError, isLoading } = useCompanies();
 
 	const selectedCompany = useMemo(() => {
@@ -26,20 +26,26 @@ export const CompanyCard = () => {
 		return (
 			<Skeleton
 				variant="rectangular"
-				height="100%"
+				{...props}
 				sx={{ borderRadius: '16px', minHeight: '192px' }}
 			/>
 		);
 	}
 
 	return (
-		<Stack
-			component={Card}
-			position="relative"
-			height="100%"
+		<TitledCard
 			sx={{
 				paddingTop: '24px !important',
 			}}
+			title={
+				<Link
+					style={{ zIndex: 1 }}
+					to={RoutePath[AppRoutes.COMPANY]}
+				>
+					<CompanyTitle title={selectedCompany?.['TITLE']} />
+				</Link>
+			}
+			{...props}
 		>
 			<Stack
 				height="100%"
@@ -47,38 +53,50 @@ export const CompanyCard = () => {
 				alignItems="stretch"
 				justifyContent="space-between"
 			>
-				<Stack justifyContent="space-between">
-					<Circle
-						style={{ left: -238, top: 112 }}
-						sx={{
-							background:
-								'linear-gradient(157deg, rgba(81,73,150,1) 0%, rgba(255,255,255,1) 100%) !important',
-						}}
-					/>
-					<Circle
-						style={{ left: -220, top: -594 }}
-						variant="purple"
-					/>
-
-					<CompanyTitle title={selectedCompany?.['TITLE']} />
-
-					<Typography
-						variant="R20"
-						style={{ zIndex: '1', color: '#fff' }}
-					>
-						<Link
-							to={`${RoutePath[AppRoutes.COMPANY]}/${
-								selectedCompany?.['TITLE']
-							}/documents`}
-							state={{ company: selectedCompany }}
+				<Stack
+					flexGrow={1}
+					justifyContent="space-between"
+				>
+					{documents ? (
+						<Stack
+							flexGrow={1}
+							justifyContent="end"
 						>
-							Мои документы
-						</Link>
-					</Typography>
+							<Circle
+								style={{ left: -238, top: 112 }}
+								sx={{
+									background:
+										'linear-gradient(157deg, rgba(81,73,150,1) 0%, rgba(255,255,255,1) 100%) !important',
+								}}
+							/>
+							<Typography
+								variant="R20"
+								style={{ zIndex: '1', color: '#fff' }}
+							>
+								<Link
+									to={`${RoutePath[AppRoutes.COMPANY]}/${
+										selectedCompany?.['TITLE']
+									}/documents`}
+									state={{ company: selectedCompany }}
+								>
+									Мои документы
+								</Link>
+							</Typography>
+						</Stack>
+					) : (
+						<Stack
+							gap="4px"
+							justifyContent="end"
+							flexGrow={1}
+						>
+							<INN />
+							<KPP />
+						</Stack>
+					)}
 				</Stack>
 
 				<CompanyBalanceCard />
 			</Stack>
-		</Stack>
+		</TitledCard>
 	);
 };

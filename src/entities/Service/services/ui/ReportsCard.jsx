@@ -1,22 +1,17 @@
 import { Box, Typography } from '@mui/material';
-import Circle from 'shared/icons/Circle';
-import { Card } from 'shared/ui/Card';
+import { TitledCard } from 'shared/ui/Card';
 
 const ReportsCard = ({ reportsTitle, children, ...props }) => {
 	return (
-		<Card
+		<TitledCard
 			{...props}
 			minHeight="100%"
+			circleSx={{
+				background:
+					'linear-gradient(15deg, var(--secondary), var(--bg-additional-color))',
+				left: '-265px',
+			}}
 		>
-			<Circle
-				position="absolute"
-				top="-580px"
-				left="-265px"
-				sx={{
-					background:
-						'linear-gradient(15deg, var(--secondary), var(--bg-additional-color))',
-				}}
-			/>
 			<Typography
 				variant="M24"
 				mb={4}
@@ -27,7 +22,7 @@ const ReportsCard = ({ reportsTitle, children, ...props }) => {
 				{reportsTitle || 'Отчеты'}
 			</Typography>
 			<Box pt={2}>{children}</Box>
-		</Card>
+		</TitledCard>
 	);
 };
 

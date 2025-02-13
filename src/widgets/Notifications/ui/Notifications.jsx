@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import React, { useEffect } from 'react';
 import { Card } from 'shared/ui/Card';
 import cls from './notifications.module.scss';
-import SliderDots from 'widgets/Notifications/ui/slider/SliderDots.jsx';
-import SliderNotifications from 'widgets/Notifications/ui/slider/SliderNotifications.jsx';
+import SliderDots from './slider/SliderDots';
+import SliderNotifications from './slider/SliderNotifications';
 
 export const Notifications = () => {
 	// const { data: companies, isError, isLoading } = useCompanies();

@@ -1,13 +1,48 @@
+import { Box, Button, Stack, Typography } from '@mui/material';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Box, Typography } from '@mui/material';
+import Document from 'shared/icons/Document';
 import HomeIcon from 'shared/icons/Home';
 import ListIcon from 'shared/icons/List';
-import OfficeIcon from 'shared/icons/Office';
-import { AppRoutes, RoutePath } from 'shared/config/routeConfig';
-import { Button } from 'shared/ui/Button';
 import Market from 'shared/icons/Market';
-import Document from 'shared/icons/Document';
+import OfficeIcon from 'shared/icons/Office';
+import { AppRoutes, RoutePath } from 'shared/router';
 import cls from './Navigation.module.scss';
+
+const styles = (isActive) => ({
+	justifyContent: 'start',
+	'&::before': {
+		display: 'block',
+		content: '""',
+		position: 'absolute',
+		background: (theme) =>
+			isActive ? 'transparent' : theme.palette.primary.main,
+		height: '100%',
+		width: '4px',
+		borderRadius: '8px',
+		left: 0,
+		top: '50%',
+		transform: 'translateY(-50%) scaleX(0)',
+		transformOrigin: 'left',
+		transition: 'all 0.2s ease',
+	},
+
+	'&:hover::before': {
+		transform: 'translateY(-50%) scaleX(1)',
+	},
+});
+
+const navIcon = (el, isActive) => (
+	<Stack
+		justifyContent="center"
+		sx={{
+			'& svg': {
+				stroke: isActive ? 'white' : 'currentColor', // Динамический цвет
+			},
+		}}
+	>
+		{el.icon}
+	</Stack>
+);
 
 export const Navigation = ({ ...props }) => {
 	const navigate = useNavigate();
@@ -50,38 +85,30 @@ export const Navigation = ({ ...props }) => {
 		>
 			{menu.list.map((el) => {
 				const isActive =
-					el.link === RoutePath[AppRoutes.COMPANY]
-						? location.pathname.startsWith(el.link) // Для "Моя компания" проверяем, начинается ли путь с /company
-						: location.pathname === el.link; // Для остальных точное совпадение
+					el.link === RoutePath[AppRoutes.MAIN]
+						? location.pathname === el.link
+						: location.pathname.startsWith(el.link);
 
 				return (
-					<Link
+					<Button
 						key={el.link}
+						component={Link}
 						to={el.link}
+						variant={isActive ? 'contained' : 'text'}
+						onClick={() => {
+							navigate(el.link);
+						}}
+						fullWidth
+						sx={styles(isActive)}
+						startIcon={navIcon(el, isActive)}
 					>
-						<Button
-							variant={isActive ? 'contained' : 'text'}
-							onClick={() => {
-								// dispatch(pageActions.setPage({ link: el.link }));
-								navigate(el.link);
-							}}
-							className={`${cls.NavigationItem} ${
-								isActive ? '' : cls.isNotSelected
-							}`}
+						<Typography
+							variant="L16"
+							color={isActive ? 'textPrimary.default' : undefined}
 						>
-							<Box
-								display="flex"
-								alignItems="center"
-								justifyContent="start"
-								gap="16px"
-							>
-								{el.icon}
-								<Typography variant="L16">
-									{el.title}
-								</Typography>
-							</Box>
-						</Button>
-					</Link>
+							{el.title}
+						</Typography>
+					</Button>
 				);
 			})}
 		</Box>

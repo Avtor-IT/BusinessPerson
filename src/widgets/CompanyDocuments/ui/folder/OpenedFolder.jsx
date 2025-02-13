@@ -1,13 +1,18 @@
-import { useMemo } from 'react';
-import { AnimatePresence } from 'motion/react';
-import * as motion from 'motion/react-client';
 import { CircularProgress, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useGetFolderChildren } from 'entities/Documents';
-import { folderVariants } from '../model/animations';
+import { AnimatePresence } from 'motion/react';
+import * as motion from 'motion/react-client';
+import { useEffect, useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router';
+import { AppRoutes, RoutePath } from 'shared/router';
 import FilesList from '../file/FIlesList';
+import { folderVariants } from '../model/animations';
 
-const OpenedFolder = ({ path, open, folder, ...props }) => {
+const OpenedFolder = ({ path, folder, ...props }) => {
+	const { companyTitle } = useParams();
+	const navigate = useNavigate();
+
 	const {
 		data: files,
 		isLoading,
@@ -16,10 +21,23 @@ const OpenedFolder = ({ path, open, folder, ...props }) => {
 
 	const nextFolder = useMemo(() => {
 		if (!files || !path.length) return undefined;
-		return files.find(
+		const nextFolder = files.find(
 			(file) => file['NAME'] === path[0] && file['TYPE'] === 'folder'
 		);
+
+		return nextFolder;
 	}, [path, files]);
+
+	useEffect(() => {
+		if (!nextFolder && path.length) {
+			navigate(
+				`${RoutePath[AppRoutes.COMPANY]}/${companyTitle}/documents`,
+				{
+					replace: true,
+				}
+			);
+		}
+	}, [nextFolder, path]);
 
 	if (error) {
 		return (
@@ -40,7 +58,7 @@ const OpenedFolder = ({ path, open, folder, ...props }) => {
 				{...props}
 				textAlign="center"
 			>
-				<CircularProgress />
+				<CircularProgress color="secondary" />
 			</Box>
 		);
 	}
@@ -60,7 +78,6 @@ const OpenedFolder = ({ path, open, folder, ...props }) => {
 		return (
 			<OpenedFolder
 				path={path.slice(1)}
-				open={open}
 				folder={nextFolder}
 				{...props}
 			/>
@@ -69,17 +86,15 @@ const OpenedFolder = ({ path, open, folder, ...props }) => {
 
 	return (
 		<AnimatePresence>
-			{open && (
-				<motion.div
-					variants={folderVariants}
-					initial="hidden"
-					animate="visible"
-					exit="hidden"
-					transition={{ duration: 0.1 }}
-				>
-					<FilesList files={files} />
-				</motion.div>
-			)}
+			<motion.div
+				variants={folderVariants}
+				initial="hidden"
+				animate="visible"
+				exit="hidden"
+				transition={{ duration: 0.1 }}
+			>
+				<FilesList files={files} />
+			</motion.div>
 		</AnimatePresence>
 	);
 };

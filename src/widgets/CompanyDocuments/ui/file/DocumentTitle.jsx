@@ -1,6 +1,6 @@
 import { Tooltip, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import splitFilename from 'shared/lib/splitFilename';
+import { splitFilename } from 'shared/lib';
 import cls from './DocumentTitle.module.scss';
 
 const DocumentTitle = ({ name, onClick }) => {

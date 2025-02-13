@@ -1,4 +1,5 @@
-import { Tooltip, Typography } from '@mui/material';
+import { Tooltip } from '@mui/material';
+import { Box } from '@mui/system';
 
 const CompanyTitle = ({ title }) => {
 	if (!title) {
@@ -7,25 +8,13 @@ const CompanyTitle = ({ title }) => {
 	}
 
 	return title.length < 15 ? (
-		<Typography
-			variant="M24"
-			color="#fff"
-			zIndex={1}
-		>
-			{title}
-		</Typography>
+		{ title }
 	) : (
 		<Tooltip
 			title={title}
 			placement="top-start"
 		>
-			<Typography
-				variant="M24"
-				color="#fff"
-				zIndex={1}
-			>
-				{title.slice(0, 15) + '...'}
-			</Typography>
+			<Box>{title.slice(0, 15) + '...'}</Box>
 		</Tooltip>
 	);
 };

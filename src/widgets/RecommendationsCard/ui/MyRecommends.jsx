@@ -1,14 +1,13 @@
-import React from 'react';
-import Slider from 'react-slick';
 import { Box, Typography } from '@mui/material';
 import { useRecommendsQuery } from 'entities/Recommends';
 import CheckCircleBtn from 'features/CheckCircleBtn';
-import { Card } from 'shared/ui/Card';
-import { Button } from 'shared/ui/Button';
-import Circle from 'shared/icons/Circle';
-import './MyRecommendsSlider.scss';
-import cls from './MyRecommends.module.scss';
+import React from 'react';
+import Slider from 'react-slick';
 import { ArrowInCircle } from 'shared/icons/ArrowInCircle';
+import { Button } from 'shared/ui/Button';
+import { Card, TitledCard } from 'shared/ui/Card';
+import cls from './MyRecommends.module.scss';
+import './MyRecommendsSlider.scss';
 
 /*
  * Отсюда брал
@@ -97,26 +96,24 @@ export const MyRecommends = ({ ...props }) => {
 	if (error) return 'Error';
 
 	return (
-		<Card
+		<TitledCard
 			className={cls.MyRecommends}
 			onMouseOver={() => setHovered(true)}
 			onMouseOut={() => setHovered(false)}
-			style={{
-				height: '337px',
+			sx={{
 				background: 'linear-gradient(to left, #FFF 0%, #4C5385 240%)',
+			}}
+			circleSx={{
+				height: '813px',
+				width: '813px',
+				background:
+					'linear-gradient(15deg, var(--secondary) 0%, #FFF 100%) !important',
+				right: '-350px',
+				top: '-732px',
+				left: 'auto',
 			}}
 			{...props}
 		>
-			<Circle
-				size={813}
-				right={-350}
-				bottom={260}
-				sx={{
-					background:
-						'linear-gradient(15deg, var(--secondary) 0%, #FFF 100%) !important',
-				}}
-			/>
-
 			<Box position="relative">
 				<Box className={`${cls.sliderRecommends} slider-container`}>
 					<Typography
@@ -158,6 +155,6 @@ export const MyRecommends = ({ ...props }) => {
 					</Slider>
 				</Box>
 			</Box>
-		</Card>
+		</TitledCard>
 	);
 };
