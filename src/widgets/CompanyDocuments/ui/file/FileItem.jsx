@@ -1,13 +1,13 @@
+import { Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import {
 	DocumentModal,
 	DownloadDocumentButton,
 	ExportDocumentButton,
 } from 'entities/Documents';
-import DocumentTitle from './DocumentTitle';
 import { useState } from 'react';
-import { Typography } from '@mui/material';
 import { formatDate } from 'shared/lib';
+import DocumentTitle from './DocumentTitle';
 
 const FileItem = ({ document, ...props }) => {
 	const [open, setOpen] = useState(false);

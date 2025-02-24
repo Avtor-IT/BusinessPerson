@@ -1,4 +1,4 @@
-import { apiEndpoints, baseUrl } from './apiConsts';
+import { apiEndpoints } from './apiConsts';
 import Api from './base';
 
 const resolveEndpoint = (endpoint) => {
@@ -6,7 +6,7 @@ const resolveEndpoint = (endpoint) => {
 		throw new Error(`Endpoint "${endpoint}" does not exist.`);
 	}
 
-	return `${baseUrl}${apiEndpoints[endpoint]}`;
+	return apiEndpoints[endpoint];
 };
 
 /**
@@ -21,14 +21,18 @@ const resolveEndpoint = (endpoint) => {
  * @returns {Promise<any>}
  */
 
-const apiCaller = async (endpoint, method = 'GET', options = {}, headers) => {
+const apiCaller = async (endpoint, method = 'GET', body, config) => {
 	try {
 		const api = new Api();
 		if (method === 'GET') {
-			return await api.Get(resolveEndpoint(endpoint), options, headers);
+			if (body) {
+				console.error(`Body is ignored for the ${endpoint} method.`);
+			}
+
+			return await api.Get(resolveEndpoint(endpoint), config);
 		}
 		if (method === 'POST') {
-			return await api.Post(resolveEndpoint(endpoint), options, headers);
+			return await api.Post(resolveEndpoint(endpoint), body, config);
 		}
 	} catch (e) {
 		throw new Error(

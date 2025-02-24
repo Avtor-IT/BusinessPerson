@@ -1,10 +1,10 @@
 import Api from 'shared/api/base';
 
-const getBlobUrl = async (url, params) => {
+const getBlobUrl = async (url) => {
 	try {
 		const api = new Api();
 
-		return await api.GetBlob(url, params);
+		return await api.GetBlob(url);
 	} catch (e) {
 		throw Error(e.message);
 	}

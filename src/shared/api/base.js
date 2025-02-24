@@ -1,68 +1,82 @@
 import axios from 'axios';
-import { apiEndpoints, baseUrl } from 'shared/model';
+import { apiEndpoints } from 'shared/model';
+
+const instance = axios.create({
+	baseURL: 'https://intizar.pythonanywhere.com',
+});
+
+// Add urlParams config property
+instance.interceptors.request.use((config) => {
+	if (!config.url) {
+		return config;
+	}
+
+	const currentUrl = new URL(config.url, config.baseURL);
+
+	Object.entries(config.urlParams || {}).forEach(([k, v]) => {
+		currentUrl.pathname = currentUrl.pathname.replace(
+			`:${k}`,
+			encodeURIComponent(v)
+		);
+	});
+
+	const authPart =
+		currentUrl.username && currentUrl.password
+			? `${currentUrl.username}:${currentUrl.password}`
+			: '';
+	return {
+		...config,
+		baseURL: `${currentUrl.protocol}//${authPart}${currentUrl.host}`,
+		url: currentUrl.pathname,
+	};
+});
 
 class Api {
-	Get = async (url, params, headers) => {
+	Get = async (url, config = {}) => {
 		await this._GetAccessToken();
-		return axios
+		return instance
 			.get(url, {
+				...config,
 				headers: {
+					...config.headers,
 					Authorization: 'Bearer ' + sessionStorage.getItem('access'),
-					...headers,
 				},
-				params,
 			})
 			.then((response) => {
-				// if (!response.status === 403) {
 				return Promise.resolve(response.data);
-				// }
-
-				// При ошибке запроса выкидывать из акка
-				// Убрал так как при ошибке со стороны битрикса нелогично
-				// 	sessionStorage.removeItem('access');
-				// 	sessionStorage.removeItem('refresh');
 			})
 			.catch((error) => {
-				// sessionStorage.removeItem('access');
-				// sessionStorage.removeItem('refresh');
 				return Promise.reject(error);
 			});
 	};
 
-	Post = async (url, params, headers) => {
+	Post = async (url, body, config = {}) => {
 		await this._GetAccessToken();
-		return axios
-			.post(url, params, {
+		return instance
+			.post(url, body, {
+				...config,
 				headers: {
+					...config.headers,
 					Authorization: 'Bearer ' + sessionStorage.getItem('access'),
-					...headers,
 				},
 			})
 			.then((response) => {
-				// if (!response.status === 403) {
 				return Promise.resolve(response.data);
-				// }
-
-				// При ошибке запроса выкидывать из акка
-				// Убрал так как при ошибке со стороны битрикса нелогично
-				// 	sessionStorage.removeItem('access');
-				// 	sessionStorage.removeItem('refresh');
 			})
 			.catch((error) => {
-				// sessionStorage.removeItem('access');
-				// sessionStorage.removeItem('refresh');
 				return Promise.reject(error);
 			});
 	};
 
-	GetBlob = async (url, params) => {
+	GetBlob = async (url, config = {}) => {
 		try {
-			const response = await axios.get(url, {
+			const response = await instance.get(url, {
+				...config,
 				headers: {
+					...config.headers,
 					Authorization: 'Bearer ' + sessionStorage.getItem('access'),
 				},
 				responseType: 'arraybuffer',
-				...params,
 			});
 
 			return new Blob([response.data], {
@@ -80,7 +94,7 @@ class Api {
 			const access = sessionStorage.getItem('access');
 			return (
 				access &&
-				(await axios.post(`${baseUrl}${apiEndpoints.JWT_VERIFY}`, {
+				(await instance.post(`${apiEndpoints.JWT_VERIFY}`, {
 					token: access,
 				}))
 			);
@@ -99,8 +113,8 @@ class Api {
 
 	_RefreshToken = async () => {
 		try {
-			const response = await axios.post(
-				`${baseUrl}${apiEndpoints.JWT_REFRESH}`,
+			const response = await instance.post(
+				`${apiEndpoints.JWT_REFRESH}`,
 				{ refresh: sessionStorage.getItem('refresh') }
 			);
 			sessionStorage.setItem('access', response.data.access);

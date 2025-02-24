@@ -10,24 +10,30 @@ import cls from './Navigation.module.scss';
 
 const styles = (isActive) => ({
 	justifyContent: 'start',
-	'&::before': {
+	backgroundColor: isActive ? 'primary.main' : 'transparent',
+	borderRadius: '8px',
+	boxSizing: 'border-box',
+
+	'&:hover': {
+		backgroundColor: isActive ? 'primary.main' : 'transparent',
+	},
+	'&:not(.nav--active)::before': {
+		borderLeft: '3px solid',
+		borderColor: 'transparent',
+		borderRadius: 'inherit',
 		display: 'block',
 		content: '""',
 		position: 'absolute',
-		background: (theme) =>
-			isActive ? 'transparent' : theme.palette.primary.main,
+		left: '-3px',
+		background: 'transparent',
 		height: '100%',
-		width: '4px',
-		borderRadius: '8px',
-		left: 0,
-		top: '50%',
-		transform: 'translateY(-50%) scaleX(0)',
-		transformOrigin: 'left',
-		transition: 'all 0.2s ease',
+		width: '100%',
+		transition: 'border-color 0.2s ease, left 0.2s ease',
 	},
 
-	'&:hover::before': {
-		transform: 'translateY(-50%) scaleX(1)',
+	'&:not(.nav--active):hover::before': {
+		borderColor: 'primary.main',
+		left: '0',
 	},
 });
 
@@ -36,7 +42,7 @@ const navIcon = (el, isActive) => (
 		justifyContent="center"
 		sx={{
 			'& svg': {
-				stroke: isActive ? 'white' : 'currentColor', // Динамический цвет
+				stroke: isActive ? 'white' : 'currentColor',
 			},
 		}}
 	>
@@ -91,6 +97,7 @@ export const Navigation = ({ ...props }) => {
 
 				return (
 					<Button
+						className={isActive ? 'nav--active' : ''}
 						key={el.link}
 						component={Link}
 						to={el.link}

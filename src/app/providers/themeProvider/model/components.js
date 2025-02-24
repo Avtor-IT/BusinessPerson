@@ -13,6 +13,7 @@ const components = {
 				L20: 'span',
 				L16: 'span',
 			},
+			color: 'tertiary.dark',
 		},
 	},
 	MuiSkeleton: {
@@ -47,13 +48,63 @@ const components = {
 							background: 'transparent',
 						},
 					},
+					{
+						props: { variant: 'card' },
+						style: ({ theme, ownerState }) => ({
+							padding: '16px',
+							background: 'transparent',
+							boxShadow:
+								'0px 1px 3px 1px #00000026, 0px 1px 2px 0px #0000004d',
+							'&:hover': {
+								boxShadow:
+									'0px 1px 3px 1px #00000026, 0px 1px 2px 0px #0000004d',
+							},
+							color: theme.palette[ownerState.color].main,
+						}),
+					},
 				],
 				padding: '10px 16px',
 				textTransform: 'none',
-				borderRadius: 8,
+				borderRadius: 16,
 				transition: 'background .2s ease',
 			},
 			outlined: {},
+		},
+	},
+	MuiCard: {
+		styleOverrides: {
+			root: {
+				borderRadius: 16,
+				boxShadow:
+					'0px 1px 3px 1px #00000026, 0px 1px 2px 0px #0000004d',
+			},
+		},
+	},
+	MuiCardContent: {
+		styleOverrides: {
+			root: {
+				padding: '0 24px',
+			},
+		},
+	},
+	MuiCardHeader: {
+		defaultProps: {
+			titleTypographyProps: { variant: 'M24' },
+		},
+		styleOverrides: {
+			root: {
+				padding: '32px 24px 24px',
+			},
+			action: {
+				margin: 0,
+			},
+		},
+	},
+	MuiCardActions: {
+		styleOverrides: {
+			root: {
+				padding: '24px 24px 16px 24px',
+			},
 		},
 	},
 };

@@ -1,9 +1,9 @@
 import { Box, CircularProgress, Modal, Typography } from '@mui/material';
-import useGetBlob from '../hooks/useGetBlob';
-import { useEffect, useState } from 'react';
 import { Stack } from '@mui/system';
-import RenderFile from './RenderFile';
+import { useEffect, useState } from 'react';
+import useGetBlob from '../hooks/useGetBlob';
 import DownloadDocumentButton from './DownloadDocumentButton';
+import RenderFile from './RenderFile';
 
 const style = {
 	position: 'absolute',
@@ -20,7 +20,7 @@ const style = {
 };
 
 const DocumentModal = ({ open, onClose, document }) => {
-	const { data: blob } = useGetBlob(document.DOWNLOAD_URL);
+	const { data: blob, isError } = useGetBlob(document.DOWNLOAD_URL);
 	const [content, setContent] = useState(null);
 	const [fetching, setFetching] = useState(true);
 
@@ -46,6 +46,28 @@ const DocumentModal = ({ open, onClose, document }) => {
 			}
 		}
 	}, [blob]);
+
+	if (isError) {
+		return (
+			<Modal
+				open={open}
+				onClose={onClose}
+			>
+				<Box sx={style}>
+					<Box p={2}>
+						<Typography
+							variant="M24"
+							maxWidth="calc(100% - 2rem)"
+							overflow="hidden"
+							textOverflow="ellipsis"
+						>
+							Произошла ошибка при загрузке документа.
+						</Typography>
+					</Box>
+				</Box>
+			</Modal>
+		);
+	}
 
 	return (
 		<Modal
