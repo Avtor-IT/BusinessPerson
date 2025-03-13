@@ -111,7 +111,9 @@ export const Navigation = ({ ...props }) => {
 					>
 						<Typography
 							variant="L16"
-							color={isActive ? 'textPrimary.default' : undefined}
+							color={
+								isActive ? 'primary.contrastText' : undefined
+							}
 						>
 							{el.title}
 						</Typography>

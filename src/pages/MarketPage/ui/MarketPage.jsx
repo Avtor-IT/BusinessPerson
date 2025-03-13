@@ -1,16 +1,19 @@
 import { Typography } from '@mui/material';
-import axios from 'axios';
 
 const MarketPage = () => {
 	// `ws://intizar.pythonanywhere.com/ws/chat/${chatRoomId}/`
 
-	axios.post(
-		'https://jsonplaceholder.typicode.com/posts',
-		{
-			id: 1,
-		},
-		{ params: { id: 1 } }
-	);
+	// apiCaller('CHAT_ROOM', 'GET', null, { urlParams: { b24_user_id: 7 } });
+
+	// axios
+	// 	.get('https://intizar.pythonanywhere.com/chat/api/chat/7', {
+	// 		headers: {
+	// 			Authorization: `Bearer ${sessionStorage.getItem('access')}`,
+	// 		},
+	// 	})
+	// 	.catch((e) => {
+	// 		console.log(e);
+	// 	});
 
 	return (
 		<>

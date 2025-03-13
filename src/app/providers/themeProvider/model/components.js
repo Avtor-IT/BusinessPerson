@@ -13,7 +13,6 @@ const components = {
 				L20: 'span',
 				L16: 'span',
 			},
-			color: 'tertiary.dark',
 		},
 	},
 	MuiSkeleton: {
@@ -62,13 +61,18 @@ const components = {
 							color: theme.palette[ownerState.color].main,
 						}),
 					},
+					{
+						props: { variant: 'contained' },
+						style: ({ theme, ownerState }) => ({
+							color: theme.palette[ownerState.color].contrastText,
+						}),
+					},
 				],
 				padding: '10px 16px',
 				textTransform: 'none',
 				borderRadius: 16,
 				transition: 'background .2s ease',
 			},
-			outlined: {},
 		},
 	},
 	MuiCard: {
@@ -83,7 +87,7 @@ const components = {
 	MuiCardContent: {
 		styleOverrides: {
 			root: {
-				padding: '0 24px',
+				// padding: '0 24px',
 			},
 		},
 	},

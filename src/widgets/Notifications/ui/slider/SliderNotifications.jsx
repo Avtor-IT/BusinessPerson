@@ -1,8 +1,8 @@
-import cls from 'widgets/Notifications/ui/notifications.module.scss';
-import Slider from 'react-slick';
-import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import CheckCircleBtn from 'features/CheckCircleBtn/index.js';
+import Slider from 'react-slick';
+import cls from '../notifications.module.scss';
 
 const SliderNotifications = ({
 	navDots,
@@ -13,7 +13,6 @@ const SliderNotifications = ({
 	const settings = {
 		dots: false,
 		arrows: false,
-		// fade: true, // Конфликтует с centerMode у второго слайдера
 		swipeToSlide: true,
 		waitForAnimate: false,
 		// после добавления адаптива в макете дописать

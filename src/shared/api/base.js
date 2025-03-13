@@ -34,6 +34,7 @@ instance.interceptors.request.use((config) => {
 class Api {
 	Get = async (url, config = {}) => {
 		await this._GetAccessToken();
+
 		return instance
 			.get(url, {
 				...config,

@@ -11,7 +11,7 @@ const resolveEndpoint = (endpoint) => {
 
 /**
  * @typedef {'STATUS' | 'ME' | 'JWT_CREATE' | 'JWT_VERIFY' | 'JWT_REFRESH' |
- * 'MANAGER' | 'COMPANIES' | 'DOCUMENTS' | 'USER_SERVICES' | 'DOWNLOAD_FILE' | 'UPLOAD_FILE'} ApiEndpointKey
+ * 'MANAGER' | 'COMPANIES' | 'DOCUMENTS' | 'USER_SERVICES' | 'DOWNLOAD_FILE' | 'UPLOAD_FILE' | 'CHAT_ROOM' | 'CHAT_MESSAGES'} ApiEndpointKey
  * @typedef {'GET' | 'POST'} ApiMethod
  */
 
