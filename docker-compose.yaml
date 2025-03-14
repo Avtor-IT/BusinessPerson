@@ -1,0 +1,26 @@
+version: '3.8'
+
+
+services:
+  frontend:
+    container_name: frontend
+    build: 
+      context: .
+      dockerfile: docker/frontend/Dockerfile
+    volumes:
+      - node_modules:/frontend/node_modules
+    ports:
+      - 3000:3000
+
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - frontend
+
+volumes:
+  node_modules:

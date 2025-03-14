@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat with Entrepreneur</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js"></script>
+</head>
+<body>
+    <h1>Chat with Entrepreneur</h1>
+    <div id="chat">
+        <div id="messages"></div>
+        <input type="text" id="message-input" />
+        <button id="send-button">Send</button>
+    </div>
+
+    <script>
+        // Подключение к WebSocket
+        const chatRoomId = {{ chat_room_id }};
+        const contactId = {{ contactId }};  // Используем contactId из CustomUser
+        const socket = io(`ws://127.0.0.1:8000/ws/chat/${chatRoomId}/`);
+
+        // Обработка входящих сообщений
+        socket.on('chat_message', (data) => {
+            const messagesDiv = document.getElementById('messages');
+            messagesDiv.innerHTML += `<div><strong>${data.sender_type} (${data.contactId}):</strong> ${data.message}</div>`;
+        });
+
+        // Отправка сообщения
+        document.getElementById('send-button').onclick = function() {
+            const messageInput = document.getElementById('message-input');
+            const message = messageInput.value;
+            if (message.trim()) {
+                socket.emit('message', {
+                    message: message,
+                    sender_type: 'b24',  // Тип отправителя (b24)
+                    contactId: contactId,  // Используем contactId из CustomUser
+                });
+                messageInput.value = '';
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,1364 @@
+В разработке находится приложение Личный кабинет предпринимателя. Приложение состоит из слоя б24 для работы специалистов, слоя ЛК для предпринимателей (фронт на React бэк на Django).
+Вот моё пиложение drf
+внутри 4 приложения:
+1.drf_auth
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/drf_auth/settings.py
+from pathlib import Path
+from datetime import timedelta
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+SECRET_KEY = ('django-insecure-q0bp(*5pleb5&po@_cutbi!)'
+              'qsbbgez2ofhvqu0pt9f!9yr3hb')
+
+DEBUG = True
+
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'www.intizar.pythonanywhere.com',
+    'intizar.pythonanywhere.com'
+]
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'djoser',
+    'drf_yasg',
+    'corsheaders',
+    'user',
+    'services'
+]
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+ROOT_URLCONF = 'drf_auth.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r'^/api/.*$'
+
+WSGI_APPLICATION = 'drf_auth.wsgi.application'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+SIMPLE_JWT = {
+   'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+   'AUTH_HEADER_TYPES': ('Bearer',)
+}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation'
+                '.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation'
+                '.MinimumLengthValidator',
+    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation'
+    #             '.CommonPasswordValidator',
+    #     'OPTIONS': {
+    #         'password_list_path': None,
+    #     },
+    # },
+    {
+        'NAME': 'django.contrib.auth.password_validation'
+                '.NumericPasswordValidator',
+    },
+]
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'api.serializers.UserCreateSerializer',
+        'user': 'api.serializers.UserSerializer',
+        'current_user': 'api.serializers.UserSerializer', 
+    }
+}
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+STATIC_URL = '/static/'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'user.CustomUser'
+
+
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/drf_auth/urls.py
+from django.contrib import admin
+from django.urls import path, include
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from . import views
+
+schema_view = get_schema_view(
+   openapi.Info(
+      title="Business Person",
+      default_version='v1',
+      description="Business Person OpenAPI Documentation",
+      terms_of_service="intizar.pythonanywhere.com ",
+      contact=openapi.Contact(email="dontWriteMe@please.com"),
+      license=openapi.License(name="No License"),
+   ),
+   public=True,
+   permission_classes=(permissions.AllowAny,),
+)
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('admin/', admin.site.urls),
+    path('api/', include('api.urls')),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0),
+         name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0),
+         name='schema-redoc'),
+]
+
+2.api
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/api/serializers.py
+from rest_framework import serializers
+from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
+
+from user.models import CustomUser
+from services.models import UserService, Service
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('id', 'email', 'username', 'contactId')
+        ref_name = 'CustomUserSerializer'
+
+class UserCreateSerializer(BaseUserCreateSerializer):
+    class Meta(BaseUserCreateSerializer.Meta):
+        model = CustomUser
+        fields = ('id', 'email', 'username', 'password', 'contactId')
+        extra_kwargs = {
+            'contactId': {'required': True},
+            'password': {'write_only': True}
+        }
+        ref_name = 'CustomUserCreateSerializer'
+
+class UserServiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserService
+        fields = ['user', 'service', 'status', 'date_connected',
+                  'expiration_date']
+
+class ServiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Service
+        fields = ['id', 'name', 'provider', 'price']
+
+
+class UploadDocumentSerializer(serializers.Serializer):
+    fileContent = serializers.CharField()
+    fileName = serializers.CharField()
+
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/api/urls.py
+from django.urls import path, include
+from .views import (
+     AuthStatusView, UserViewSet, UserContactView,
+     UserManagerView, UserCompaniesView, UserCompanyDetailsView,
+     UserCompanyDocumentsView, DownloadFileView,
+     UserServiceCreateView, UserServiceStatusUpdateView,
+     UserServiceExpirationCheckView, UserUploadDocumentView,
+)
+from rest_framework.routers import DefaultRouter
+
+app_name = 'api'
+
+router = DefaultRouter()
+router.register(r'users', UserViewSet, basename='user')
+
+urlpatterns = [
+     path('v1/auth/', include('djoser.urls')),
+     path('v1/auth/', include('djoser.urls.jwt')),
+     path('v1/auth/status/',
+          AuthStatusView.as_view(),
+          name='auth-status'),
+     path('v1/auth/me/',
+          UserViewSet.as_view({'get': 'retrieve'}),
+          name='user-me'),
+     path('v1/hooks/users_me_contact/',
+          UserContactView.as_view(),
+          name='user-contact'),
+     path('v1/hooks/users_me_manager/',
+          UserManagerView.as_view(),
+          name='user-manager'),
+     path('v1/hooks/company_list/',
+          UserCompaniesView.as_view(),
+          name='company-list'),
+     path('v1/hooks/user_me_company/',
+          UserCompanyDetailsView.as_view(),
+          name='user-company-details'),
+     path('v1/hooks/user_company_documents/',
+          UserCompanyDocumentsView.as_view(),
+          name='user-company-documents'),
+     path('v1/hooks/downloadfile/<str:folder_id>/<str:file_id>/',
+          DownloadFileView.as_view(),
+          name='download-file'),
+     path('v1/hooks/upload_user_file/',
+          UserUploadDocumentView.as_view(),
+          name='upload-user-file'),
+     path('', include(router.urls)),
+     path('user-service/create/',
+          UserServiceCreateView.as_view(),
+          name='user-service-create'),
+     path('user-service/<int:user_service_id>/update-status/',
+          UserServiceStatusUpdateView.as_view(),
+          name='user-service-update-status'),
+     path('user-service/check-expiration/',
+          UserServiceExpirationCheckView.as_view(),
+          name='user-service-check-expiration'),
+]
+
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/api/views.py
+import requests
+import base64
+
+from django.http import HttpResponse
+
+from drf_yasg.utils import swagger_auto_schema
+
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from djoser.views import UserViewSet as BaseUserViewSet
+
+from services.models import UserService, Service
+
+import yaml
+
+from .serializers import UserSerializer, UserServiceSerializer, UploadDocumentSerializer
+
+
+WEBHOOK_TOKEN = 'tuzwh9ecszs0jhhc'
+B24_USER_ID = '7'
+
+
+class UserContactView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+
+        if not user.contactId:
+            return Response({'error': 'contactId not found.'}, status=400)
+
+        # contact_id = user.contactId
+        contact_id = 11
+
+        url = (f'https://b-p24.ru/rest/{B24_USER_ID}/{WEBHOOK_TOKEN}/'
+               f'crm.contact.get.json?id={contact_id}')
+
+        response = requests.get(url)
+
+        data = response.json().get('result', {})
+
+        filtered_data = {
+            'ID': data.get('ID'),
+            'NAME': data.get('NAME'),
+            'SECOND_NAME': data.get('SECOND_NAME'),
+            'LAST_NAME': data.get('LAST_NAME'),
+            'LEAD_ID': data.get('LEAD_ID'),
+            'TYPE_ID': data.get('TYPE_ID'),
+            'BIRTHDATE': data.get('BIRTHDATE'),
+            'HAS_PHONE': data.get('HAS_PHONE'),
+            'HAS_EMAIL': data.get('HAS_EMAIL'),
+            'HAS_IMOL': data.get('HAS_IMOL'),
+            'DATE_CREATE': data.get('DATE_CREATE'),
+            'DATE_MODIFY': data.get('DATE_MODIFY'),
+            'ASSIGNED_BY_ID': data.get('ASSIGNED_BY_ID'),
+            'LAST_ACTIVITY_TIME': data.get('LAST_ACTIVITY_TIME'),
+            'ADDRESS': data.get('ADDRESS'),
+            'ADDRESS_2': data.get('ADDRESS_2'),
+            'ADDRESS_CITY': data.get('ADDRESS_CITY'),
+            'ADDRESS_POSTAL_CODE': data.get('ADDRESS_POSTAL_CODE'),
+            'ADDRESS_REGION': data.get('ADDRESS_REGION'),
+            'ADDRESS_PROVINCE': data.get('ADDRESS_PROVINCE'),
+            'ADDRESS_COUNTRY': data.get('ADDRESS_COUNTRY'),
+            'ADDRESS_LOC_ADDR_ID': data.get('ADDRESS_LOC_ADDR_ID'),
+            'LAST_ACTIVITY_BY': data.get('LAST_ACTIVITY_BY'),
+        }
+
+        return Response({'result': filtered_data}, status=response.status_code)
+
+
+class UserManagerView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user_contact_view = UserContactView()
+        data = user_contact_view.get(request).data
+        assigned_by_id = data.get('result', {}).get('ASSIGNED_BY_ID')
+
+        url = (f'https://b-p24.ru/rest/{B24_USER_ID}/{WEBHOOK_TOKEN}/'
+               f'user.get.json?id={assigned_by_id}')
+
+        response = requests.get(url)
+
+        return Response(response.json(), status=response.status_code)
+
+
+class UserCompaniesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    @swagger_auto_schema(
+        operation_description="ХУК. Список компаний",
+        responses={
+            201: 'crm.contact.company.items.get',
+            400: 'Bad request',
+            404: 'Service not found',
+        }
+    )
+    def get(self, request):
+        user_contact_view = UserContactView()
+        data = user_contact_view.get(request).data
+        user_id = data.get('result', {}).get('ID')
+
+        url = (f'https://b-p24.ru/rest/{B24_USER_ID}/{WEBHOOK_TOKEN}/'
+               f'crm.contact.company.items.get.json?id={user_id}')
+
+        response = requests.get(url)
+
+        return Response(response.json(), status=response.status_code)
+
+
+class UserCompanyDetailsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    @swagger_auto_schema(
+        operation_description="ХУК. 1-ая компания",
+        responses={
+            201: 'crm.company.get',
+            400: 'Bad request',
+            404: 'Service not found',
+        }
+    )
+    def get(self, request):
+        user_companies_view = UserCompaniesView()
+        companies_response = user_companies_view.get(request)
+        company_id_list = [company['COMPANY_ID'] for company in
+                           companies_response.data.get('result', [])]
+        company_details_list = []
+
+        for company_id in company_id_list:
+            url = (f'https://b-p24.ru/rest/{B24_USER_ID}/{WEBHOOK_TOKEN}/'
+                   f'crm.company.get.json?id={company_id}')
+            response = requests.get(url)
+
+            if response.status_code == 200:
+                company_data = response.json().get('result', {})
+
+                filtered_company_data = {
+                    'COMPANY_TYPE': company_data.get('COMPANY_TYPE'),
+                    'TITLE': company_data.get('TITLE'),
+                    'LOGO': company_data.get('LOGO'),
+                    'LEAD_ID': company_data.get('LEAD_ID'),
+                    'HAS_PHONE': company_data.get('HAS_PHONE'),
+                    'HAS_EMAIL': company_data.get('HAS_EMAIL'),
+                    'HAS_IMOL': company_data.get('HAS_IMOL'),
+                    'BANKING_DETAILS': company_data.get('BANKING_DETAILS'),
+                    'INDUSTRY': company_data.get('INDUSTRY'),
+                    'REVENUE': company_data.get('REVENUE'),
+                    'CURRENCY_ID': company_data.get('CURRENCY_ID'),
+                    'EMPLOYEES': company_data.get('EMPLOYEES'),
+                    'OPENED': company_data.get('OPENED'),
+                    'IS_MY_COMPANY': company_data.get('IS_MY_COMPANY'),
+                    'LAST_ACTIVITY_TIME': company_data.get('LAST_ACTIVITY_TIME'),
+                    'ADDRESS': company_data.get('ADDRESS'),
+                    'ADDRESS_2': company_data.get('ADDRESS_2'),
+                    'ADDRESS_CITY': company_data.get('ADDRESS_CITY'),
+                    'ADDRESS_POSTAL_CODE': company_data.get('ADDRESS_POSTAL_CODE'),
+                    'ADDRESS_REGION': company_data.get('ADDRESS_REGION'),
+                    'ADDRESS_PROVINCE': company_data.get('ADDRESS_PROVINCE'),
+                    'ADDRESS_COUNTRY': company_data.get('ADDRESS_COUNTRY'),
+                    'ADDRESS_COUNTRY_CODE': company_data.get('ADDRESS_COUNTRY_CODE'),
+                    'ADDRESS_LOC_ADDR_ID': company_data .get('ADDRESS_LOC_ADDR_ID'),
+                    'ADDRESS_LEGAL': company_data.get('ADDRESS_LEGAL'),
+                    'REG_ADDRESS': company_data.get('REG_ADDRESS'),
+                    'REG_ADDRESS_2': company_data.get('REG_ADDRESS_2'),
+                    'REG_ADDRESS_CITY': company_data.get('REG_ADDRESS_CITY'),
+                    'REG_ADDRESS_POSTAL_CODE': company_data.get('REG_ADDRESS_POSTAL_CODE'),
+                    'REG_ADDRESS_REGION': company_data.get('REG_ADDRESS_REGION'),
+                    'REG_ADDRESS_PROVINCE': company_data.get('REG_ADDRESS_PROVINCE'),
+                    'REG_ADDRESS_COUNTRY': company_data.get('REG_ADDRESS_COUNTRY'),
+                    'REG_ADDRESS_COUNTRY_CODE': company_data.get('REG_ADDRESS_COUNTRY_CODE'),
+                    'REG_ADDRESS_LOC_ADDR_ID': company_data.get('REG_ADDRESS_LOC_ADDR_ID'),
+                    'LAST_ACTIVITY_BY': company_data.get('LAST_ACTIVITY_BY'),
+                    'UF_CRM_ASSIGNED_FOLDER': company_data.get('UF_CRM_ASSIGNED_FOLDER'),
+                    'UF_CRM_COMPANY_INN': company_data.get('UF_CRM_COMPANY_INN'),
+                }
+
+                company_details_list.append(filtered_company_data)
+            else:
+                company_details_list.append({'error': 'Error fetching company'
+                                             f'{company_id}: {response.text}'})
+
+        return Response(company_details_list, status=200)
+
+
+class UserCompanyDocumentsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    @swagger_auto_schema(
+        operation_description="ХУК. Документы (Список)",
+        responses={
+            201: 'disk.folder.getchildren',
+            400: 'Bad request',
+            404: 'Service not found',
+        }
+    )
+    def get(self, request):
+        user_companies_view = UserCompanyDetailsView()
+        companies_response = user_companies_view.get(request)
+        companies_data = companies_response.data
+
+        if not companies_data:
+            return Response({"error": "No associated companies found."},
+                            status=404)
+
+        company = companies_data[0]  # Берем первую компанию пользователя
+        folder_id = company.get('UF_CRM_ASSIGNED_FOLDER')
+
+        if not folder_id:
+            return Response({"error": "Folder ID not found in company data."},
+                            status=400)
+
+        url = (f'https://b-p24.ru/rest/{B24_USER_ID}/{WEBHOOK_TOKEN}/'
+               f'disk.folder.getchildren.json?id={folder_id}')
+        response = requests.get(url)
+        response_data = response.json()
+        base_url = request.build_absolute_uri('/api/v1/hooks/downloadfile')
+
+        documents = response_data.get('result', [])
+        if not documents:
+            return Response({"error":
+                             "No documents found in the company folder."},
+                            status=404)
+
+        document_list = [
+            {
+                'ID': doc.get('ID'),
+                'NAME': doc.get('NAME'),
+                'TYPE': doc.get('TYPE'),
+                'DOWNLOAD_URL_OLD': doc.get('DOWNLOAD_URL'),
+                'DOWNLOAD_URL': f"{base_url}/{folder_id}/{doc.get('ID')}",
+                'SIZE': doc.get('SIZE'),
+                'CREATE_TIME': doc.get('CREATE_TIME'),
+                'UPDATE_TIME': doc.get('UPDATE_TIME'),
+            }
+            for doc in documents
+        ]
+
+        return Response({"documents": document_list}, status=200)
+
+
+class DownloadFileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    @swagger_auto_schema(
+        operation_description="ХУК. Документы (Скачинвание)",
+        responses={
+            201: 'disk.folder.getchildren',
+            400: 'Bad request',
+            404: 'Service not found',
+        }
+    )
+    def get(self, request, folder_id, file_id):
+        # Получение информации о файле
+        url = (f'https://b-p24.ru/rest/{B24_USER_ID}/{WEBHOOK_TOKEN}/'
+               f'disk.folder.getchildren.json?id={folder_id}')
+        response = requests.get(url)
+        response_data = response.json()
+
+        document = next((doc for doc in response_data.get('result', []) if doc.get('ID') == file_id), None)
+
+        if not document:
+            return Response({"error": "Document not found."}, status=404)
+
+        type = document.get('TYPE')
+        
+        if type == 'folder':
+            folder_id = document.get('ID')
+            url = (f'https://b-p24.ru/rest/{B24_USER_ID}/{WEBHOOK_TOKEN}/'
+               f'disk.folder.getchildren.json?id={folder_id}')
+            response = requests.get(url)
+            response_data = response.json()
+            base_url = request.build_absolute_uri('/api/v1/hooks/downloadfile')
+
+            documents = response_data.get('result', [])
+            if not documents:
+                return Response([], status=200)
+
+            document_list = [
+                {
+                    'ID': doc.get('ID'),
+                    'NAME': doc.get('NAME'),
+                    'TYPE': doc.get('TYPE'),
+                    'DOWNLOAD_URL_OLD': doc.get('DOWNLOAD_URL'),
+                    'DOWNLOAD_URL': f"{base_url}/{folder_id}/{doc.get('ID')}",
+                    'SIZE': doc.get('SIZE'),
+                    'CREATE_TIME': doc.get('CREATE_TIME'),
+                    'UPDATE_TIME': doc.get('UPDATE_TIME'),
+                }
+                for doc in documents
+            ]
+
+            return Response({"documents": document_list}, status=200)
+        else:
+            download_url = document.get('DOWNLOAD_URL')
+
+            # Загружаем файл с Bitrix24
+            file_response = requests.get(download_url)
+            if file_response.status_code != 200:
+                return Response({"error": "Failed to download the file."}, status=400)
+
+            # Возвращаем файл пользователю
+            return HttpResponse(file_response.content,
+                                content_type=file_response.headers['Content-Type'],
+                                headers={
+                                    'Content-Disposition': f'attachment; filename="{document["NAME"]}"'
+                                })
+
+
+class UserUploadDocumentView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    @swagger_auto_schema(
+        operation_description="Загрузка пользовательского документа",
+        request_body=UploadDocumentSerializer,
+        responses={
+            200: 'Файл успешно загружен',
+            400: 'Ошибка при загрузке файла',
+            404: 'Папка "Пользовательские документы" не найдена',
+        }
+    )
+
+    def post(self, request):
+        # Получаем содержимое файла и имя файла из запроса
+        file_content = request.data.get('fileContent')
+        file_name = request.data.get('fileName')
+
+        if not file_content or not file_name:
+            return Response({"error": "fileContent and fileName are required."}, status=400)
+
+        # Извлекаем Content-Type из fileContent, если он присутствует
+        if ';' in file_content:
+            content_type = file_content.split(';')[0].split(':')[1]
+            file_content = file_content.split(',')[1]  # Извлекаем только base64 часть
+            # file_format = content_type.split('/')[1] # feture
+
+        # Декодируем base64 в бинарные данные
+        try:
+            file_content = base64.b64decode(file_content)
+        except Exception as e:
+            return Response({"error": f"Invalid base64 data: {str(e)}"}, status=400)
+
+        # Получаем ID папки "Пользовательские документы"
+        user_company_documents_view = UserCompanyDocumentsView()
+        folder_response = user_company_documents_view.get(request)
+        folder_data = folder_response.data
+
+        user_documents_folder = next((doc for doc in folder_data.get('documents', []) if doc.get('NAME') == 'Пользовательские документы'), None)
+
+        if not user_documents_folder:
+            return Response({"error": "User documents folder not found."}, status=404)
+
+        folder_id = user_documents_folder.get('ID')
+
+        # Формируем URL для загрузки файла
+        url = (f'https://b-p24.ru/rest/{B24_USER_ID}/{WEBHOOK_TOKEN}/'
+               f'disk.folder.uploadfile.json?id={folder_id}&data[NAME]={file_name}')
+
+        # Выполняем запрос на получение uploadUrl
+        response = requests.post(url)
+        response_data = response.json()
+
+        if 'error' in response_data:
+            return Response({"error": response_data['error']}, status=400)
+        
+        # Получаем uploadUrl из ответа
+        upload_url = response_data['result']['uploadUrl']
+        
+        files = {
+            'file': (file_name, file_content, content_type)
+        }
+
+        # Выполняем запрос на загрузку файла по uploadUrl
+        upload_response = requests.post(upload_url, files=files)
+        upload_response_data = upload_response.json()
+
+        if 'error' in upload_response_data:
+            return Response({"error": upload_response_data['error']}, status=400)
+
+        # Удаляем ненужные поля из ответа
+        result = upload_response_data.get('result', {})
+        for key in ['STORAGE_ID', 'PARENT_ID', 'DELETED_TYPE', 'FILE_ID', 'CREATED_BY', 'UPDATED_BY', 'DELETED_BY', 'DETAIL_URL']:
+            result.pop(key, None)
+
+        # Добавляем поля DOWNLOAD_URL_OLD и DOWNLOAD_URL
+        result['DOWNLOAD_URL_OLD'] = result.get('DOWNLOAD_URL')  # Предполагаем, что это поле есть в ответе
+        base_url = request.build_absolute_uri('/api/v1/hooks/downloadfile')
+        result['DOWNLOAD_URL'] = f"{base_url}/{folder_id}/{result.get('ID')}"
+
+        return Response({"result": result}, status=201)
+
+
+
+class UserServiceCreateView(APIView):
+    """
+        Подключение услуги
+        Ограничил только на Админа. Далее переделаем на стаф
+    """
+    permission_classes = [IsAuthenticated, IsAdminUser]
+
+    @swagger_auto_schema(
+        operation_description="Создание связи между пользователем и услугой",
+        responses={
+            201: UserServiceSerializer,
+            400: 'Bad request',
+            404: 'Service not found',
+        },
+        request_body=UserServiceSerializer
+    )
+    def post(self, request):
+        service_id = request.data.get('service_id')
+        end_date = request.data.get('end_date')
+
+        try:
+            service = Service.objects.get(id=service_id)
+        except Service.DoesNotExist:
+            return Response({"error": "Service not found."},
+                            status=status.HTTP_404_NOT_FOUND)
+
+        if UserService.objects.filter(user=request.user,
+                                      service=service).exists():
+            return Response({"error":
+                             "User is already connected to this service."},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        user_service = UserService.objects.create(
+            user=request.user,
+            service=service,
+            status='active',
+            end_date=end_date
+        )
+
+        return Response(UserServiceSerializer(user_service).data,
+                        status=status.HTTP_201_CREATED)
+
+
+class UserServiceStatusUpdateView(APIView):
+    """
+        Обновление статуса услуги 'active', 'blocked', 'expired'
+        Ограничил только на Админа. Далее переделаем на стаф
+    """
+    permission_classes = [IsAuthenticated, IsAdminUser]
+
+    @swagger_auto_schema(
+        operation_description="Обновление статуса",
+        responses={
+            201: UserServiceSerializer,
+            400: 'Bad request',
+            404: 'Service not found',
+        },
+        request_body=UserServiceSerializer
+    )
+    def patch(self, request, user_service_id):
+        try:
+            user_service = UserService.objects.get(id=user_service_id,
+                                                   user=request.user)
+        except UserService.DoesNotExist:
+            return Response({"error": "User service not found."},
+                            status=status.HTTP_404_NOT_FOUND)
+
+        # Получаем новый статус из запроса
+        new_status = request.data.get('status')
+        if new_status not in ['active', 'blocked', 'expired']:
+            return Response({"error": "Invalid status."},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        # Обновляем статус услуги
+        user_service.status = new_status
+        user_service.save()
+
+        return Response(UserServiceSerializer(user_service).data,
+                        status=status.HTTP_200_OK)
+
+
+class UserServiceExpirationCheckView(APIView):
+    """
+    Отбирает только активные услуги.
+    Проверяет срок их действия, если истекли меняет статус на expired
+    Возвращает только те, которые остаются активными.
+    """
+    permission_classes = [IsAuthenticated]
+
+    @swagger_auto_schema(
+        operation_description="Получение списка услуг",
+        responses={
+            201: UserServiceSerializer,
+            400: 'Bad request',
+            404: 'Service not found',
+        }
+    )
+    def get(self, request):
+
+        user_services = UserService.objects.filter(user=request.user,
+                                                   status='active')
+
+        active_services = []
+
+        for user_service in user_services:
+            user_service.check_status()
+            if user_service.status == 'active':
+                active_services.append(user_service)
+
+        # Возвращаем только активные услуги
+        return Response({"active_services":
+                        [UserServiceSerializer(us).data
+                            for us in active_services]},
+                        status=status.HTTP_200_OK)
+
+
+class AuthStatusView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({'is_authenticated': True})
+
+
+class UserViewSet(BaseUserViewSet):
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserSerializer
+
+
+def schema_view(request):
+    with open('schema.yaml', 'r') as f:
+        schema = yaml.safe_load(f)
+    return HttpResponse(yaml.dump(schema), content_type='application/yaml')
+
+
+----------------------------------------------------------------
+ЖДИ! следующим сообщением я пришлю продолжение.
+----------------------------------------------------------------
+
+3.user
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/user/models.py
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+
+
+class CustomUser(AbstractUser):
+    contactId = models.CharField(max_length=100,
+                                 blank=False,
+                                 null=False)
+                          
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/user/admin.py                                 
+from django.contrib import admin
+from .models import CustomUser
+from services.models import Service, UserService
+
+
+class CustomUserAdmin(admin.ModelAdmin):
+    list_display = ('username', 'email',
+                    'first_name', 'last_name',
+                    'contactId', 'is_staff')
+    list_filter = ('is_staff', 'is_active')
+    search_fields = ('email', 'last_name')
+
+
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'provider', 'price')
+    search_fields = ('name', 'provider')
+
+
+class UserServiceAdmin(admin.ModelAdmin):
+    list_display = ('user', 'service', 'date_connected',
+                    'expiration_date', 'status')
+    list_filter = ('status',)
+    search_fields = ('user__username', 'service__name') 
+
+
+admin.site.register(Service, ServiceAdmin)
+admin.site.register(UserService, UserServiceAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)
+
+
+4.services
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/services/models.py
+from django.db import models
+from django.conf import settings
+from datetime import date
+
+
+class Service(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255)
+    provider = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.name} ({self.provider})"
+
+
+class UserService(models.Model):
+    STATUS_CHOICES = [
+        ('active', 'Active'),
+        ('blocked', 'Blocked'),
+        ('expired', 'Expired'),
+    ]
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    date_connected = models.DateField(auto_now_add=True)
+    expiration_date = models.DateField()
+    status = models.CharField(max_length=10,
+                              choices=STATUS_CHOICES,
+                              default='active')
+
+    def __str__(self):
+        return f"{self.user.username} - {self.service.name} ({self.status})"
+
+    def check_status(self):
+        """Проверка срока действия услуги и блокировка по истечению"""
+        if date.today() > self.expiration_date and self.status == 'active':
+            self.status = 'expired'
+            self.save()
+
+
+Перед нами стоит задача реализовать новое drf приложение для чата. Участниками чата пользователи джанго с одной стороны и пользователи б24 с другой стороны. Как это реализовать? Также нужно описание как реализовать этот чат на стороне React
+
+
+
+
+
+
+
+
+–––––––––––––––––––––––––––––––new
+
+Внутри моего Django приложения, реализовано приложение для чатов.
+Вот код
+
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/drf_auth/settings.py
+```python
+from pathlib import Path
+from datetime import timedelta
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+SECRET_KEY = ('django-insecure-q0bp(*5pleb5&po@_cutbi!)'
+              'qsbbgez2ofhvqu0pt9f!9yr3hb')
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'www.intizar.pythonanywhere.com',
+    'intizar.pythonanywhere.com'
+]
+
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'djoser',
+    'drf_yasg',
+    'corsheaders',
+    'user',
+    'services',
+    'channels',
+    'chat'
+]
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+ROOT_URLCONF = 'drf_auth.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r'^/api/.*$'
+
+WSGI_APPLICATION = 'drf_auth.wsgi.application'
+ASGI_APPLICATION = 'drf_auth.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",  # Для разработки
+        # Для продакшна используйте Redis:
+        # "BACKEND": "channels_redis.core.RedisChannelLayer",
+        # "CONFIG": {
+        #     "hosts": [("127.0.0.1", 6379)],
+        # },
+    },
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+SIMPLE_JWT = {
+   'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+   'AUTH_HEADER_TYPES': ('Bearer',)
+}
+
+# Database
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+
+# Password validation
+# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation'
+                '.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation'
+                '.MinimumLengthValidator',
+    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation'
+    #             '.CommonPasswordValidator',
+    #     'OPTIONS': {
+    #         'password_list_path': None,
+    #     },
+    # },
+    {
+        'NAME': 'django.contrib.auth.password_validation'
+                '.NumericPasswordValidator',
+    },
+]
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'api.serializers.UserCreateSerializer',
+        'user': 'api.serializers.UserSerializer',
+        'current_user': 'api.serializers.UserSerializer', 
+    }
+}
+
+
+# Internationalization
+# https://docs.djangoproject.com/en/3.2/topics/i18n/
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+STATIC_URL = '/static/'
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'user.CustomUser'
+```
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/chat/admin.py
+```python
+from django.contrib import admin
+```
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/chat/apps.py
+```python
+from django.apps import AppConfig
+
+
+class ChatConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'chat'
+```
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/chat/consumers.py
+```python
+import json
+from channels.generic.websocket import AsyncWebsocketConsumer
+from .models import ChatRoom, Message
+
+
+class ChatConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        self.chat_room_id = self.scope['url_route']['kwargs']['chat_room_id']
+        self.room_group_name = f'chat_{self.chat_room_id}'
+
+        # Присоединяемся к группе
+        await self.channel_layer.group_add(
+            self.room_group_name,
+            self.channel_name
+        )
+        await self.accept()
+
+    async def disconnect(self, close_code):
+        # Отключаемся от группы
+        await self.channel_layer.group_discard(
+            self.room_group_name,
+            self.channel_name
+        )
+
+    # Получение сообщения от WebSocket
+    async def receive(self, text_data):
+        text_data_json = json.loads(text_data)
+        message = text_data_json['message']
+        sender_type = text_data_json['sender_type']
+        contactId = text_data_json['contactId']  # Используем contactId из CustomUser
+
+        # Сохраняем сообщение в базе данных
+        chat_room = await ChatRoom.objects.aget(id=self.chat_room_id)
+        await Message.objects.acreate(
+            chat_room=chat_room,
+            sender_type=sender_type,
+            contactId=contactId,
+            content=message
+        )
+
+        # Отправляем сообщение в группу
+        await self.channel_layer.group_send(
+            self.room_group_name,
+            {
+                'type': 'chat_message',
+                'message': message,
+                'sender_type': sender_type,
+                'contactId': contactId,
+            }
+        )
+
+    # Получение сообщения из группы
+    async def chat_message(self, event):
+        message = event['message']
+        sender_type = event['sender_type']
+        contactId = event['contactId']
+
+        # Отправляем сообщение обратно в WebSocket
+        await self.send(text_data=json.dumps({
+            'message': message,
+            'sender_type': sender_type,
+            'contactId': contactId,
+        }))
+```
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/chat/models.py
+```python
+from django.db import models
+from django.conf import settings
+from user.models import CustomUser
+
+
+class ChatRoom(models.Model):
+    """
+    Модель для хранения информации о чат-комнате.
+    """
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='chat_rooms')
+    b24_user_id = models.CharField(max_length=100)  # ID пользователя Bitrix24
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"ChatRoom: {self.user.username} <-> B24 User {self.b24_user_id}"
+
+
+class Message(models.Model):
+    """
+    Модель для хранения сообщений в чате.
+    """
+    chat_room = models.ForeignKey(ChatRoom, on_delete=models.CASCADE, related_name='messages')
+    sender_type = models.CharField(max_length=10, choices=[('user', 'User'), ('b24', 'Bitrix24')])  # Тип отправителя
+    contactId = models.CharField(max_length=100)  # Идентификатор клиента (contactId из CustomUser или b24_user_id)
+    content = models.TextField()  # Текст сообщения
+    timestamp = models.DateTimeField(auto_now_add=True)  # Время отправки сообщения
+
+    def __str__(self):
+        return f"Message from {self.sender_type} ({self.contactId}): {self.content[:50]}"
+```
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/chat/serializers.py
+```python
+from rest_framework import serializers
+
+from api.serializers import UserSerializer
+from .models import ChatRoom, Message
+
+
+class MessageSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для модели Message.
+    """
+    class Meta:
+        model = Message
+        fields = ['id', 'sender_type', 'contactId', 'content', 'timestamp']
+
+
+class ChatRoomSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для модели ChatRoom.
+    Включает связанные сообщения.
+    """
+    messages = MessageSerializer(many=True, read_only=True)
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = ChatRoom
+        fields = ['id', 'user', 'b24_user_id', 'created_at', 'messages']
+````
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/chat/urls.py
+```python
+from django.urls import path
+from .views import (
+    ChatRoomView,
+    MessageListView,
+    b24_chat_view,
+)
+
+urlpatterns = [
+    # API для работы с чат-комнатами
+    path('v1/chat/<str:b24_user_id>/', ChatRoomView.as_view(), name='chat-room'),
+    path('v1/chat/<int:chat_room_id>/messages/', MessageListView.as_view(), name='message-list'),
+
+    # Веб-вью для Bitrix24
+    path('b24/chat/<int:chat_room_id>/', b24_chat_view, name='b24-chat'),
+]
+```
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/chat/views.py
+```python
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import render
+from .models import ChatRoom, Message
+from .serializers import ChatRoomSerializer, MessageSerializer
+
+
+class ChatRoomView(APIView):
+    """
+    API для получения или создания чат-комнаты.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, b24_user_id):
+        """
+        Получение или создание чат-комнаты для пользователя Django и пользователя Bitrix24.
+        """
+        user = request.user
+        chat_room, created = ChatRoom.objects.get_or_create(user=user, b24_user_id=b24_user_id)
+        serializer = ChatRoomSerializer(chat_room)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class MessageListView(APIView):
+    """
+    API для получения списка сообщений в чат-комнате.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, chat_room_id):
+        """
+        Получение списка сообщений в чат-комнате.
+        """
+        messages = Message.objects.filter(chat_room_id=chat_room_id).order_by('timestamp')
+        serializer = MessageSerializer(messages, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+def b24_chat_view(request, chat_room_id):
+    """
+    Веб-вью для отображения чата в Bitrix24.
+    """
+    chat_room = ChatRoom.objects.get(id=chat_room_id)
+    return render(request, 'b24_chat.html', {
+        'chat_room_id': chat_room.id,
+        'b24_user_id': chat_room.b24_user_id,
+        'contactId': request.user.contactId,  # Используем contactId из CustomUser
+    })
+
+```
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/drf_auth/urls.py
+```python
+from django.contrib import admin
+from django.urls import path, include
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from . import views
+
+schema_view = get_schema_view(
+   openapi.Info(
+      title="Business Person",
+      default_version='v1',
+      description="Business Person OpenAPI Documentation",
+      terms_of_service="intizar.pythonanywhere.com ",
+      contact=openapi.Contact(email="dontWriteMe@please.com"),
+      license=openapi.License(name="No License"),
+   ),
+   public=True,
+   permission_classes=(permissions.AllowAny,),
+)
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('admin/', admin.site.urls),
+    path('api/', include('api.urls')),
+    path('chat/', include('chat.urls')),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0),
+         name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0),
+         name='schema-redoc'),
+]
+
+```
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/drf_auth/wsgi.py
+```python
+import os
+
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'drf_auth.settings')
+
+application = get_wsgi_application()
+
+```
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/drf_auth/asgi.py
+```python
+import os
+from django.core.asgi import get_asgi_application
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.auth import AuthMiddlewareStack
+from django.urls import path
+from chat.consumers import ChatConsumer
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'drf_auth.settings')
+
+# application = get_asgi_application()
+
+application = ProtocolTypeRouter({
+    "http": get_asgi_application(),
+    "websocket": AuthMiddlewareStack(
+        URLRouter([
+            path("ws/chat/<int:chat_room_id>/", ChatConsumer.as_asgi()),
+        ])
+    ),
+})
+
+```
+/Users/sergeykhamatulin/Dev/AuthorIT/intizar/drf-auth/drf-auth/drf_auth/user/models.py
+```python
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+
+
+class CustomUser(AbstractUser):
+    contactId = models.CharField(max_length=100,
+                                 blank=False,
+                                 null=False)
+
+```
+
+Достаточно ли тебе информации для анализа приложения? Предложи значимые исправления, из-за который на фронте не удаётся получить доступ к методам.
