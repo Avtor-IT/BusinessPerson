@@ -1,8 +1,14 @@
 import axios from 'axios';
 import { apiEndpoints } from 'shared/model';
 
+const url = {
+	testing: 'https://intizar.pythonanywhere.com',
+	broadcast: 'http://0.0.0.0:8000',
+	local: 'http://127.0.0.1:8000',
+};
+
 const instance = axios.create({
-	baseURL: 'https://intizar.pythonanywhere.com',
+	baseURL: url.local,
 });
 
 // Add urlParams config property
@@ -13,6 +19,7 @@ instance.interceptors.request.use((config) => {
 
 	const currentUrl = new URL(config.url, config.baseURL);
 
+	// @ts-ignore
 	Object.entries(config.urlParams || {}).forEach(([k, v]) => {
 		currentUrl.pathname = currentUrl.pathname.replace(
 			`:${k}`,
