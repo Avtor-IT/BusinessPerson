@@ -14,3 +14,10 @@ run containers
 ```
 docker-compose up --build
 ```
+
+## Submodules
+
+update submodules:
+```
+git submodule update --remote
+```
