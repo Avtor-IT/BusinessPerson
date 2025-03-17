@@ -1,7 +1,0 @@
-.gitignore
-.prettierrc
-eslint.config.js
-README.md
-.husky/
-node_modules/
-docs/
