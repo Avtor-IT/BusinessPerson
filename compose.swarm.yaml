@@ -36,8 +36,8 @@ services:
 
     deploy:
       replicas: 1
-      # restart_policy:
-      #   condition: on-failure
+      restart_policy:
+        condition: on-failure
 
     ports:
       - 80:80
