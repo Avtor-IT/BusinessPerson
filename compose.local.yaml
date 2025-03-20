@@ -26,20 +26,6 @@ services:
       - db:/backend/db.sqlite3
     ports:
       - 8000:8000
-      
-  # nginx:
-  #   image: holakarme/businessperson-nginx:latest
-  #   container_name: nginx
-
-  #   build:
-  #     context: .
-  #     dockerfile: docker/nginx/Dockerfile
-
-  #   ports:
-  #     - 80:80
-  #   depends_on:
-  #     - frontend
-  #     - backend
 
 volumes:
   node_modules:

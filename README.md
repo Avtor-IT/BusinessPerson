@@ -59,7 +59,9 @@ docker use default
 
 1. Build images locally:
 ```
-docker-compose up --build
+docker build -t holakarme/businessperson-frontend:latest -f ./docker/frontend/Dockerfile .
+docker build -t holakarme/businessperson-backend:latest -f ./docker/backend/Dockerfile .
+docker build -t holakarme/businessperson-nginx:latest -f ./docker/nginx/Dockerfile .
 ```
 
 
