@@ -1,0 +1,55 @@
+# Docker compose conf for the docker stack
+
+version: '3.8'
+
+services:
+  frontend:
+    image: holakarme/businessperson-frontend:latest
+
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+    volumes:
+      - node_modules:/frontend/node_modules
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+
+  backend:
+    image: holakarme/businessperson-backend:latest
+
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+    volumes:
+      - db:/backend/db.sqlite3
+    ports:
+      - 8000:8000
+
+  nginx:
+    image: holakarme/businessperson-nginx:latest
+
+    deploy:
+      replicas: 1
+      # restart_policy:
+      #   condition: on-failure
+
+    ports:
+      - 80:80
+    depends_on:
+      - frontend
+      - backend
+
+volumes:
+  node_modules:
+  db:
+
+
+networks:
+  default:
+    attachable: true
