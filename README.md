@@ -11,7 +11,7 @@
 
 Run containers locally
 ```
-docker-compose up --build
+docker-compose -f ./compose.local.yaml up --build
 ```
 \**`--build` flag is not neccessary if you want to just turn containers on*
 
@@ -27,12 +27,12 @@ git submodule update --remote
 
 1. Create new `docker context`:
 ```
-docker context create business-person --docker "host=ssh://root@5.35.82.235"
+docker context create businessperson --docker "host=ssh://root@5.35.82.235"
 ```
 
 2. Use created context by default:
 ```
-docker context use business-person
+docker context use businessperson
 ```
 
 3. Run created context:
@@ -47,7 +47,7 @@ docker swarm init
 
 5. Run `docker stack deploy`:
 ```
-docker stack deploy -c ./docker-compose.yaml business-person
+docker stack deploy -c ./compose.swarm.yaml businessperson
 ```
 
 ### Updates containers
@@ -73,11 +73,11 @@ docker push holakarme/businessperson-nginx:latest
 
 3. Change `docker context` to one that created on vps
 ```
-docker context use business-person
+docker context use businessperson
 ```
 
 4. Run `docker stack deploy`:
 ```
-docker stack deploy -c ./compose.swarm.yaml business-person --with-registry-auth 
+docker stack deploy -c ./compose.swarm.yaml businessperson --with-registry-auth 
 ```
 \**The backend image is private so creditinals are required*
