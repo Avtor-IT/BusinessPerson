@@ -1,34 +1,31 @@
+# Docker compose conf for docker-compose locally
+
 services:
   frontend:
+    image: holakarme/businessperson-frontend:latest
     container_name: frontend
-    build: 
+
+    build:
       context: .
       dockerfile: docker/frontend/Dockerfile
+
     volumes:
       - node_modules:/frontend/node_modules
     ports:
       - 3000:3000
 
   backend:
+    image: holakarme/businessperson-backend:latest
     container_name: backend
+
     build:
       context: .
       dockerfile: docker/backend/Dockerfile
+
     volumes:
       - db:/backend/db.sqlite3
     ports:
       - 8000:8000
-
-  nginx:
-    container_name: nginx
-    build:
-      context: .
-      dockerfile: docker/nginx/Dockerfile
-    ports:
-      - 80:80
-    depends_on:
-      - frontend
-      - backend
 
 volumes:
   node_modules:
