@@ -100,4 +100,5 @@ jobs:
                   stack_file: "./compose.swarm.yaml"
                   stack_name: "businessperson"
                   stack_param: "--with-registry-auth"
+                  debug: 1
                   # args: stack deploy -c ./compose.swarm.yaml businessperson --with-registry-auth
