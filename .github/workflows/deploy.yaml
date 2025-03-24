@@ -63,7 +63,6 @@ jobs:
         steps:
             - name: checkout
               uses: actions/checkout@v4
-              with:
             - name: login to docker hub
               uses: docker/login-action@v3
               with:
