@@ -10,11 +10,14 @@ jobs:
     build_backend:
         runs-on: ubuntu-latest
         steps:
-            - name: checkout
+            - name: checkout docker repo
               uses: actions/checkout@v4
+            - name: clone private backend submodule
+              uses: pietrobolcato/action-clone-private-submodule@main
               with:
-                  repository: https://github.com/Avtor-IT/BP-Backend
-                  ssh-key: ${{ secrets.SSH_GITHUB_BACKEND_PRIVATE_KEY  }}
+                  ssh_private_key: ${{ secrets.SSH_GITHUB_BACKEND_PRIVATE_KEY }}
+                  module_link: Avtor-IT/BP-Backend
+                  module_path: ./backend
             - name: login to docker hub
               uses: docker/login-action@v3
               with:
@@ -33,10 +36,13 @@ jobs:
     build_frontend:
         runs-on: ubuntu-latest
         steps:
-            - name: checkout
+            - name: checkout docker repo
+              uses: actions/checkout@v4
+            - name: clone frontend submodule
               uses: actions/checkout@v4
               with:
-                  submodules: true
+                  repository: https://github.com/Avtor-IT/BP-Frontend
+                  path: ./frontend
             - name: login to docker hub
               uses: docker/login-action@v3
               with:
