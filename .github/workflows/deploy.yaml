@@ -93,15 +93,9 @@ jobs:
                   username: ${{ secrets.DOCKERHUB_USERNAME }}
                   password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-            - name: Set up SSH keys and known_hosts
+            - name: remove known_hosts
               run: |
-                  mkdir -p ~/.ssh
-                  cp .github/.ssh/known_hosts ~/.ssh/known_hosts
-                  chmod 600 ~/.ssh/known_hosts
-                  echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-                  chmod 600 ~/.ssh/id_rsa
-              env:
-                  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+                  ssh-keygen -R 5.35.82.235
 
             - name: deploy to swarm
               uses: sagebind/docker-swarm-deploy-action@v2
