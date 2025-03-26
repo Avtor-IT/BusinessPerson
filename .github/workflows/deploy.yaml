@@ -92,15 +92,14 @@ jobs:
               with:
                   username: ${{ secrets.DOCKERHUB_USERNAME }}
                   password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
-            - name: remove known_hosts
+            - name: Add SSH host to known_hosts
               run: |
-                  ssh-keygen -R 5.35.82.235
-
+                  mkdir -p ~/.ssh
+                  echo "<SSH_HOST> ${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
             - name: deploy to swarm
               uses: sagebind/docker-swarm-deploy-action@v2
               with:
-                  remote_host: ssh://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+                  remote_host: ssh://${{ secrets.SSH_USER }}@
                   ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
                   ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
                   args: stack deploy -c compose.swarm.yaml businessperson --with-registry-auth
