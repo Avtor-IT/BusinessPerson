@@ -92,11 +92,13 @@ jobs:
               with:
                   username: ${{ secrets.DOCKERHUB_USERNAME }}
                   password: ${{ secrets.DOCKERHUB_PASSWORD }}
-            - name: set up known_hosts
-              uses: kielabokkie/ssh-key-and-known-hosts-action@v1
+            - name: SSH Known Hosts
+              id: ssh-known-hosts
+              uses: truemark/ssh-known-hosts-action@v1
               with:
-                  ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-                  ssh-host: ${{ secrets.SSH_HOST }}
+                  scan-hosts: ${{ secrets.SSH_HOST }}
+                  type: rsa
+                  name: id_rsa
             - name: deploy to swarm
               uses: sagebind/docker-swarm-deploy-action@v2
               with:
