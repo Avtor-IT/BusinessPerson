@@ -92,8 +92,6 @@ jobs:
               with:
                   username: ${{ secrets.DOCKERHUB_USERNAME }}
                   password: ${{ secrets.DOCKERHUB_PASSWORD }}
-            - name: Add new SSH host key
-              run: ssh-keyscan -t rsa ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
             - name: deploy to swarm
               uses: sagebind/docker-swarm-deploy-action@v2
               with:
