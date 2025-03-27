@@ -43,3 +43,9 @@ services:
 volumes:
   node_modules:
   db:
+
+
+networks:
+  default:
+    driver: overlay
+    attachable: true
