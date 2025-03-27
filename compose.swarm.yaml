@@ -49,7 +49,6 @@ volumes:
   node_modules:
   db:
 
-
-networks:
-  default:
-    attachable: true
+    # networks:
+    #   default:
+    #     attachable: true
