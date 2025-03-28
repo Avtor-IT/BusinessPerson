@@ -107,3 +107,9 @@ docker stack deploy -c ./compose.swarm.yaml businessperson --with-registry-auth
 ```
 
 \*_The backend image is private so creditinals are required_
+
+5. Make migrations
+
+```
+docker exec -it <container-id> python3 manage.py makemigrations
+```
