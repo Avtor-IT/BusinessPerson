@@ -99,10 +99,10 @@ jobs:
                   registry_auth: true
                   registry_user: ${{ secrets.DOCKERHUB_USERNAME }}
                   registry_pass: ${{ secrets.DOCKERHUB_PASSWORD }}
-            - name: system prune
-              uses: appleboy/ssh-action@v1
-              with:
-                  host: ${{ secrets.SSH_HOST }}
-                  username: root
-                  key: ${{ secrets.SSH_PRIVATE_KEY }}
-                  script: sudo docker system prune -f
+            # - name: system prune
+            #   uses: appleboy/ssh-action@v1
+            #   with:
+            #       host: ${{ secrets.SSH_HOST }}
+            #       username: root
+            #       key: ${{ secrets.SSH_PRIVATE_KEY }}
+            #       script: sudo docker system prune -f
