@@ -105,4 +105,4 @@ jobs:
                   host: ${{ secrets.SSH_HOST }}
                   username: root
                   key: ${{ secrets.SSH_PRIVATE_KEY }}
-                  script: docker system prune -f
+                  script: sudo docker system prune -f
