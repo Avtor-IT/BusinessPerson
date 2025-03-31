@@ -95,15 +95,14 @@ jobs:
             - name: 'Stack Deploy'
               uses: cssnr/stack-deploy-action@v1
               with:
-                name: businessperson
-                file: compose.swarm.yaml
-                host: ${{ secrets.SSH_HOST }}
-                user: ${{ secrets.SSH_USER }}
-                ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
-                prune: true
-                registry_auth: true
-                registry_user: ${{ vars.DOCKERHUB_USERNAME }}
-                registry_pass: ${{ secrets.DOCKERHUB_PASSWORD }}
+                  name: businessperson
+                  file: compose.swarm.yaml
+                  host: ${{ secrets.SSH_HOST }}
+                  user: ${{ secrets.SSH_USER }}
+                  ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  registry_auth: true
+                  registry_user: ${{ secrets.DOCKERHUB_USERNAME }}
+                  registry_pass: ${{ secrets.DOCKERHUB_PASSWORD }}
             # - name: deploy to swarm
             #   uses: sagebind/docker-swarm-deploy-action@v2
             #   with:
