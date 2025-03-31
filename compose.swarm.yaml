@@ -26,6 +26,7 @@ services:
 
     volumes:
       - db:/backend/db.sqlite3
+      - static:/backend/static
     ports:
       - 8000:8000
 
@@ -43,3 +44,4 @@ services:
 volumes:
   node_modules:
   db:
+  static:
