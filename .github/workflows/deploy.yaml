@@ -100,6 +100,6 @@ jobs:
                   registry_user: ${{ secrets.DOCKERHUB_USERNAME }}
                   registry_pass: ${{ secrets.DOCKERHUB_PASSWORD }}
             - name: clear containers & images
-              script: |
+              run: |
                   docker image prune -f
                   docker container prune -f
