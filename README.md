@@ -106,7 +106,7 @@ docker context use businessperson
 docker stack deploy -c ./compose.swarm.yaml businessperson --with-registry-auth
 ```
 
-\*_The backend image is private so creditinals are required_
+\*_The backend image is private so creditinals are requi    red_
 
 5. Make migrations
 

@@ -17,6 +17,7 @@ services:
       - 3000:3000
 
   backend:
+    # @TODO: допилить атвоматические миграции
     image: holakarme/businessperson-backend:latest
 
     deploy:
@@ -45,7 +46,7 @@ volumes:
   db:
 
 
-networks:
-  default:
-    driver: overlay
-    attachable: true
+# networks:
+#   default:
+#     driver: overlay
+#     attachable: true
