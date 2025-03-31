@@ -92,6 +92,18 @@ jobs:
             #   with:
             #       username: ${{ secrets.DOCKERHUB_USERNAME }}
             #       password: ${{ secrets.DOCKERHUB_PASSWORD }}
+            - name: 'Stack Deploy'
+              uses: cssnr/stack-deploy-action@v1
+              with:
+                name: businessperson
+                file: compose.swarm.yaml
+                host: ${{ secrets.SSH_HOST }}
+                user: ${{ secrets.SSH_USER }}
+                ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
+                prune: true
+                registry_auth: true
+                registry_user: ${{ vars.DOCKERHUB_USERNAME }}
+                registry_pass: ${{ secrets.DOCKERHUB_PASSWORD }}
             # - name: deploy to swarm
             #   uses: sagebind/docker-swarm-deploy-action@v2
             #   with:
@@ -99,13 +111,13 @@ jobs:
             #       ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
             #       ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
             #       args: stack deploy --compose-file compose.swarm.yaml businessperson --with-registry-auth
-            - name: deploy to swarm
-              uses: kitconcept/docker-stack-deploy@v1.0.1
-              with:
-                  username: ${{ secrets.DOCKERHUB_USERNAME }}
-                  password: ${{ secrets.DOCKERHUB_PASSWORD }}
-                  remote_host: ${{ secrets.SSH_HOST }}
-                  remote_user: ${{ secrets.SSH_USER }}
-                  remote_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-                  stack_file: compose.swarm.yaml
-                  stack_name: businessperson
+            # - name: deploy to swarm
+            #   uses: kitconcept/docker-stack-deploy@v1.0.1
+            #   with:
+            #       username: ${{ secrets.DOCKERHUB_USERNAME }}
+            #       password: ${{ secrets.DOCKERHUB_PASSWORD }}
+            #       remote_host: ${{ secrets.SSH_HOST }}
+            #       remote_user: ${{ secrets.SSH_USER }}
+            #       remote_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+            #       stack_file: compose.swarm.yaml
+            #       stack_name: businessperson

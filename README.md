@@ -112,4 +112,6 @@ docker stack deploy -c ./compose.swarm.yaml businessperson --with-registry-auth
 
 ```
 docker exec -it <container-id> python3 manage.py makemigrations
+docker exec -it <container-id> python3 manage.py migrate
+docker exec -it <container-id> python3 manage.py createsupersuser
 ```
