@@ -12,7 +12,7 @@ services:
       #   condition: on-failure
 
     volumes:
-      - node_modules:/frontend/node_modules
+      - node_modules:/apps/frontend/node_modules
     ports:
       - 3000:3000
 
@@ -26,7 +26,8 @@ services:
 
     volumes:
       - db:/backend/db.sqlite3
-      - static:/backend/static
+      - static_value:/apps/backend/static
+      - media_value:/apps/backend/media
     ports:
       - 8000:8000
 
@@ -41,7 +42,12 @@ services:
     ports:
       - 80:80
 
+    volumes:
+      - static_value:/var/html/static/
+      - media_value:/var/html/media/
+
 volumes:
   node_modules:
   db:
-  static:
+  static_value:
+  media_value:
