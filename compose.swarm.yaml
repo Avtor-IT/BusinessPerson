@@ -27,6 +27,7 @@ services:
     volumes:
       - static_value:/apps/backend/static
       - media_value:/apps/backend/media
+
       # file from the remote /home/database/sqlite/db.sqlite3 will be available in the container
       - /home/database/sqlite/db.sqlite3:apps/backend/db.sqlite3
     ports:
