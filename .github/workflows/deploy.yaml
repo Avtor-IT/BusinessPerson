@@ -100,6 +100,7 @@ jobs:
                   host: ${{ secrets.SSH_HOST }}
                   user: ${{ secrets.SSH_USER }}
                   ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  prune: true
                   registry_auth: true
                   registry_user: ${{ secrets.DOCKERHUB_USERNAME }}
                   registry_pass: ${{ secrets.DOCKERHUB_PASSWORD }}

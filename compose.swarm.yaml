@@ -17,7 +17,6 @@ services:
       - 3000:3000
 
   backend:
-    # @TODO: допилить атвоматические миграции
     image: holakarme/businessperson-backend:latest
 
     deploy:
