@@ -55,10 +55,8 @@ services:
       #   condition: on-failure
 
     depends_on:
-      backend:
-        condition: service_healthy
-      frontend:
-        condition: service_healthy
+      - backend
+      - frontend
 
     ports:
       - 80:80
