@@ -56,9 +56,9 @@ services:
       - 80:80
 
     depends_on:
-      frontend:
+      - frontend:
         condition: service_healthy
-      backend:
+      - backend:
         condition: service_healthy
 
     volumes:
