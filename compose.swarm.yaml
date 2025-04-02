@@ -52,14 +52,14 @@ services:
       # restart_policy:
       #   condition: on-failure
 
+    depends_on:
+      - backend:
+          - condition: service_healthy
+      - frontend:
+          - condition: service_healthy
+
     ports:
       - 80:80
-
-    depends_on:
-      - frontend:
-        condition: service_healthy
-      - backend:
-        condition: service_healthy
 
     volumes:
       - static_value:/var/html/static/
