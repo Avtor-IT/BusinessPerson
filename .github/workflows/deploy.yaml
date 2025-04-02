@@ -96,6 +96,7 @@ jobs:
                   user: ${{ secrets.SSH_USER }}
                   ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
                   registry_auth: true
+                  prune: true
                   registry_user: ${{ secrets.DOCKERHUB_USERNAME }}
                   registry_pass: ${{ secrets.DOCKERHUB_PASSWORD }}
             - name: system prune

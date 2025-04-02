@@ -10,13 +10,15 @@ services:
       replicas: 1
       # restart_policy:
       #   condition: on-failure
+    depends_on:
+      - backend
 
     volumes:
       - node_modules:/apps/frontend/node_modules
     ports:
       - 3000:3000
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:3000" ]
+      test: curl --fail http://127.0.0.1:3000 || exit 1
       interval: 30s
       timeout: 10s
       retries: 3
@@ -39,7 +41,7 @@ services:
       - 8000:8000
 
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8000" ]
+      test: curl --fail http://127.0.0.1:8000 || exit 1
       interval: 30s
       timeout: 10s
       retries: 3
@@ -53,10 +55,8 @@ services:
       #   condition: on-failure
 
     depends_on:
-      - backend:
-          condition: service_healthy
-      - frontend:
-          condition: service_healthy
+      - backend
+      - frontend
 
     ports:
       - 80:80
