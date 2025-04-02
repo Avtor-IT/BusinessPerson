@@ -15,12 +15,16 @@ services:
       - node_modules:/apps/frontend/node_modules
     ports:
       - 3000:3000
-      # healthcheck:
-      #   test: wget --no-verbose --tries=1 --spider http://127.0.0.1:3000 || exit 1
-      #   interval: 10s
-      #   timeout: 5s
-      #   start_period: 10s
-      # retries: 3
+
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://127.0.0.1:3000 || exit 1
+      interval: 10s
+      timeout: 5s
+      start_period: 10s
+      retries: 2
+
+    depends_on:
+      - backend
 
   backend:
     image: holakarme/businessperson-backend:latest
@@ -38,12 +42,12 @@ services:
       - /home/database/sqlite/db.sqlite3:/apps/backend/db.sqlite3
     ports:
       - 8000:8000
-      # healthcheck:
-      #   test: curl -s http://127.0.0.1:8000  || exit 1
-      #   interval: 10s
-      #   timeout: 5s
-      #   start_period: 10s
-      # retries: 3
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://127.0.0.1:8000  || exit 1
+      interval: 10s
+      timeout: 5s
+      start_period: 10s
+      retries: 2
 
   nginx:
     image: holakarme/businessperson-nginx:latest
@@ -56,9 +60,23 @@ services:
     ports:
       - 80:80
 
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://127.0.0.1:80 || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 2
+
+    depends_on:
+      - frontend
+      - backend
+
     volumes:
       - static_value:/var/html/static/
       - media_value:/var/html/media/
+
+networks:
+  default:
+    attachable: true
 
 volumes:
   node_modules:
