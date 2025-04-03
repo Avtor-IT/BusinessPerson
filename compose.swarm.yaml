@@ -18,11 +18,11 @@ services:
 
     healthcheck:
       #  There are no curl in the alpine images
-      test: wget --no-verbose --tries=1 --spider http://127.0.0.1:3000 || exit 1
-      interval: 10s
-      timeout: 5s
-      start_period: 10s
-      retries: 2
+      # test: wget --no-verbose --tries=1 --spider http://127.0.0.1:3000 || exit 1
+      # interval: 10s
+      # timeout: 5s
+      # start_period: 10s
+      # retries: 2
 
     depends_on:
       - backend
@@ -43,12 +43,12 @@ services:
       - /home/database/sqlite/db.sqlite3:/apps/backend/db.sqlite3
     ports:
       - 8000:8000
-    healthcheck:
-      test: curl --fail http://0.0.0.0:8000 || exit 1
-      interval: 10s
-      timeout: 5s
-      start_period: 10s
-      retries: 2
+    # healthcheck:
+    #   test: curl --fail http://0.0.0.0:8000 || exit 1
+    #   interval: 10s
+    #   timeout: 5s
+    #   start_period: 10s
+    #   retries: 2
 
   nginx:
     image: holakarme/businessperson-nginx:latest
