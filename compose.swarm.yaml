@@ -57,9 +57,9 @@ services:
     ports:
       - 80:80
 
-    links:
-      - frontend
-      - backend
+    # links:
+    #   - frontend
+    #   - backend
 
     # healthcheck:
     #   test: curl --fail http://127.0.0.1:80/ || exit 1
@@ -71,10 +71,10 @@ services:
       - static_value:/var/html/static/
       - media_value:/var/html/media/
 
-networks:
-  default:
-    attachble: true
-    driver: overlay
+# networks:
+#   default:
+#     attachble: true
+#     driver: overlay
 
 volumes:
   node_modules:
