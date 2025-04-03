@@ -17,7 +17,8 @@ services:
       - 3000:3000
 
     healthcheck:
-      test: curl --fail http://127.0.0.1:3000 || exit 1
+      #  There are no curl in the alpine images
+      test: wget --no-verbose --tries=1 --spider http://127.0.0.1:3000 || exit 1
       interval: 10s
       timeout: 5s
       start_period: 10s
@@ -73,10 +74,6 @@ services:
     volumes:
       - static_value:/var/html/static/
       - media_value:/var/html/media/
-
-networks:
-  default:
-    attachable: true
 
 volumes:
   node_modules:
