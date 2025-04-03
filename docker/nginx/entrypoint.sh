@@ -1,11 +1,11 @@
 #!/bin/sh
 
-until curl -s --fail http://127.0.0.1:3000; do
+until curl -s --fail http://frontend:3000; do
     echo "Waiting for frontend..."
     sleep 10
 done
 
-until curl -s --fail http://127.0.0.1:8000; do
+until curl -s --fail http://backend:8000; do
     echo "Waiting for backend..."
     sleep 10
 done
