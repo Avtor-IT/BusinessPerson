@@ -23,9 +23,6 @@ services:
       # start_period: 10s
       # retries: 2
 
-    depends_on:
-      - backend
-
   backend:
     image: holakarme/businessperson-backend:latest
 
@@ -65,10 +62,6 @@ services:
     #   interval: 10s
     #   timeout: 5s
     #   retries: 2
-
-    depends_on:
-      - frontend
-      - backend
 
     volumes:
       - static_value:/var/html/static/
