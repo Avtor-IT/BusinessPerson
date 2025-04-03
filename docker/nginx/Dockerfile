@@ -1,7 +1,6 @@
 FROM node:alpine AS build
 WORKDIR /apps/frontend
-COPY ./frontend/ .
-RUN ls -la
+COPY ../../frontend/ .
 RUN npm install
 # COPY ./frontend .
 RUN npm run build
