@@ -1,7 +1,7 @@
-FROM node:alpine
+FROM node:alpine as build
 WORKDIR /apps/frontend
 COPY ./frontend/package*.json .
 RUN npm install
 COPY ./frontend .
-
-CMD ["npm", "run", "docker"]
+RUN npm run build
+# CMD cp -r docs .
