@@ -3,17 +3,17 @@
 version: '3.8'
 
 services:
-  frontend:
-    image: holakarme/businessperson-frontend:latest
+  # frontend:
+  #   image: holakarme/businessperson-frontend:latest
 
-    deploy:
-      replicas: 1
-      # restart_policy:
-      #   condition: on-failure
+  #   deploy:
+  #     replicas: 1
+  #     # restart_policy:
+  #     #   condition: on-failure
 
-    volumes:
-      - node_modules:/apps/frontend/node_modules
-      - /home/frontend/:/app/frontend/docs
+  #   volumes:
+  #     - node_modules:/apps/frontend/node_modules
+  #     - /home/frontend/:/app/frontend/docs
 
   backend:
     image: holakarme/businessperson-backend:latest
@@ -46,7 +46,7 @@ services:
     volumes:
       - static_value:/var/html/static/
       - media_value:/var/html/media/
-      - /home/frontend/:/usr/share/nginx/html/
+      # - /home/frontend/:/usr/share/nginx/html/
 
 volumes:
   node_modules:
