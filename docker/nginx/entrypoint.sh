@@ -11,6 +11,6 @@ until curl http://backend:8000; do
 done
 
 echo "Starting nginx...";
-nginx-debug -g "daemon off";
+nginx-debug -g "daemon off;";
 
 exec "$@";
