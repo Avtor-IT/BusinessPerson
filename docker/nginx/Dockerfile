@@ -1,9 +1,8 @@
 FROM node:alpine AS build
 WORKDIR /apps/frontend
-COPY frontend/package*.json .
-RUN ls -la
+COPY ./frontend/package*.json .
 RUN npm install
-COPY frontend .
+COPY ./frontend .
 RUN npm run build
 
 FROM nginx:stable-alpine
