@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "Starting nginx..."
+echo "Starting nginx...";
 nginx-debug -g "daemon off";
 
 exec "$@"
