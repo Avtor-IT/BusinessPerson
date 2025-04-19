@@ -3,31 +3,32 @@
 version: '3.8'
 
 services:
-  frontend:
-    image: holakarme/businessperson-frontend:latest
+  # frontend:
+  #   image: holakarme/businessperson-frontend:latest
 
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
+  #   deploy:
+  #     replicas: 1
+  #     # restart_policy:
+  #     #   condition: on-failure
 
-    volumes:
-      - node_modules:/frontend/node_modules
-    ports:
-      - 3000:3000
-    depends_on:
-      - backend
+  #   volumes:
+  #     - node_modules:/apps/frontend/node_modules
+  #     - /home/frontend/:/app/frontend/docs
 
   backend:
     image: holakarme/businessperson-backend:latest
 
     deploy:
       replicas: 1
-      restart_policy:
-        condition: on-failure
+      # restart_policy:
+      #   condition: on-failure
 
     volumes:
-      - db:/backend/db.sqlite3
+      - static_value:/apps/backend/static
+      - media_value:/apps/backend/media
+
+      # file from the remote /home/database/sqlite/db.sqlite3 will be available in the container
+      - /home/database/sqlite/db.sqlite3:/apps/backend/db.sqlite3
     ports:
       - 8000:8000
 
@@ -36,20 +37,18 @@ services:
 
     deploy:
       replicas: 1
-      restart_policy:
-        condition: on-failure
+      # restart_policy:
+      #   condition: on-failure
 
     ports:
       - 80:80
-    depends_on:
-      - frontend
-      - backend
+
+    volumes:
+      - static_value:/var/html/static/
+      - media_value:/var/html/media/
+      # - /home/frontend/:/usr/share/nginx/html/
 
 volumes:
   node_modules:
-  db:
-
-
-networks:
-  default:
-    attachable: true
+  static_value:
+  media_value:

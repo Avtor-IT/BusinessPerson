@@ -3,4 +3,6 @@ WORKDIR /apps/backend
 COPY ./backend/requirements.txt .
 RUN pip install -r requirements.txt
 COPY ./backend .
-CMD ["uvicorn", "drf_auth.asgi:application", "--host", "0.0.0.0", "--port", "8000"]
+COPY ./docker/backend/entrypoint.sh .
+RUN chmod +x ./entrypoint.sh
+ENTRYPOINT [ "./entrypoint.sh" ]
