@@ -20,6 +20,8 @@ services:
       - /home/database/sqlite/db.sqlite3:/apps/backend/db.sqlite3
     ports:
       - 8000:8000
+    networks:
+      - app-network
 
   nginx:
     image: holakarme/businessperson-nginx:latest
@@ -39,6 +41,8 @@ services:
       - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
+    networks:
+      - app-network
 
   certbot: 
     image: certbot/certbot
@@ -52,3 +56,6 @@ volumes:
   node_modules:
   static_value:
   media_value:
+
+networks:
+  app-network:
