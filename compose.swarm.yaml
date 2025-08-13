@@ -33,19 +33,19 @@ services:
       - 80:80
       - 443:443
 
-    volumes:
-      - static_value:/var/html/static/
-      - media_value:/var/html/media/
-      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
+    # volumes:
+    #   - static_value:/var/html/static/
+    #   - media_value:/var/html/media/
+    #   - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+    #   - ./certbot/conf:/etc/letsencrypt
+    #   - ./certbot/www:/var/www/certbot
 
-  certbot: 
-    image: certbot/certbot
-    volumes:
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email hol peretyatko.kirill@avtorit24.ru -d xn--24-6kcduamh0cckkold.xn--p1ai --agree-tos
+  # certbot: 
+  #   image: certbot/certbot
+  #   volumes:
+  #     - ./certbot/conf:/etc/letsencrypt
+  #     - ./certbot/www:/var/www/certbot
+  #   command: certonly --webroot -w /var/www/certbot --force-renewal --email hol peretyatko.kirill@avtorit24.ru -d xn--24-6kcduamh0cckkold.xn--p1ai --agree-tos
 
 
 volumes:
