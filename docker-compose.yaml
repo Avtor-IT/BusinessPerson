@@ -1,7 +1,5 @@
 # Docker compose conf for the docker stack
 
-version: '3.8'
-
 services:
 
   backend:
@@ -50,6 +48,8 @@ services:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
     command: certonly --webroot -w /var/www/certbot --force-renewal --email hol peretyatko.kirill@avtorit24.ru -d xn--24-6kcduamh0cckkold.xn--p1ai --agree-tos
+    networks:
+      - app-network
 
 
 volumes:
@@ -59,3 +59,4 @@ volumes:
 
 networks:
   app-network:
+    driver: bridge
