@@ -36,7 +36,7 @@ services:
     volumes:
       - static_value:/var/html/static/
       - media_value:/var/html/media/
-      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
     networks:
