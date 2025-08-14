@@ -12,7 +12,7 @@
 Run containers locally
 
 ```
-docker-compose -f ./compose.local.yaml up --build
+docker-compose -f ./docker-compose.yaml up --build
 ```
 
 \*_`--build` flag is not neccessary if you want to just turn containers on_
@@ -38,7 +38,7 @@ git submodule update
 git submodule update --remote
 ```
 
-### Deployment guide:
+### Deployment guide _deprecated, need to update_:
 
 1. Create new `docker context`:
 
