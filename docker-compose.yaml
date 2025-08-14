@@ -1,15 +1,8 @@
-# Docker compose conf for the docker stack
-
 services:
 
   backend:
     image: holakarme/businessperson-backend:latest
-
-    # deploy:
-      # replicas: 1
-      # restart_policy:
-      #   condition: on-failure
-
+    # restart: unless-stopped
     volumes:
       - static_value:/apps/backend/static
       - media_value:/apps/backend/media
@@ -23,12 +16,9 @@ services:
 
   nginx:
     image: holakarme/businessperson-nginx:latest
-
-    # deploy:
-      # replicas: 1
-      # restart_policy:
-      #   condition: on-failure
-
+    depends_on:
+      - backend
+    # restart: unless-stopped
     ports:
       - 80:80
       - 443:443
@@ -36,28 +26,29 @@ services:
     volumes:
       - static_value:/var/html/static/
       - media_value:/var/html/media/
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
-      # - ./docker/nginx/config:/etc/nginx/conf.d
+      - etc-letsencrypt:/etc/letsencrypt
     networks:
       - app-network
-    depends_on:
-      - backend
 
-  # certbot: 
-  #   image: certbot/certbot
-  #   volumes:
-  #     - ./certbot/conf:/etc/letsencrypt
-  #     - ./certbot/www:/var/www/certbot
-  #   command: certonly --webroot -w /var/www/certbot --force-renewal --email hol peretyatko.kirill@avtorit24.ru -d xn--24-6kcduamh0cckkold.xn--p1ai --agree-tos
-  #   networks:
-  #     - app-network
+  # Перевыпкается ограниченное количество раз. Каждый деплой - перевыпуск
+  certbot: 
+    image: certbot/certbot
+    depends_on:
+      - nginx
+    volumes:
+      - etc-letsencrypt:/etc/letsencrypt
+      - www-html:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html --force-renewal --email peretyatko.kirill@avtorit24.ru --agree-tos --no-eff-email -d xn--24-6kcduamh0cckkold.xn--p1ai 
+    networks:
+      - app-network
 
 
 volumes:
   node_modules:
   static_value:
   media_value:
+  etc-letsencrypt:
+  www-html:
 
 networks:
   app-network:
