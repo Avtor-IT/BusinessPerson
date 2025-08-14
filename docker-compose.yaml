@@ -39,7 +39,7 @@ services:
     volumes:
       - certificates:/etc/letsencrypt
       - data:/data/letsencrypt
-    command: certonly --webroot --webroot-path=/data/letsencrypt --force-renewal --email peretyatko.kirill@avtorit24.ru --agree-tos --no-eff-email -d xn--24-6kcduamh0cckkold.xn--p1ai 
+    command: certonly --webroot --webroot-path=/data/letsencrypt --force-renewal --email peretyatko.kirill@avtorit24.ru --agree-tos --no-eff-email --staging -d xn--24-6kcduamh0cckkold.xn--p1ai 
     networks:
       - app-network
 
