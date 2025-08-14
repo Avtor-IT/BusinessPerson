@@ -26,7 +26,8 @@ services:
     volumes:
       - static_value:/var/html/static/
       - media_value:/var/html/media/
-      - letsencrypt-site:/etc/letsencrypt
+      - certificates:/etc/letsencrypt
+      - data:/data/letsencrypt
     networks:
       - app-network
 
@@ -36,9 +37,9 @@ services:
     depends_on:
       - nginx
     volumes:
-      - letsencrypt-site:/etc/letsencrypt
-      # - www-html:/var/www/html
-    command: certonly --webroot --webroot-path=/etc/letsencrypt --force-renewal --email peretyatko.kirill@avtorit24.ru --agree-tos --no-eff-email -d xn--24-6kcduamh0cckkold.xn--p1ai 
+      - certificates:/etc/letsencrypt
+      - data:/data/letsencrypt
+    command: certonly --webroot --webroot-path=/data/letsencrypt --force-renewal --email peretyatko.kirill@avtorit24.ru --agree-tos --no-eff-email -d xn--24-6kcduamh0cckkold.xn--p1ai 
     networks:
       - app-network
 
@@ -47,8 +48,8 @@ volumes:
   node_modules:
   static_value:
   media_value:
-  letsencrypt-site:
-  # www-html:
+  certificates:
+  data:
 
 networks:
   app-network:
