@@ -21,12 +21,12 @@ services:
     # restart: unless-stopped
     ports:
       - 80:80
-      # - 443:443
+      - 443:443
 
     volumes:
       - static_value:/var/html/static/
       - media_value:/var/html/media/
-      - etc-letsencrypt:/etc/letsencrypt
+      - letsencrypt-site:/etc/letsencrypt
     networks:
       - app-network
 
@@ -36,9 +36,9 @@ services:
     depends_on:
       - nginx
     volumes:
-      - etc-letsencrypt:/etc/letsencrypt
-      - www-html:/var/www/html
-    command: certonly --webroot --webroot-path=/var/www/html --force-renewal --email peretyatko.kirill@avtorit24.ru --agree-tos --no-eff-email -d xn--24-6kcduamh0cckkold.xn--p1ai 
+      - letsencrypt-site:/etc/letsencrypt
+      # - www-html:/var/www/html
+    command: certonly --webroot --webroot-path=/etc/letsencrypt --force-renewal --email peretyatko.kirill@avtorit24.ru --agree-tos --no-eff-email -d xn--24-6kcduamh0cckkold.xn--p1ai 
     networks:
       - app-network
 
@@ -47,8 +47,8 @@ volumes:
   node_modules:
   static_value:
   media_value:
-  etc-letsencrypt:
-  www-html:
+  letsencrypt-site:
+  # www-html:
 
 networks:
   app-network:
