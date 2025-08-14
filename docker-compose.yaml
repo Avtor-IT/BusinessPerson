@@ -31,7 +31,6 @@ services:
     networks:
       - app-network
 
-  # Перевыпкается ограниченное количество раз. Каждый деплой - перевыпуск
   certbot: 
     image: certbot/certbot
     depends_on:
@@ -39,7 +38,7 @@ services:
     volumes:
       - certificates:/etc/letsencrypt
       - data:/data/letsencrypt
-    command: certonly --webroot -w /data/letsencrypt --force-renewal --email peretyatko.kirill@avtorit24.ru --agree-tos --no-eff-email -d xn--24-6kcduamh0cckkold.xn--p1ai  # --staging for tests --keep-until-expiring istead of --force-renewal
+    command: certonly --webroot -w /data/letsencrypt --keep-until-expiring --email peretyatko.kirill@avtorit24.ru --agree-tos --no-eff-email -d xn--24-6kcduamh0cckkold.xn--p1ai  # --staging for tests --keep-until-expiring istead of --force-renewal
     networks:
       - app-network
 
