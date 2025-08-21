@@ -88,23 +88,4 @@ jobs:
                       docker compose pull
                       docker compose up -d --remove-orphans
                       docker system prune -f
-
-            # - name: Stack Deploy
-            #   uses: cssnr/stack-deploy-action@v1
-            #   with:
-            #       name: businessperson
-            #       file: compose.swarm.yaml
-            #       host: ${{ secrets.SSH_HOST }}
-            #       user: ${{ secrets.SSH_USER }}
-            #       ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
-            #       registry_auth: true
-            #       prune: true
-            #       registry_user: ${{ secrets.DOCKERHUB_USERNAME }}
-            #       registry_pass: ${{ secrets.DOCKERHUB_PASSWORD }}
-            # - name: system prune
-            #   uses: appleboy/ssh-action@v1
-            #   with:
-            #       host: ${{ secrets.SSH_HOST }}
-            #       username: root
-            #       key: ${{ secrets.SSH_PRIVATE_KEY }}
-            #       script: sudo docker system prune -f
+А

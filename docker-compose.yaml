@@ -2,7 +2,7 @@ services:
 
   backend:
     image: holakarme/businessperson-backend:latest
-    # restart: unless-stopped
+    restart: unless-stopped
     volumes:
       - static_value:/apps/backend/static
       - media_value:/apps/backend/media
@@ -18,7 +18,7 @@ services:
     image: holakarme/businessperson-nginx:latest
     depends_on:
       - backend
-    # restart: unless-stopped
+    restart: unless-stopped
     ports:
       - 80:80
       - 443:443
