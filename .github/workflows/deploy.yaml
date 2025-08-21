@@ -69,11 +69,11 @@ jobs:
             - name: Copy docker-compose.yaml to server
               uses: appleboy/scp-action@v0.1.7
               with:
-                host: ${{ secrets.SSH_HOST }}
-                username: ${{ secrets.SSH_USER }}
-                key: ${{ secrets.SSH_PRIVATE_KEY }}
-                source: "docker-compose.yaml"
-                target: "~/businessperson"
+                  host: ${{ secrets.SSH_HOST }}
+                  username: ${{ secrets.SSH_USER }}
+                  key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  source: 'docker-compose.yaml'
+                  target: '~/businessperson'
 
             - name: Deploy to server via SSH
               uses: appleboy/ssh-action@v1.2.0
@@ -84,8 +84,7 @@ jobs:
                   script: |
                       set -e
                       cd ~/businessperson
-                      
+
                       docker compose pull
                       docker compose up -d --remove-orphans
                       docker system prune -f
-А
