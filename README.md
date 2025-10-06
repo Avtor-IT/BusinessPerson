@@ -1,45 +1,40 @@
 # Business Person
 
-## Technologies
 
--   React for frontend
--   DRF for backend
--   SQLite db (Postgre soon)
--   NGINX web server
+## Гайд
 
-## Guide
-
-### Clone repo:
+### Клонировать репу:
 
 ```
 git clone --recurse-submodules  https://github.com/Avtor-IT/BusinessPerson.git
 ```
 
-### Receive submodules:
+### Получить сабмодули:
 
 ```
 git submodule init
 git submodule update
 ```
 
-### Update submodules head:
+### Обновить версии сабмодулей (подтянуть новые коммиты):
 
 ```
 git submodule update --remote
 ```
 
-### Deployment guide:
+### Деплой:
 
-1. By ssh, set the docker & docker compose up at the vps.
+На коммиты в ветку main настроен github actions:
 
-2. Fill in the required (from the `deploy.yaml` file) secrets at the .env or github secrets.
+1. _build\_backend_: Сборка и пуш в докерхаб контейнера бекенда по докерфайлу `./docker/backend/Dockerfile`
+2. _build\_nginx_: Сборка и пуш в докерхаб контейнера nginx со статикой (фронтенд) по докерфайлу `./docker/nginx/Dockerfile`
+3. _deploy_: Копирование `docker-compose.yaml` в директорию на сервере, а затем запуск `docker compose` с последующей очисткой от старых контейнеров.
+    - Запуск контейнеров происходит через `entrypoint.sh`, в котором запускается миграция бд.
 
-3. After every commit at the submodule, you need to fetch head of the submodules: `git submodule update --remote`.
 
+_Миграции для бекенда:_
 
-_migrarions in the backend container_
-
-```
+```sh
 docker exec -it <container-id> python3 manage.py makemigrations
 docker exec -it <container-id> python3 manage.py migrate
 docker exec -it <container-id> python3 manage.py createsupersuser
